@@ -149,7 +149,7 @@ const Infrastructure = () => {
 
 
        {/* What's Your Dream Section */}
-       <section className="py-20 bg-gray-900">
+       <section className="py-20 bg-blue-100">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center" style={{ color: '#10B981' }}>

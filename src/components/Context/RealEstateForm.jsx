@@ -1,16 +1,46 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMultiFormModal } from './ModalContext';
+import { useEffect } from 'react';
 
 
 const RealEstateForm = ({ initialData }) => {
   const { closeModal } = useMultiFormModal();
 
+  
+  // Generate file number and set current date on component mount
+  useEffect(() => {
+    const generateFileNumber = () => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      // Format: RE-YYYYMMDD-HHMMSS
+      return `RE-${year}${month}${day}-${hours}${minutes}${seconds}`;
+    };
+
+    const setCurrentDateTime = () => {
+      const now = new Date();
+      const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split('T')[0];
+      
+      formik.setFieldValue('date', localDate);
+      formik.setFieldValue('fileNo', generateFileNumber());
+    };
+
+    setCurrentDateTime();
+  }, []);
+
   const formik = useFormik({
      
     initialValues: {
-      fileNo: '',
-      date: '',
+      fileNo: initialData.fileNo||'',
+      date:initialData.date|| '',
       referenceId: '',
       farmerId: '',
       extent: '',
