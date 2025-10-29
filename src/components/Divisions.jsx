@@ -1,4 +1,7 @@
-const Divisions = ({ selectedDivision, onDivisionSelect }) => {
+import { Link } from 'react-router-dom';
+import { useMultiFormModal } from './Context/ModalContext';
+
+const Divisions = () => {
   // Detailed data for each division
   const divisionData = {
     'production': {
@@ -63,31 +66,29 @@ const Divisions = ({ selectedDivision, onDivisionSelect }) => {
     }
   };
 
-  // Get the selected division data or show default
-  const data = selectedDivision && divisionData[selectedDivision] ? divisionData[selectedDivision] : null;
-
-  // Original divisions array for default view with click handlers
+  const{openModal}=useMultiFormModal()
+  // Divisions array with React Router Links
   const divisions = [
     {
       title: 'Real Estate',
       description: 'Building landmark properties and sustainable communities across continents',
       icon: '🏢',
       color: 'from-blue-500 to-blue-700',
-      divisionKey: 'real-estate'
+      link: '/real-estate'
     },
     {
       title: 'Film Production',
       description: 'Creating compelling stories that entertain and inspire audiences worldwide',
       icon: '🎬',
       color: 'from-purple-500 to-purple-700',
-      divisionKey: 'production'
+      link: '/production'
     },
     {
       title: 'Infrastructure',
       description: 'Building tomorrow\'s foundation with innovative infrastructure solutions',
       icon: '🏗️',
       color: 'from-green-500 to-green-700',
-      divisionKey: 'infrastructure'
+      link: '/infrastructure'
     }
   ];
 
@@ -100,77 +101,44 @@ const Divisions = ({ selectedDivision, onDivisionSelect }) => {
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {data ? `Detailed Information: ${data.title}` : 'Diversified excellence across six strategic business verticals'}
+            Diversified excellence across our strategic business verticals
           </p>
         </div>
 
-        {/* Render detailed view if a division is selected */}
-        {data ? (
-          <div className="max-w-4xl mx-auto">
-            <div className={`bg-gradient-to-br ${data.color} rounded-2xl shadow-2xl overflow-hidden`}>
-              <div className="bg-white bg-opacity-10 backdrop-blur-sm p-8 md:p-12">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="text-7xl">{data.icon}</div>
-                  <div>
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">{data.title}</h3>
-                    <p className="text-xl text-white text-opacity-90">{data.subtitle}</p>
-                  </div>
-                </div>
-                <p className="text-xl text-white mb-8">{data.description}</p>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-2xl font-bold text-white mb-4">What We Do</h4>
-                    <ul className="space-y-3">
-                      {data.details.map((item, index) => (
-                        <li key={index} className="flex items-start text-white">
-                          <svg className="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-2xl font-bold text-white mb-4">Achievements</h4>
-                    <ul className="space-y-3">
-                      {data.achievements.map((item, index) => (
-                        <li key={index} className="flex items-start text-white">
-                          <svg className="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          // Render default grid view
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {divisions.map((division, index) => (
-              <div
-                key={index}
-                onClick={() => onDivisionSelect && onDivisionSelect(division.divisionKey)}
-                className="group relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer"
-              >
+        {/* Default grid view with Links */}
+        {/* Default grid view with Links */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {divisions.map((division, index) => (
+            <div
+            
+              className="group block"
+            >
+              <div className="relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer h-full">
                 <div className={`absolute inset-0 bg-gradient-to-br ${division.color} opacity-0 group-hover:opacity-90 transition-opacity duration-300`}></div>
 
-                <div className="relative p-8 space-y-4">
+                <div className="relative p-8 space-y-4 h-full flex flex-col">
                   <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
                     {division.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-navy group-hover:text-white transition-colors">
                     {division.title}
                   </h3>
-                  <p className="text-gray-600 group-hover:text-white transition-colors">
+                  <p className="text-gray-600 group-hover:text-white transition-colors flex-grow">
                     {division.description}
                   </p>
+
+                  {/* Appointment Button only for Real Estate */}
+                  {division.title === 'Real Estate' && (
+                    <div className="mb-4">
+                      <button
+                        onClick={() => openModal('real-estate', { prefillData: 'some data' })}
+                        className="w-full bg-gold text-navy py-3 px-4 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-300 shadow-md hover:shadow-lg"
+                      >
+                        Book Appointment For Real Estate
+                      </button>
+                    </div>
+                  )}
+
                   <div className="mt-4 text-navy group-hover:text-white font-semibold flex items-center space-x-2 transition-colors">
                     <span>Learn More</span>
                     <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,9 +147,36 @@ const Divisions = ({ selectedDivision, onDivisionSelect }) => {
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <p className="text-gray-600 mb-6">
+            Ready to explore our divisions in detail?
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              to="/production"
+              className="px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold rounded-lg hover:from-purple-600 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              🎬 Explore Production
+            </Link>
+            <Link
+              to="/real-estate"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              🏢 Explore Real Estate
+            </Link>
+            <Link
+              to="/infrastructure"
+              className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-700 text-white font-bold rounded-lg hover:from-green-600 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              🏗️ Explore Infrastructure
+            </Link>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

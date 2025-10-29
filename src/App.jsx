@@ -1,140 +1,84 @@
-import { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
+import About from './components/Sections/About';
 import Divisions from './components/Divisions';
 import GlobalPresence from './components/GlobalPresence';
 import SocialResponsibility from './components/SocialResponsibility';
 import Devocation from './components/Devocation';
 import FounderMessage from './components/FounderMessage';
 import Footer from './components/Footer'; 
-import Production from './components/Pages/Production';
-import RealEstate from './components/Pages/RealEstate';
-import Infrastructure from './components/Pages/Infrastructure';
-import Contact from './components/Pages/Contact';
+import Production from './components/Divisions/Production';
+import RealEstate from './components/Divisions/RealEstate';
+import Infrastructure from './components/Divisions/Infrastructure';
+import Contact from './components/Contact';
+import AboutUs from './components/AboutUs';
+import { MultiFormModalProvider } from './components/Context/ModalContext';
+import MultiFormModal from './components/Context/Modal';
 
-function App() {
-  const [selectedDivision, setSelectedDivision] = useState(null);
-  const [showDivisionPage, setShowDivisionPage] = useState(false);
-  const [showContactPage, setShowContactPage] = useState(false);
-
-  const handleDivisionSelect = useCallback((division) => {
-    setSelectedDivision(division);
-    setShowDivisionPage(true);
-    setShowContactPage(false); // Close contact page if it's open
-    // Update URL with division name
-    window.location.hash = `#${division}`;
-    // Smooth scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  const handleBackToHome = () => {
-    setShowDivisionPage(false);
-    setSelectedDivision(null);
-    setShowContactPage(false);
-    // Update URL to home
-    window.location.hash = '#home';
-  };
-
-  const handleContactClick = useCallback(() => {
-    setShowContactPage(true);
-    setShowDivisionPage(false); // Close division page if it's open
-    setSelectedDivision(null); // Reset selected division
-    // Update URL to contact
-    window.location.hash = '#contact';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  // Handle hash navigation on initial load
-  useEffect(() => {
-    const handleHashNavigation = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        // Remove the # symbol
-        const sectionId = hash.substring(1);
-        
-        // Special handling for contact page
-        if (sectionId === 'contact') {
-          handleContactClick();
-          return;
-        }
-        
-        // Special handling for division pages
-        if (sectionId === 'production' || sectionId === 'real-estate' || sectionId === 'infrastructure') {
-          handleDivisionSelect(sectionId);
-          return;
-        }
-        
-        // Wait a bit for the page to render
-        setTimeout(() => {
-          const section = document.getElementById(sectionId);
-          if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
-      }
-    };
-
-    // Call on initial load
-    handleHashNavigation();
-
-    // Also listen for hash changes
-    window.addEventListener('hashchange', handleHashNavigation);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashNavigation);
-    };
-  }, [handleContactClick, handleDivisionSelect]);
-
-  // Render contact page
-  if (showContactPage) {
-    return (
-      <div className="min-h-screen">
-        <Header onDivisionSelect={handleDivisionSelect} selectedDivision={selectedDivision} onHomeClick={handleBackToHome} onContactClick={handleContactClick} showContactPage={showContactPage} showDivisionPage={showDivisionPage} />
-        <Contact />
-        <button
-          onClick={handleBackToHome}
-          className="fixed bottom-8 right-8 bg-gold text-navy px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all font-semibold z-50"
-        >
-          ← Back to Home
-        </button>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Render division pages
-  if (showDivisionPage) {
+// Layout Component
+function Layout() {
   return (
     <div className="min-h-screen">
-      <Header onDivisionSelect={handleDivisionSelect} selectedDivision={selectedDivision} onHomeClick={handleBackToHome} onContactClick={handleContactClick} showContactPage={showContactPage} />
-      {selectedDivision === 'production' && <Production />}
-      {selectedDivision === 'real-estate' && <RealEstate />}
-      {selectedDivision === 'infrastructure' && <Infrastructure />}
-      <button
-        onClick={handleBackToHome}
-        className="fixed bottom-8 right-8 bg-gold text-navy px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all font-semibold z-50"
-      >
-        ← Back to Home
-      </button>
+      <Header />
+      <main className='pt-20'>
+        
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
 }
 
-// Render main home page
-return (
-  <div className="min-h-screen">
-    <Header onDivisionSelect={handleDivisionSelect} selectedDivision={selectedDivision} onHomeClick={handleBackToHome} onContactClick={handleContactClick} showContactPage={showContactPage} />
-    <Hero />
-      <About />
-      <Divisions selectedDivision={selectedDivision} onDivisionSelect={handleDivisionSelect} />
+// Home Page Component
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      {/* <Divisions /> */}
       <GlobalPresence />
       <SocialResponsibility />
-      <Devocation />
+      <About />
+      
       <FounderMessage />
-      <Footer />
+    </>
+  );
+}
+
+// 404 Page
+function NotFound() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-navy mb-4">404 - Page Not Found</h1>
+        <Link to="/" className="text-gold hover:underline">Go back home</Link>
+      </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <MultiFormModalProvider>
+        <Router>
+      <Routes>
+        {/* All routes share the same layout */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path='about' element={<AboutUs/> } />
+          <Route path="production" element={<Production />} />
+          <Route path="real-estate" element={<RealEstate />} />
+          <Route path="infrastructure" element={<Infrastructure />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+      <MultiFormModal/>
+    </Router>
+
+    </MultiFormModalProvider>
+  
   );
 }
 
