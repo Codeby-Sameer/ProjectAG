@@ -1,0 +1,12 @@
+{
+  "build": {
+    "env": {
+      "NODE_VERSION": "20.x"
+    }
+  },
+  "functions": {
+    "**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}
