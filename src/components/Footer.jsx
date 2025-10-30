@@ -64,13 +64,13 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span>Corporate Office<br/>Global Business Center</span>
+                <span>H.No. 131/A, 2nd Floor, MLA Colony, Beside Vamsiram Banjara Abodes, Road No.12, Lane 14, Banjara Hills,<br/>Hyderabad-500034.</span>
               </li>
               <li className="flex items-center space-x-2">
                 <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>info@anandgroup.com</span>
+                <span>info.anandrealtyy@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,19 +80,6 @@ const Footer = () => {
               </li>
             </ul>
 
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold mb-2 text-gold">Newsletter</h4>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-3 py-2 rounded-l-lg text-navy text-sm focus:outline-none"
-                />
-                <button className="px-4 py-2 bg-gold text-navy font-semibold rounded-r-lg hover:bg-yellow-500 transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 

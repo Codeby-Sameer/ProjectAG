@@ -16,13 +16,17 @@ import Contact from './components/Contact';
 import AboutUs from './components/AboutUs';
 import { MultiFormModalProvider } from './components/Context/ModalContext';
 import MultiFormModal from './components/Context/Modal';
+import AnandReality from './components/Divisions/RealEstate';
 
 // Layout Component
 function Layout() {
   return (
     <div className="min-h-screen">
+     
+
       <Header />
-      <main className='pt-20'>
+    
+      <main className='pt-20 '>
         
         <Outlet />
       </main>
@@ -68,7 +72,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path='about' element={<AboutUs/> } />
           <Route path="production" element={<Production />} />
-          <Route path="real-estate" element={<RealEstate />} />
+          <Route path="real-estate" element={<AnandReality />} />
           <Route path="infrastructure" element={<Infrastructure />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

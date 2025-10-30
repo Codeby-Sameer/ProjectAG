@@ -1,12 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ceoPhoto from '../assets/DSC_7610.JPG';
+import ceoPhoto from '../assets/founder.jpg';
+import logo from '../assets/logo.png'
+import { useMultiFormModal } from './Context/ModalContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDivisionsOpen, setIsDivisionsOpen] = useState(false);
+  const [isMobileDivisionsOpen, setIsMobileDivisionsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const mobileDropdownRef = useRef(null);
+  const mobileDivisionsRef = useRef(null);
+  const { openModal } = useMultiFormModal();
   const location = useLocation();
 
   // Close dropdowns when clicking outside
@@ -20,6 +25,10 @@ const Header = () => {
       if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
+      // Mobile divisions dropdown
+      if (mobileDivisionsRef.current && !mobileDivisionsRef.current.contains(event.target)) {
+        setIsMobileDivisionsOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -32,6 +41,7 @@ const Header = () => {
   useEffect(() => {
     setIsMenuOpen(false);
     setIsDivisionsOpen(false);
+    setIsMobileDivisionsOpen(false);
   }, [location.pathname]);
 
   const isActiveLink = (path) => {
@@ -42,52 +52,66 @@ const Header = () => {
     return ['/production', '/real-estate', '/infrastructure'].includes(location.pathname);
   };
 
+  const openAppointmentForm = (division) => {
+    console.log(`Opening appointment form for ${division}`);
+    openModal('real-estate', { prefillData: 'some data' });
+  };
+
+  const handleMobileDivisionClick = () => {
+    setIsMobileDivisionsOpen(!isMobileDivisionsOpen);
+  };
+
+  const handleDivisionLinkClick = () => {
+    setIsMenuOpen(false);
+    setIsMobileDivisionsOpen(false);
+  };
+
   return (
-    <header className="fixed w-full top-0 z-50 bg-white shadow-md backdrop-blur-sm ">
-      <nav className="container mx-auto px-6 lg:py-4 py-5" ref={mobileDropdownRef}>
+    <header className="fixed w-full top-0 z-50 bg-navy text-gold shadow-lg backdrop-blur-sm border-b border-gold/20">
+      <nav className="container mx-auto lg:py-5 py-4">
         <div className="flex items-center justify-between">
-          {/* Desktop Logo & Brand */}
+          {/* Desktop Logo & Brand - Show on lg screens and above */}
           <Link
             to="/"
-            className="hidden md:flex items-center space-x-4 "
+            className="hidden lg:flex items-center space-x-4 group"
           >
             {/* Logo Image */}
             <div className="relative">
-              <div className="w-16 h-16 rounded-lg border-2 border-gold shadow-lg  bg-gradient-to-br from-gold to-yellow-400 flex items-center justify-center">
-                <div className="text-2xl font-bold text-navy">AG</div>
+              <div className="w-14 h-14 rounded-lg shadow-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+               <img src={logo} alt="logo" className='w-full p-3' />
               </div>
             </div>
 
             {/* CEO Image */}
-            <div className="relative hidden md:block">
+            <div className="relative">
               <img
                 src={ceoPhoto}
                 alt="CEO"
-                className="w-16 h-16  border-3 border-gold shadow-lg  object-cover"
+                className="w-14 h-14 rounded-full shadow-lg object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
             {/* Company Name */}
             <div className="flex flex-col">
-             <div className="flex items-center space-x-2 group cursor-pointer">
-  <div className="text-2xl font-bold text-navy group-hover:text-gold transition-colors duration-300">ANAND</div>
-  <div className="text-2xl font-light text-gold group-hover:text-navy transition-colors duration-300">GROUP</div>
-</div>
-              <div className="text-sm text-gray-700 font-semibold">
-                Leading Excellence Since 1995
+              <div className="flex items-center space-x-2">
+                <div className="text-xl font-bold text-white">ANAND</div>
+                <div className="text-xl font-light text-gold">GROUP</div>
+              </div>
+              <div className="text-sm text-gold/80 font-medium">
+                Born in 1988
               </div>
             </div>
           </Link>
 
-          {/* Mobile Logo & Brand */}
+          {/* Mobile & Tablet Logo & Brand - Show on screens below lg */}
           <Link
             to="/"
-            className="md:hidden flex items-center space-x-3"
+            className="lg:hidden flex items-center space-x-3  ms-2"
           >
             {/* Mobile Logo Image */}
             <div className="relative">
-              <div className="w-12 h-12 rounded-lg border-2 border-gold shadow-md bg-gradient-to-br from-gold to-yellow-400 flex items-center justify-center">
-                <div className="text-xl font-bold text-navy">AG</div>
+              <div className="w-12 h-12 rounded-lg shadow-md flex items-center justify-center ">
+                <img src={logo} alt="logo" className='w-full p-2' />
               </div>
             </div>
 
@@ -96,36 +120,42 @@ const Header = () => {
               <img
                 src={ceoPhoto}
                 alt="CEO"
-                className="w-10 h-10 rounded-full border-2 border-gold shadow-md object-cover"
+                className="w-14 h-14 rounded-full  shadow-md object-cover"
               />
             </div>
 
             {/* Mobile Company Name */}
             <div className="flex flex-col">
               <div className="flex items-center space-x-1">
-                <div className="text-lg font-bold text-navy">ANAND</div>
-                <div className="text-lg font-light text-gold">GROUP</div>
+                <div className="text-md font-bold text-gold">ANAND</div>
+                <div className="text-md font-light text-gold">GROUP</div>
               </div>
-              <div className="text-xs text-gray-700 font-medium">
+              <div className="text-xs text-gold/80 font-medium">
                 Since 1995
               </div>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Show only on lg screens and above */}
+          <div className="hidden lg:flex items-center space-x-6">
             <Link
               to="/"
-              className={`transition-colors ${isActiveLink('/') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`transition-colors px-3 py-2 rounded-lg ${
+                isActiveLink('/') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
             >
               Home
             </Link>
 
             <Link
               to="/about"
-              className={`transition-colors ${isActiveLink('/about') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`transition-colors px-3 py-2 rounded-lg ${
+                isActiveLink('/about') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
             >
               About
             </Link>
@@ -134,8 +164,11 @@ const Header = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDivisionsOpen(!isDivisionsOpen)}
-                className={`transition-colors flex items-center space-x-1 ${isDivisionActive() ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                  }`}
+                className={`transition-colors flex items-center space-x-1 px-3 py-2 rounded-lg ${
+                  isDivisionActive() 
+                    ? 'text-gold font-bold bg-gold/10' 
+                    : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+                }`}
               >
                 <span>Divisions</span>
                 <svg
@@ -150,27 +183,33 @@ const Header = () => {
 
               {/* Dropdown Menu */}
               {isDivisionsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-xl rounded-lg py-2 z-50 border border-gray-200">
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gold shadow-xl rounded-lg py-2 z-50">
                   <Link
                     to="/production"
-                    className={`block w-full text-left px-4 py-2 hover:bg-gold hover:text-white transition-colors ${isActiveLink('/production') ? 'bg-gold text-white' : 'text-navy'
-                      }`}
+                    className={`block w-full text-left px-4 py-3 hover:bg-gold hover:text-navy transition-colors border-b border-gold/10 ${
+                      isActiveLink('/production') ? 'bg-gold/20 text-navy' : 'text-gold/90'
+                    }`}
+                    onClick={() => setIsDivisionsOpen(false)}
                   >
-                    Production
+                    <div className="font-semibold">🎬 Anand Cinemas</div>
                   </Link>
                   <Link
                     to="/real-estate"
-                    className={`block w-full text-left px-4 py-2 hover:bg-gold hover:text-white transition-colors ${isActiveLink('/real-estate') ? 'bg-gold text-white' : 'text-navy'
-                      }`}
+                    className={`block w-full text-left px-4 py-3 hover:bg-gold hover:text-navy transition-colors border-b border-gold/10 ${
+                      isActiveLink('/real-estate') ? 'bg-gold/20 text-navy' : 'text-gold/90'
+                    }`}
+                    onClick={() => setIsDivisionsOpen(false)}
                   >
-                    Real Estate
+                    <div className="font-semibold">🏢 Anand Reality</div>
                   </Link>
                   <Link
                     to="/infrastructure"
-                    className={`block w-full text-left px-4 py-2 hover:bg-gold hover:text-white transition-colors ${isActiveLink('/infrastructure') ? 'bg-gold text-white' : 'text-navy'
-                      }`}
+                    className={`block w-full text-left px-4 py-3 hover:bg-gold hover:text-navy transition-colors ${
+                      isActiveLink('/infrastructure') ? 'bg-gold/20 text-navy' : 'text-gold/90'
+                    }`}
+                    onClick={() => setIsDivisionsOpen(false)}
                   >
-                    Infrastructure
+                    <div className="font-semibold">🏗️ Anand Infra</div>
                   </Link>
                 </div>
               )}
@@ -178,19 +217,30 @@ const Header = () => {
 
             <Link
               to="/contact"
-              className={`transition-colors ${isActiveLink('/contact') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`transition-colors px-3 py-2 rounded-lg ${
+                isActiveLink('/contact') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
             >
               Contact
             </Link>
+
+            {/* Appointment Button */}
+            <button
+              onClick={() => openModal('real-estate', { prefillData: 'some data' })}
+              className="bg-gold text-navy px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Book Appointment
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile & Tablet Menu Button - Show on screens below lg */}
           <button
-            className="md:hidden text-navy"
+            className="lg:hidden text-gold p-2 hover:bg-gold/10 rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -200,36 +250,49 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile & Tablet Menu - Show on screens below lg */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-3">
+          <div 
+            ref={mobileDropdownRef}
+            className="lg:hidden mt-4 pb-4 space-y-2 bg-navy/95 rounded-lg p-4 border border-gold/20 backdrop-blur-lg"
+          >
             <Link
               to="/"
-              className={`block transition-colors ${isActiveLink('/') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`block transition-colors px-4 py-3 rounded-lg ${
+                isActiveLink('/') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
 
             <Link
               to="/about"
-              className={`block transition-colors ${isActiveLink('/about') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`block transition-colors px-4 py-3 rounded-lg ${
+                isActiveLink('/about') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
 
             {/* Mobile Divisions Dropdown */}
-            <div>
+            <div ref={mobileDivisionsRef}>
               <button
-                onClick={() => setIsDivisionsOpen(!isDivisionsOpen)}
-                className="w-full text-left flex items-center justify-between text-navy hover:text-gold transition-colors"
+                onClick={handleMobileDivisionClick}
+                className={`w-full text-left flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${
+                  isDivisionActive() 
+                    ? 'text-gold font-bold bg-gold/10' 
+                    : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+                }`}
               >
-                <span className={isDivisionActive() ? 'text-gold font-bold' : ''}>
-                  Divisions
-                </span>
+                <span>Divisions</span>
                 <svg
-                  className={`w-4 h-4 transition-transform ${isDivisionsOpen ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 transition-transform ${isMobileDivisionsOpen ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -238,39 +301,67 @@ const Header = () => {
                 </svg>
               </button>
 
-              {isDivisionsOpen && (
-                <div className="ml-4 mt-2 space-y-2 border-l-2 border-gold pl-4">
+              {isMobileDivisionsOpen && (
+                <div className="ml-4 mt-2 space-y-2 border-l-2 border-gold/30 pl-4">
                   <Link
                     to="/production"
-                    className={`block transition-colors ${isActiveLink('/production') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                      }`}
+                    className={`block transition-colors px-3 py-2 rounded-lg ${
+                      isActiveLink('/production') 
+                        ? 'text-gold font-bold bg-gold/10' 
+                        : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+                    }`}
+                    onClick={handleDivisionLinkClick}
                   >
-                    🎬 Production
+                    <div className="font-semibold">🎬 Anand Cinemas</div>
                   </Link>
                   <Link
                     to="/real-estate"
-                    className={`block transition-colors ${isActiveLink('/real-estate') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                      }`}
+                    className={`block transition-colors px-3 py-2 rounded-lg ${
+                      isActiveLink('/real-estate') 
+                        ? 'text-gold font-bold bg-gold/10' 
+                        : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+                    }`}
+                    onClick={handleDivisionLinkClick}
                   >
-                    🏢 Real Estate
+                    <div className="font-semibold">🏢 Anand Reality</div>
                   </Link>
                   <Link
                     to="/infrastructure"
-                    className={`block transition-colors ${isActiveLink('/infrastructure') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                      }`}
+                    className={`block transition-colors px-3 py-2 rounded-lg ${
+                      isActiveLink('/infrastructure') 
+                        ? 'text-gold font-bold bg-gold/10' 
+                        : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+                    }`}
+                    onClick={handleDivisionLinkClick}
                   >
-                    🏗️ Infrastructure
+                    <div className="font-semibold">🏗️ Anand Infra</div>
                   </Link>
                 </div>
               )}
             </div>
+
             <Link
               to="/contact"
-              className={`block transition-colors ${isActiveLink('/contact') ? 'text-gold font-bold' : 'text-navy hover:text-gold'
-                }`}
+              className={`block transition-colors px-4 py-3 rounded-lg ${
+                isActiveLink('/contact') 
+                  ? 'text-gold font-bold bg-gold/10' 
+                  : 'text-gold/90 hover:text-gold hover:bg-gold/5'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </Link>
+
+            {/* Mobile Appointment Button */}
+            <button
+              onClick={() => {
+                openAppointmentForm('general');
+                setIsMenuOpen(false);
+              }}
+              className="w-full bg-gold text-navy px-4 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors shadow-lg text-center mt-2"
+            >
+              Book Appointment
+            </button>
           </div>
         )}
       </nav>

@@ -1,339 +1,249 @@
-import { useState, useEffect } from 'react';
-import { useMultiFormModal } from '../Context/ModalContext';
+import { Link } from "react-router-dom";
 
-
-const RealEstate = () => {
-const {openModal}=useMultiFormModal()
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [hoveredDream, setHoveredDream] = useState(null);
-
-
-
-  const services = [
-    'Premium residential and commercial developments',
-    'Sustainable building practices and green architecture',
-    'Mixed-use projects integrating living, work, and leisure',
-    'Smart building technologies and modern amenities',
-    'Community-focused developments',
-    'Property management and maintenance services',
-    'Real estate investment opportunities',
-    'Land acquisition and development consulting'
-  ];
-
-  const achievements = [
-    'Delivered over 5,000 residential units',
-    'Developed over 2 million sq ft of commercial space',
-    'Sustainable certifications for green buildings',
-    '25+ landmark projects across major cities',
-    'Zero incident construction record for 5+ years',
-    'Partnerships with leading architects and designers'
-  ];
-
-  const featuredProjects = [
-    {
-      name: 'Skyline Residences',
-      location: 'Downtown Area',
-      units: '150 Luxury Apartments',
-      status: 'Completed 2024',
-      features: ['Rooftop Garden', 'Swimming Pool', 'Smart Home System'],
-      price: '$250M',
-      color: 'from-blue-500 to-indigo-600',
-      image: '🏙️'
-    },
-    {
-      name: 'Business Plaza',
-      location: 'Commercial District',
-      units: '500,000 sq ft',
-      status: 'In Progress',
-      features: ['LEED Certified', 'Parking Facilities', 'Modern Office Spaces'],
-      price: '$180M',
-      color: 'from-green-500 to-emerald-600',
-      image: '🏢'
-    },
-    {
-      name: 'Green Valley Community',
-      location: 'Suburban Area',
-      units: '200 Villas & Townhouses',
-      status: 'Planning Phase',
-      features: ['Eco-Friendly Design', 'Community Center', 'Sustainable Living'],
-      price: '$120M',
-      color: 'from-purple-500 to-pink-600',
-      image: '🏘️'
-    }
-  ];
-
-  const dreamCards = [
-    {
-      title: 'Residential Haven',
-      icon: '🏡',
-      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
-      description: 'Discover premium residential properties designed for modern living. From luxury apartments to spacious villas, find your perfect home.',
-      buttonText: 'Explore Homes',
-      gradient: 'from-blue-600 to-indigo-700'
-    },
-    {
-      title: 'Commercial Spaces',
-      icon: '🏢',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800',
-      description: 'Prime commercial properties in strategic locations. Ideal for businesses seeking premium office spaces and retail outlets.',
-      buttonText: 'View Properties',
-      gradient: 'from-green-600 to-emerald-700'
-    },
-    {
-      title: 'Land Investment',
-      icon: '🌳',
-      image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800',
-      description: 'Strategic land acquisition opportunities with excellent growth potential. Invest in prime locations for maximum returns.',
-      buttonText: 'Invest Now',
-      gradient: 'from-purple-600 to-pink-700'
-    }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredProjects.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [featuredProjects.length]);
-
+const AnandReality = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-white ">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-8xl mb-6">🏢</div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Real Estate Development</h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8">
-              Building landmark properties and sustainable communities across continents
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">Residential</span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">Commercial</span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">Mixed-Use</span>
-              <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">Sustainable</span>
-            </div>
-          </div>
-        </div>
-      </section>
+   <section className="relative py-16 lg:py-24 min-h-[80vh] flex items-center justify-center overflow-hidden">
+  {/* Background Video */}
+  <div className="absolute inset-0 w-full h-full">
+ <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  className="w-full h-full object-cover"
+>
+  <source src="https://assets.mixkit.co/videos/preview/mixkit-construction-site-overview-41568-large.mp4" type="video/mp4" />
+</video>
+    {/* Fallback gradient overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-navy/80 via-blue-900/70 to-navy/90"></div>
+  </div>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <div className="text-5xl font-bold text-blue-600 mb-2">5,000+</div>
-              <div className="text-gray-600">Residential Units</div>
-            </div>
-            <div className="p-6">
-              <div className="text-5xl font-bold text-blue-600 mb-2">2M+</div>
-              <div className="text-gray-600">Sq Ft Commercial</div>
-            </div>
-            <div className="p-6">
-              <div className="text-5xl font-bold text-blue-600 mb-2">25+</div>
-              <div className="text-gray-600">Landmark Projects</div>
-            </div>
-            <div className="p-6">
-              <div className="text-5xl font-bold text-blue-600 mb-2">100%</div>
-              <div className="text-gray-600">Customer Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
+  {/* Content */}
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div className="max-w-4xl mx-auto text-center">
+      <div className="text-6xl lg:text-7xl mb-6">🏢</div>
+      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-2xl">
+        Anand Reality
+      </h1>
+      <p className="text-xl lg:text-2xl text-blue-100 mb-8 drop-shadow-lg">
+        Land Settlement & Legal Solutions Experts
+      </p>
+      <p className="text-lg text-blue-200 max-w-2xl mx-auto drop-shadow-lg">
+        Transforming complex land disputes into clear, marketable titles with 25+ years of expertise
+      </p>
+      
+      {/* CTA Buttons */}
+      <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+        <button className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          📞 Get Free Consultation
+        </button>
+        <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
+          📋 View Our Services
+        </button>
+      </div>
+    </div>
+  </div>
 
-        {/* What's Your Dream Section */}
-        <section className="py-20 bg-blue-100">
-        <div className="container mx-auto px-6">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center" style={{ color: '#3B82F6' }}>
-              What's Your Dream?
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              {dreamCards.map((card, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-2xl bg-gray-800 border-2 border-transparent hover:border-blue-500 transition-all duration-500"
-                  onMouseEnter={() => setHoveredDream(index)}
-                  onMouseLeave={() => setHoveredDream(null)}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  {/* Image Background */}
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-800 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    
-                    {/* Icon Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-8xl transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
-                        {card.icon}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Card Content - Appears on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} p-6 transition-all duration-500 ${
-                    hoveredDream === index
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-full'
-                  }`}>
-                    <div className="h-full flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-3xl font-bold text-white mb-4">{card.title}</h3>
-                        <p className="text-white text-opacity-95 leading-relaxed mb-6 text-lg">
-                          {card.description}
-                        </p>
-                      </div>
-                      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg transform transition-transform hover:scale-105 shadow-xl">
-                        {card.buttonText}
-                      </button>
-                    </div>
-                  </div>
-                  
-                  {/* Title Label Below Card */}
-                  <div className="bg-gray-800 p-4 border-t-2 border-gray-700 group-hover:border-blue-500 transition-colors">
-                    <p className="text-center font-semibold" style={{ color: '#3B82F6' }}>
-                      - {card.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+  {/* Scroll Indicator */}
+  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+    <div className="w-8 h-8 border-r-2 border-b-2 border-gold rotate-45"></div>
+  </div>
+</section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">Our Services</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {services.map((service, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                  <div className="flex items-start">
-                    <svg className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-700">{service}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Carousel */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
-        <div className="container mx-auto px-6">
+      {/* Main Content Section */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">Featured Projects</h2>
-            
-            {/* Carousel */}
-            <div className="relative h-[600px] overflow-hidden rounded-3xl">
-              {featuredProjects.map((project, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                    index === currentSlide
-                      ? 'opacity-100 z-10 scale-100'
-                      : 'opacity-0 z-0 scale-95'
-                  }`}
-                >
-                  <div className={`bg-gradient-to-br ${project.color} rounded-3xl p-12 h-full flex flex-col text-white shadow-2xl`}>
-                    <div className="flex-1">
-                      <div className="text-9xl mb-6 text-center animate-pulse-slow">{project.image}</div>
-                      <h3 className="text-5xl md:text-6xl font-bold mb-4 text-center">{project.name}</h3>
-                      <p className="text-2xl text-center text-white text-opacity-90 mb-8">{project.location}</p>
-                      
-                      <div className="grid md:grid-cols-2 gap-6 mb-6">
-                        <div className="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-2xl">
-                          <p className="text-sm text-white text-opacity-80 mb-2">Total Units</p>
-                          <p className="text-3xl font-bold">{project.units}</p>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              
+              {/* Left Content */}
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
+                    Land Settlement & Legal Solutions
+                  </h2>
+                  <div className="w-16 lg:w-20 h-1 bg-gold mb-6"></div>
+                </div>
+                
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Anand Reality specializes in comprehensive land settlement services, handling complex 
+                    legal documentation, title verification, and dispute resolution to ensure clear and 
+                    marketable property titles for our clients.
+                  </p>
+                  
+                  <ul className="space-y-3">
+                    {[
+                      { icon: "⚖️", title: "Legal Title Verification", desc: "Comprehensive due diligence and title clearance" },
+                      { icon: "📑", title: "Documentation & Litigation Support", desc: "Handling property disputes and legal proceedings" },
+                      { icon: "🏛️", title: "Government Liaison", desc: "Revenue department coordination and approval facilitation" },
+                      { icon: "🔍", title: "Encumbrance Certificate Verification", desc: "Ensuring property free from legal hurdles" },
+                      { icon: "📊", title: "Survey & Boundary Finalization", desc: "GPS survey and physical demarcation" },
+                      { icon: "🤝", title: "Farmer & Landowner Settlements", desc: "Negotiation and agreement finalization" }
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <span className="text-2xl mr-3 flex-shrink-0">{item.icon}</span>
+                        <div>
+                          <strong className="text-navy block text-sm lg:text-base">{item.title}</strong>
+                          <span className="text-gray-600 text-sm">{item.desc}</span>
                         </div>
-                        <div className="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-2xl">
-                          <p className="text-sm text-white text-opacity-80 mb-2">Investment Value</p>
-                          <p className="text-3xl font-bold">{project.price}</p>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    With 25+ years of expertise in land litigation and settlement, we have successfully 
+                    resolved over 500 complex land cases and facilitated clear titles for 50,000+ acres 
+                    across multiple states.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Content */}
+              <div className="space-y-6">
+                {/* Legal Process Steps */}
+                <div className="bg-gray-50 rounded-2xl p-6 border border-gold/20">
+                  <h3 className="text-xl font-bold text-navy mb-4">Our Legal Process</h3>
+                  <div className="space-y-4">
+                    {[
+                      "Initial Title Search & Due Diligence",
+                      "Document Verification & Gap Analysis",
+                      "Legal Notice & Dispute Resolution",
+                      "Revenue Department Approvals",
+                      "Final Title Clearance & Registration"
+                    ].map((step, index) => (
+                      <div key={index} className="flex items-center">
+                        <div className="w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
+                          {index + 1}
                         </div>
+                        <span className="text-gray-700 font-medium">{step}</span>
                       </div>
-                      
-                      <div className="mb-6">
-                        <p className="text-lg font-semibold mb-3">Key Features:</p>
-                        <div className="flex flex-wrap gap-3">
-                          {project.features.map((feature, idx) => (
-                            <span key={idx} className="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm backdrop-blur-sm">
-                              ✓ {feature}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between pt-6 border-t border-white border-opacity-30">
-                      <span className="text-2xl font-bold bg-white bg-opacity-20 px-6 py-3 rounded-full backdrop-blur-sm">
-                        {project.status}
-                      </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              ))}
-              
-              {/* Navigation Dots */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-                {featuredProjects.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === currentSlide
-                        ? 'w-10 h-3 bg-white'
-                        : 'w-3 h-3 bg-white bg-opacity-40'
-                    }`}
-                  />
-                ))}
+
+                {/* Success Metrics */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-4 lg:p-6 rounded-2xl text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-2">500+</div>
+                    <div className="text-xs lg:text-sm">Land Cases Resolved</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-500 to-green-700 text-white p-4 lg:p-6 rounded-2xl text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-2">50K+</div>
+                    <div className="text-xs lg:text-sm">Acres Settled</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white p-4 lg:p-6 rounded-2xl text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-2">25+</div>
+                    <div className="text-xs lg:text-sm">Years Experience</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-500 to-orange-700 text-white p-4 lg:p-6 rounded-2xl text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-2">99%</div>
+                    <div className="text-xs lg:text-sm">Success Rate</div>
+                  </div>
+                </div>
+
+                {/* Key Documents Handled */}
+                <div className="bg-navy text-white rounded-2xl p-6">
+                  <h3 className="text-xl font-bold text-gold mb-4">Documents We Handle</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    {[
+                      "Sale Deeds", "Gift Deeds", "Partition Deeds", "Will Settlements",
+                      "Title Certificates", "Encumbrance Certs", "Survey Records", "Mutation Records",
+                      "Pattadar Passbooks", "Land Records", "Succession Certs", "Legal Heir Certs"
+                    ].map((doc, index) => (
+                      <div key={index} className="flex items-center">
+                        <span className="text-gold mr-2 text-lg">•</span>
+                        <span className="text-white/90">{doc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* 3D Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              {featuredProjects.map((project, index) => (
-                <div
-                  key={index}
-                  className="group relative"
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  style={{
-                    transformStyle: 'preserve-3d',
-                  }}
-                >
-                  <div
-                    className={`bg-white border-2 border-gray-200 rounded-2xl p-6 transform transition-all duration-500 ${
-                      hoveredCard === index
-                        ? 'rotate-y-6 rotate-x-3 scale-105 shadow-2xl'
-                        : 'rotate-y-0 rotate-x-0 scale-100'
-                    }`}
-                    style={{
-                      transform: hoveredCard === index 
-                        ? 'perspective(1000px) rotateY(-8deg) rotateX(5deg) scale(1.05)'
-                        : 'perspective(1000px)'
-                    }}
-                  >
-                    <div className="text-6xl mb-4 text-center">{project.image}</div>
-                    <h4 className="text-2xl font-bold text-gray-900 mb-2 text-center">{project.name}</h4>
-                    <p className="text-blue-600 font-semibold mb-4 text-center">{project.location}</p>
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl mb-4">
-                      <p className="text-3xl font-bold text-center text-blue-700">{project.price}</p>
+            {/* Additional Legal Services */}
+            <div className="mt-12 lg:mt-16 bg-gradient-to-r from-gold/10 to-yellow-400/10 rounded-2xl p-6 lg:p-8 border border-gold/30">
+              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-6 text-center">Comprehensive Legal Services</h3>
+              <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl lg:text-5xl mb-3">⚖️</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Land Dispute Resolution</h4>
+                  <p className="text-gray-600 text-sm lg:text-base">
+                    Handling boundary disputes, title conflicts, and inheritance matters with expert legal counsel
+                  </p>
+                </div>
+                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl lg:text-5xl mb-3">📋</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Document Authentication</h4>
+                  <p className="text-gray-600 text-sm lg:text-base">
+                    Verification of property documents and legal heir certificates with government authorities
+                  </p>
+                </div>
+                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl lg:text-5xl mb-3">🏛️</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Government Liaison</h4>
+                  <p className="text-gray-600 text-sm lg:text-base">
+                    Coordination with revenue departments and municipal authorities for seamless approvals
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12 lg:mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
+                Success Stories
+              </h2>
+              <div className="w-16 lg:w-20 h-1 bg-gold mx-auto mb-6"></div>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Real cases where we transformed complex land disputes into clear titles
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                {
+                  title: "50-Acre Agricultural Land",
+                  challenge: "Multiple inheritance claims",
+                  solution: "Legal heir certificate & partition deed",
+                  result: "Clear title for development"
+                },
+                {
+                  title: "Urban Commercial Plot",
+                  challenge: "Encumbrance & litigation history",
+                  solution: "Dispute resolution & title clearance",
+                  result: "Ready for commercial construction"
+                },
+                {
+                  title: "Tribal Land Settlement",
+                  challenge: "Government approval hurdles",
+                  solution: "Revenue department liaison",
+                  result: "Approved for residential project"
+                }
+              ].map((caseStudy, index) => (
+                <div key={index} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                  <h4 className="text-xl font-bold text-navy mb-3">{caseStudy.title}</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <strong className="text-gray-700 text-sm">Challenge:</strong>
+                      <p className="text-gray-600 text-sm mt-1">{caseStudy.challenge}</p>
                     </div>
-                    <div className="flex justify-center">
-                      <button className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors transform hover:scale-105">
-                        View Details
-                      </button>
+                    <div>
+                      <strong className="text-gray-700 text-sm">Solution:</strong>
+                      <p className="text-gray-600 text-sm mt-1">{caseStudy.solution}</p>
+                    </div>
+                    <div>
+                      <strong className="text-gray-700 text-sm">Result:</strong>
+                      <p className="text-gold font-semibold text-sm mt-1">{caseStudy.result}</p>
                     </div>
                   </div>
                 </div>
@@ -343,52 +253,46 @@ const {openModal}=useMultiFormModal()
         </div>
       </section>
 
-    
-
-      {/* Achievements Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">Achievements & Milestones</h2>
-            <div className="space-y-6">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg">
-                  <svg className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <p className="text-gray-800 text-lg">{achievement}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Invest in Your Future?</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Discover our premium properties and start your journey to luxury living
+      {/* CTA Section */}
+      <section className="py-16 lg:py-20 bg-gradient-to-br from-navy to-blue-900 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+              Ready to Resolve Your Land Issues?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Get expert legal assistance for your property disputes and title clearance needs
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
-                View Properties
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contact"
+                className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                📞 Contact Our Legal Team
+              </Link>
+              <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300">
+                📋 Get Free Consultation
               </button>
-              <button 
-              onClick={() => openModal('real-estate', { prefillData: 'some data' })}
-                className="bg-blue-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-400 transition-colors shadow-lg border-2 border-white">
-                Land Information Form
-              </button>
+            </div>
+            
+            <div className="mt-8 grid grid-cols-2 lg:grid-cols-2 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-gold">24/7</div>
+                <div className="text-blue-200 text-sm">Legal Support</div>
+              </div>
+              
+              <div>
+                <div className="text-2xl font-bold text-gold">100%</div>
+                <div className="text-blue-200 text-sm">Confidential</div>
+              </div>
+             
             </div>
           </div>
         </div>
       </section>
-
-    
     </div>
   );
 };
 
-export default RealEstate;
+export default AnandReality;
