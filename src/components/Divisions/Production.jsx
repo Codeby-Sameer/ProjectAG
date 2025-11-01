@@ -176,7 +176,7 @@ const Production = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="text-6xl lg:text-9xl mb-4 lg:mb-6 animate-pulse">🎬</div>
             <h1 className="text-3xl sm:text-4xl lg:text-7xl font-bold mb-4 lg:mb-6 text-white leading-tight">
-              Anand Cinemas
+              Anand Cinemaz
             </h1>
             <p className="text-lg lg:text-2xl text-gold mb-6 lg:mb-8 font-semibold tracking-wide bg-gold/20 px-4 py-2 lg:px-6 lg:py-3 rounded-full inline-block">
               LIGHTS, CAMERA, ACTION

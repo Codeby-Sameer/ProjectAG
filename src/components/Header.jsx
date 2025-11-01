@@ -347,7 +347,7 @@ const Header = () => {
                       >
                         <div className="font-semibold flex items-center gap-2">
                           <span>🎬</span>
-                          <span>Anand Cinemas</span>
+                          <span>Anand Cinemaz</span>
                         </div>
                       </Link>
                       <Link
@@ -361,7 +361,7 @@ const Header = () => {
                       >
                         <div className="font-semibold flex items-center gap-2">
                           <span>🏢</span>
-                          <span>Anand Reality</span>
+                          <span>Anand Realtyy</span>
                         </div>
                       </Link>
                       <Link
