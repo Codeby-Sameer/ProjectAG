@@ -31,10 +31,10 @@ const AnandReality = () => {
         Anand Reality
       </h1>
       <p className="text-xl lg:text-2xl text-blue-100 mb-8 drop-shadow-lg">
-        Land Settlement & Legal Solutions Experts
+        Plot & Venture Development Experts
       </p>
       <p className="text-lg text-blue-200 max-w-2xl mx-auto drop-shadow-lg">
-        Transforming complex land disputes into clear, marketable titles with 25+ years of expertise
+        Transforming raw land into premium residential plots and successful ventures with 25+ years of expertise
       </p>
       
       {/* CTA Buttons */}
@@ -42,10 +42,10 @@ const AnandReality = () => {
         <button
           onClick={() => openModal('real-estate', { prefillData: 'some data' })}
         className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-          📞 Fill  Appointment Form
+          📞 Book Plot Consultation
         </button>
         <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
-          📋 View Our Services
+          🏡 View Our Projects
         </Link>
       </div>
     </div>
@@ -67,26 +67,26 @@ const AnandReality = () => {
               <div className="space-y-6">
                 <div>
                   <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
-                    Land Settlement & Legal Solutions
+                    Plot Development & Venture Solutions
                   </h2>
                   <div className="w-16 lg:w-20 h-1 bg-gold mb-6"></div>
                 </div>
                 
                 <div className="space-y-4">
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Anand Reality specializes in comprehensive land settlement services, handling complex 
-                    legal documentation, title verification, and dispute resolution to ensure clear and 
-                    marketable property titles for our clients.
+                    Anand Reality specializes in transforming raw land into premium residential plots and 
+                    successful ventures. We handle complete plot development from land acquisition to 
+                    ready-to-build plots with all necessary approvals.
                   </p>
                   
                   <ul className="space-y-3">
                     {[
-                      { icon: "⚖️", title: "Legal Title Verification", desc: "Comprehensive due diligence and title clearance" },
-                      { icon: "📑", title: "Documentation & Litigation Support", desc: "Handling property disputes and legal proceedings" },
-                      { icon: "🏛️", title: "Government Liaison", desc: "Revenue department coordination and approval facilitation" },
-                      { icon: "🔍", title: "Encumbrance Certificate Verification", desc: "Ensuring property free from legal hurdles" },
-                      { icon: "📊", title: "Survey & Boundary Finalization", desc: "GPS survey and physical demarcation" },
-                      { icon: "🤝", title: "Farmer & Landowner Settlements", desc: "Negotiation and agreement finalization" }
+                      { icon: "🏗️", title: "Plot Development", desc: "Complete land development into residential plots" },
+                      { icon: "📊", title: "Venture Planning", desc: "Strategic planning for successful land ventures" },
+                      { icon: "📍", title: "Plot Layout & Survey", desc: "Professional surveying and optimal plot layout" },
+                      { icon: "⚡", title: "Infrastructure Development", desc: "Roads, drainage, electricity, and water supply" },
+                      { icon: "📑", title: "Approval Management", desc: "Handling all government approvals and clearances" },
+                      { icon: "🤝", title: "Joint Ventures", desc: "Partnership opportunities for land development" }
                     ].map((item, index) => (
                       <li key={index} className="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="text-2xl mr-3 flex-shrink-0">{item.icon}</span>
@@ -99,25 +99,26 @@ const AnandReality = () => {
                   </ul>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    With 25+ years of expertise in land litigation and settlement, we have successfully 
-                    resolved over 500 complex land cases and facilitated clear titles for 50,000+ acres 
-                    across multiple states.
+                    With 25+ years of expertise in plot development, we have successfully transformed 
+                    over 50,000+ acres into premium residential plots and completed 100+ successful 
+                    land ventures across multiple states.
                   </p>
                 </div>
               </div>
 
               {/* Right Content */}
               <div className="space-y-6">
-                {/* Legal Process Steps */}
+                {/* Development Process Steps */}
                 <div className="bg-gray-50 rounded-2xl p-6 border border-gold/20">
-                  <h3 className="text-xl font-bold text-navy mb-4">Our Legal Process</h3>
+                  <h3 className="text-xl font-bold text-navy mb-4">Our Development Process</h3>
                   <div className="space-y-4">
                     {[
-                      "Initial Title Search & Due Diligence",
-                      "Document Verification & Gap Analysis",
-                      "Legal Notice & Dispute Resolution",
-                      "Revenue Department Approvals",
-                      "Final Title Clearance & Registration"
+                      "Land Acquisition & Due Diligence",
+                      "Feasibility Study & Master Planning",
+                      "Layout Design & Plot Sizing",
+                      "Infrastructure Development",
+                      "Approvals & Legal Clearances",
+                      "Plot Marketing & Handover"
                     ].map((step, index) => (
                       <div key={index} className="flex items-center">
                         <div className="w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
@@ -132,12 +133,12 @@ const AnandReality = () => {
                 {/* Success Metrics */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-4 lg:p-6 rounded-2xl text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-2">500+</div>
-                    <div className="text-xs lg:text-sm">Land Cases Resolved</div>
+                    <div className="text-2xl lg:text-3xl font-bold mb-2">100+</div>
+                    <div className="text-xs lg:text-sm">Ventures Completed</div>
                   </div>
                   <div className="bg-gradient-to-br from-green-500 to-green-700 text-white p-4 lg:p-6 rounded-2xl text-center">
                     <div className="text-2xl lg:text-3xl font-bold mb-2">50K+</div>
-                    <div className="text-xs lg:text-sm">Acres Settled</div>
+                    <div className="text-xs lg:text-sm">Plots Developed</div>
                   </div>
                   <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white p-4 lg:p-6 rounded-2xl text-center">
                     <div className="text-2xl lg:text-3xl font-bold mb-2">25+</div>
@@ -145,22 +146,22 @@ const AnandReality = () => {
                   </div>
                   <div className="bg-gradient-to-br from-orange-500 to-orange-700 text-white p-4 lg:p-6 rounded-2xl text-center">
                     <div className="text-2xl lg:text-3xl font-bold mb-2">99%</div>
-                    <div className="text-xs lg:text-sm">Success Rate</div>
+                    <div className="text-xs lg:text-sm">Customer Satisfaction</div>
                   </div>
                 </div>
 
-                {/* Key Documents Handled */}
+                {/* Plot Types */}
                 <div className="bg-navy text-white rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-gold mb-4">Documents We Handle</h3>
+                  <h3 className="text-xl font-bold text-gold mb-4">Plot Types We Develop</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
-                      "Sale Deeds", "Gift Deeds", "Partition Deeds", "Will Settlements",
-                      "Title Certificates", "Encumbrance Certs", "Survey Records", "Mutation Records",
-                      "Pattadar Passbooks", "Land Records", "Succession Certs", "Legal Heir Certs"
-                    ].map((doc, index) => (
+                      "Residential Plots", "Farm Plots", "Commercial Plots", "Gated Community Plots",
+                      "Corner Plots", "Premium Facing Plots", "Budget Plots", "Luxury Plots",
+                      "Agricultural Plots", "Investment Plots", "NRI Plots", "Joint Venture Plots"
+                    ].map((plot, index) => (
                       <div key={index} className="flex items-center">
                         <span className="text-gold mr-2 text-lg">•</span>
-                        <span className="text-white/90">{doc}</span>
+                        <span className="text-white/90">{plot}</span>
                       </div>
                     ))}
                   </div>
@@ -168,29 +169,29 @@ const AnandReality = () => {
               </div>
             </div>
 
-            {/* Additional Legal Services */}
+            {/* Additional Development Services */}
             <div className="mt-12 lg:mt-16 bg-gradient-to-r from-gold/10 to-yellow-400/10 rounded-2xl p-6 lg:p-8 border border-gold/30">
-              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-6 text-center">Comprehensive Legal Services</h3>
+              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-6 text-center">Comprehensive Plot Services</h3>
               <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                 <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">⚖️</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Land Dispute Resolution</h4>
+                  <div className="text-4xl lg:text-5xl mb-3">🏡</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Plot Development</h4>
                   <p className="text-gray-600 text-sm lg:text-base">
-                    Handling boundary disputes, title conflicts, and inheritance matters with expert legal counsel
+                    Complete transformation of raw land into premium residential plots with all amenities
                   </p>
                 </div>
                 <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">📋</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Document Authentication</h4>
+                  <div className="text-4xl lg:text-5xl mb-3">📈</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Venture Planning</h4>
                   <p className="text-gray-600 text-sm lg:text-base">
-                    Verification of property documents and legal heir certificates with government authorities
+                    Strategic planning and execution of successful land development ventures
                   </p>
                 </div>
                 <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">🏛️</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Government Liaison</h4>
+                  <div className="text-4xl lg:text-5xl mb-3">🤝</div>
+                  <h4 className="font-bold text-navy mb-2 text-lg">Joint Ventures</h4>
                   <p className="text-gray-600 text-sm lg:text-base">
-                    Coordination with revenue departments and municipal authorities for seamless approvals
+                    Partnership opportunities for landowners and investors in plot development
                   </p>
                 </div>
               </div>
@@ -205,49 +206,49 @@ const AnandReality = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
-                Success Stories
+                Successful Ventures
               </h2>
               <div className="w-16 lg:w-20 h-1 bg-gold mx-auto mb-6"></div>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Real cases where we transformed complex land disputes into clear titles
+                Real projects where we transformed raw land into premium plots
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
-                  title: "50-Acre Agricultural Land",
-                  challenge: "Multiple inheritance claims",
-                  solution: "Legal heir certificate & partition deed",
-                  result: "Clear title for development"
+                  title: "Green Valley Plots",
+                  challenge: "100-acre agricultural land conversion",
+                  solution: "Master planning & infrastructure development",
+                  result: "200+ premium residential plots sold"
                 },
                 {
-                  title: "Urban Commercial Plot",
-                  challenge: "Encumbrance & litigation history",
-                  solution: "Dispute resolution & title clearance",
-                  result: "Ready for commercial construction"
+                  title: "Lakeview Ventures",
+                  challenge: "Complex terrain development",
+                  solution: "Terrain-specific layout & drainage solutions",
+                  result: "Luxury gated community success"
                 },
                 {
-                  title: "Tribal Land Settlement",
-                  challenge: "Government approval hurdles",
-                  solution: "Revenue department liaison",
-                  result: "Approved for residential project"
+                  title: "City Edge Project",
+                  challenge: "Urban fringe development",
+                  solution: "Strategic plot sizing & pricing",
+                  result: "Rapid plot sales with 40% appreciation"
                 }
-              ].map((caseStudy, index) => (
+              ].map((venture, index) => (
                 <div key={index} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                  <h4 className="text-xl font-bold text-navy mb-3">{caseStudy.title}</h4>
+                  <h4 className="text-xl font-bold text-navy mb-3">{venture.title}</h4>
                   <div className="space-y-3">
                     <div>
                       <strong className="text-gray-700 text-sm">Challenge:</strong>
-                      <p className="text-gray-600 text-sm mt-1">{caseStudy.challenge}</p>
+                      <p className="text-gray-600 text-sm mt-1">{venture.challenge}</p>
                     </div>
                     <div>
                       <strong className="text-gray-700 text-sm">Solution:</strong>
-                      <p className="text-gray-600 text-sm mt-1">{caseStudy.solution}</p>
+                      <p className="text-gray-600 text-sm mt-1">{venture.solution}</p>
                     </div>
                     <div>
                       <strong className="text-gray-700 text-sm">Result:</strong>
-                      <p className="text-gold font-semibold text-sm mt-1">{caseStudy.result}</p>
+                      <p className="text-gray-600 font-semibold text-sm mt-1">{venture.result}</p>
                     </div>
                   </div>
                 </div>
@@ -262,10 +263,10 @@ const AnandReality = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Resolve Your Land Issues?
+              Ready to Develop Your Land?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Get expert legal assistance for your property disputes and title clearance needs
+              Transform your raw land into profitable plots with our expert development services
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -273,24 +274,23 @@ const AnandReality = () => {
                 to="/contact"
                 className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                📞 Contact Our Legal Team
+                🏡 Start Your Venture
               </Link>
               <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300">
-              About Us
+                View Our Plots
               </Link>
             </div>
             
             <div className="mt-8 grid grid-cols-2 lg:grid-cols-2 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-gold">24/7</div>
-                <div className="text-blue-200 text-sm">Legal Support</div>
+                <div className="text-2xl font-bold text-gold">Free</div>
+                <div className="text-blue-200 text-sm">Site Evaluation</div>
               </div>
               
               <div>
                 <div className="text-2xl font-bold text-gold">100%</div>
-                <div className="text-blue-200 text-sm">Confidential</div>
+                <div className="text-blue-200 text-sm">Approval Guarantee</div>
               </div>
-             
             </div>
           </div>
         </div>
