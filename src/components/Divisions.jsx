@@ -9,21 +9,21 @@ const Divisions = () => {
   // Divisions array with React Router Links
   const divisions = [
     {
-      title: 'Anand Reality',
+      title: 'Anand Realtyy',
       description: 'Building landmark properties and sustainable communities across continents',
       icon: '🏢',
       color: 'from-navy to-blue-900',
       link: '/real-estate'
     },
     {
-      title: ' Anand Cinema',
+      title: ' Anand Cinemaz',
       description: 'Creating compelling stories that entertain and inspire audiences worldwide',
       icon: '🎬',
       color: 'from-navy to-blue-900',
       link: '/production'
     },
     {
-      title: ' Anand Infras',
+      title: ' Anand Infra',
       description: 'Building tomorrow\'s foundation with innovative infrastructure solutions',
       icon: '🏗️',
       color: 'from-navy to-blue-700',

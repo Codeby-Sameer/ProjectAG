@@ -9,7 +9,7 @@ const Footer = () => {
               
                 <div className="relative">
                               <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                               <img src='src/assets/logo.png' alt="logo" className='w-full p-4' />
+                               <img src='/src/assets/logo.png' alt="logo" className='w-full p-4' />
                               </div>
                             </div>
               <div className="text-2xl font-bold text-orange-500">ANAND</div>
