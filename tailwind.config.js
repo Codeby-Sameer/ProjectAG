@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         navy: '#0A2E5B',
-        gold: '#D4AF37',
+        gold: '#faf9f8ff',
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],

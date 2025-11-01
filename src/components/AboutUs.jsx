@@ -49,10 +49,10 @@ const AboutUs = () => {
                   <h2 className="text-4xl font-bold text-navy mb-4">
                 Anand
                   </h2>
-                  <div className="text-xl text-gold font-semibold mb-2">
+                  <div className="text-xl text-navy font-semibold mb-2">
                     Founder
                   </div>
-                  <div className="w-20 h-1 bg-gold mb-6"></div>
+                  <div className="w-20 h-1 bg-navy mb-6"></div>
                 </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
@@ -68,21 +68,15 @@ const AboutUs = () => {
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 py-6">
+                  
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gold">7+</div>
-                    <div className="text-sm text-gray-600">Countries</div>
+                    <div className="text-2xl font-bold text-navy">100+</div>
+                    <div className="text-sm text-gray-900">Projects</div>
                   </div>
+                  
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gold">500+</div>
-                    <div className="text-sm text-gray-600">Projects</div>
-                  </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gold">1000+</div>
-                    <div className="text-sm text-gray-600">Team Members</div>
-                  </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gold">$2B+</div>
-                    <div className="text-sm text-gray-600">Assets</div>
+                    <div className="text-2xl font-bold text-navy">1B+</div>
+                    <div className="text-sm text-gray-900">Assets</div>
                   </div>
                 </div>
 

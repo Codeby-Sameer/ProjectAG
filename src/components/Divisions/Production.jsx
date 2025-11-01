@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Production = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -30,7 +31,7 @@ const Production = () => {
       image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=300&fit=crop',
       description: 'Experienced in managing projects? Join our production team and oversee exciting film projects.',
       buttonText: 'Join Our Team',
-      gradient: 'from-navy-600 to-blue-800'
+      gradient: 'from-blue-700 to-navy-800'
     },
     {
       title: 'Music Director',
@@ -46,7 +47,7 @@ const Production = () => {
       image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
       description: 'Craft meaningful lyrics for our productions. Submit your work and become part of our creative journey.',
       buttonText: 'Submit Lyrics',
-      gradient: 'from-navy-500 to-blue-700'
+      gradient: 'from-blue-700 to-navy-700'
     },
     {
       title: 'Other Roles',
@@ -76,7 +77,7 @@ const Production = () => {
       year: '2024',
       awards: 'International Best Drama Award',
       image: '🎬',
-      color: 'from-blue-600 to-navy-700',
+      color: 'from-navy to-blue-700',
       rating: '9.5/10',
       duration: '120 min',
       budget: '$25M'
@@ -87,7 +88,7 @@ const Production = () => {
       year: '2023',
       awards: 'Best Documentary at Film Festival',
       image: '🎞️',
-      color: 'from-navy-600 to-blue-800',
+      color: 'from-navy to-blue-800',
       rating: '9.8/10',
       duration: '95 min',
       budget: '$8M'
@@ -98,7 +99,7 @@ const Production = () => {
       year: '2023',
       awards: 'Industry Excellence Award',
       image: '📺',
-      color: 'from-blue-500 to-navy-700',
+      color: 'from-blue-500 to-navy',
       rating: '8.9/10',
       duration: '45 min',
       budget: '$3M'
@@ -194,12 +195,12 @@ const Production = () => {
             
             {/* CTA Buttons */}
             <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <button className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
+              <Link to={'/contact'} className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
                 🎥 Start Project
-              </button>
-              <button className="bg-transparent border-2 border-gold text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+              </Link>
+              <Link to={'/contact'} className="bg-transparent border-2 border-gold text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                 📞 Contact Studio
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -228,19 +229,19 @@ const Production = () => {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 text-center">
             <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">100+</div>
+              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">50+</div>
               <div className="text-navy font-semibold text-sm lg:text-lg">Films Produced</div>
               <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">Award-winning</div>
             </div>
             
             <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">25</div>
+              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">5</div>
               <div className="text-navy font-semibold text-sm lg:text-lg">Awards Won</div>
               <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">International</div>
             </div>
             
             <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">500M+</div>
+              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">20M+</div>
               <div className="text-navy font-semibold text-sm lg:text-lg">Total Views</div>
               <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">Global reach</div>
             </div>
@@ -542,12 +543,10 @@ const Production = () => {
               Join Anand Cinemas and be part of cinematic storytelling
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <button className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
+              <Link to={'/contact'} className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
                 🎬 Start Film Project
-              </button>
-              <button className="bg-transparent border-2 border-gold text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
-                📞 Studio Tour
-              </button>
+              </Link>
+            
             </div>
           </div>
         </div>

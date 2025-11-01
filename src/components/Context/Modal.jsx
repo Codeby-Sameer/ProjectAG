@@ -24,7 +24,7 @@ const MultiFormModal = () => {
   const getModalTitle = () => {
     switch (currentForm) {
       case 'real-estate':
-        return 'Real Estate Appointment';
+        return 'Appointment Form';
       case 'contact':
         return 'Contact Us';
       case 'production-inquiry':

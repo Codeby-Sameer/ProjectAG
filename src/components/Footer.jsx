@@ -5,8 +5,15 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="text-2xl font-bold">ANAND</div>
-              <div className="text-2xl font-light text-gold">GROUP</div>
+              
+              
+                <div className="relative">
+                              <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                               <img src='src/assets/logo.png' alt="logo" className='w-full p-4' />
+                              </div>
+                            </div>
+              <div className="text-2xl font-bold text-orange-500">ANAND</div>
+              <div className="text-2xl font-bold text-orange-500">GROUP</div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Building a better tomorrow through innovation, integrity, and social responsibility.

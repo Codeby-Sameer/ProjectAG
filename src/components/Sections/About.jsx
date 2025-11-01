@@ -1,7 +1,7 @@
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section  className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">
@@ -23,7 +23,7 @@ const About = () => {
             </a>
             <a
               href="#divisions"
-              className="px-8 py-3 bg-gold text-navy font-semibold rounded-lg hover:bg-yellow-500 transition-all duration-300 shadow-lg"
+              className="px-8 py-3 bg-gold text-navy font-semibold rounded-lg hover:bg-navy hover:text-white transition-all duration-300 shadow-lg"
             >
               Our Divisions
             </a>

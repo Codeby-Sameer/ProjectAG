@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useMultiFormModal } from "../Context/ModalContext";
 
 const AnandReality = () => {
+  const{openModal}=useMultiFormModal()
   return (
     <div className="min-h-screen bg-white ">
       {/* Hero Section */}
@@ -37,12 +39,14 @@ const AnandReality = () => {
       
       {/* CTA Buttons */}
       <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-          📞 Get Free Consultation
+        <button
+          onClick={() => openModal('real-estate', { prefillData: 'some data' })}
+        className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          📞 Fill  Appointment Form
         </button>
-        <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
+        <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
           📋 View Our Services
-        </button>
+        </Link>
       </div>
     </div>
   </div>
@@ -271,9 +275,9 @@ const AnandReality = () => {
               >
                 📞 Contact Our Legal Team
               </Link>
-              <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300">
-                📋 Get Free Consultation
-              </button>
+              <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300">
+              About Us
+              </Link>
             </div>
             
             <div className="mt-8 grid grid-cols-2 lg:grid-cols-2 gap-4 text-center">

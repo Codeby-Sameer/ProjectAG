@@ -14,8 +14,8 @@ const HeroCarousel = () => {
       title: 'Building Tomorrow',
       subtitle: '',
       description: 'Leading sustainable infrastructure projects across 7 countries',
-      highlight: '100+ Projects Completed',
-      stats: '50,000+ Tons Infrastructure',
+      highlight: '30+ Projects Completed',
+      stats: '10,000+ Tons Infrastructure',
       buttonText: 'View Projects',
       textColor: 'text-white',
       overlayColor: 'bg-gradient-to-br from-blue-900/70 to-navy/80',
@@ -28,10 +28,10 @@ const HeroCarousel = () => {
       title: 'Entertainment Universe',
       subtitle: 'Creating Magic on Screen',
       description: 'Award-winning films and digital content production',
-      highlight: '500+ Productions',
-      stats: '25 Million Audience Reach',
+      highlight: '50+ Productions',
+      stats: '10 Million Audience Reach',
       buttonText: 'Watch Latest',
-      textColor: 'text-yellow-200',
+      textColor: 'text-white',
       overlayColor: 'bg-gradient-to-br from-purple-900/70 to-pink-900/70',
       path: "production"
     },
@@ -42,10 +42,10 @@ const HeroCarousel = () => {
       title: 'Premium Living Spaces',
       subtitle: 'Your Dream Home Awaits',
       description: 'Residential, Commercial & Industrial Development',
-      highlight: '5,000+ Units Delivered',
+      highlight: '1,000+ Units Delivered',
       stats: '2M+ Sq Ft Developed',
       buttonText: 'Explore Properties',
-      textColor: 'text-green-100',
+      textColor: 'text-white',
       overlayColor: 'bg-gradient-to-br from-green-900/70 to-emerald-900/70',
       path: "real-estate"
     }
@@ -142,7 +142,7 @@ const HeroCarousel = () => {
                 {/* Badge with animation */}
                 <div 
                   key={`badge-${slideKey}-${index}`}
-                  className="inline-block px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-gold to-yellow-400 rounded-full text-navy text-xs md:text-sm font-bold mb-3 md:mb-4 animate-zoom-in"
+                  className="inline-block px-4 py-2 md:px-6 md:py-3 bg-white rounded-full text-navy text-xs md:text-sm font-bold mb-3 md:mb-4 animate-zoom-in"
                 >
                   {/* Shortened badge text for mobile */}
                   <span className="md:hidden">
@@ -191,12 +191,12 @@ const HeroCarousel = () => {
                     key={`stat1-${slideKey}-${index}`}
                     className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg border border-white border-opacity-30 hover:bg-opacity-30 hover:scale-105 transition-all duration-300 animate-slide-in-left"
                   >
-                    <p className="text-yellow-300 font-bold text-sm md:text-lg">
+                    <p className="text-white font-bold text-sm md:text-lg">
                       {/* Shortened stat for mobile */}
                       <span className="md:hidden">
-                        {slide.highlight.includes('100+') && '100+ Projects'}
-                        {slide.highlight.includes('500+') && '500+ Productions'}
-                        {slide.highlight.includes('5,000+') && '5,000+ Units'}
+                        {slide.highlight.includes('30+') && '100+ Projects'}
+                        {slide.highlight.includes('50+') && '500+ Productions'}
+                        {slide.highlight.includes('1,000+') && '5,000+ Units'}
                       </span>
                       <span className="hidden md:inline">{slide.highlight}</span>
                     </p>
@@ -206,7 +206,7 @@ const HeroCarousel = () => {
                     key={`stat2-${slideKey}-${index}`}
                     className="hidden md:block bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-lg border border-white border-opacity-30 hover:bg-opacity-30 hover:scale-105 transition-all duration-300 animate-slide-in-right"
                   >
-                    <p className="text-yellow-300 font-bold text-lg">{slide.stats}</p>
+                    <p className="text-gold font-bold text-lg">{slide.stats}</p>
                   </div>
                 </div>
                 
@@ -214,7 +214,7 @@ const HeroCarousel = () => {
                 <div key={`buttons-${slideKey}-${index}`} className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center animate-zoom-in">
                   <Link
                     to={`/${slide.path}`}
-                    className="group px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-gold to-yellow-400 text-navy font-bold rounded-lg hover:from-yellow-400 hover:to-gold transition-all duration-300 transform hover:scale-105 md:hover:scale-110 shadow-lg md:shadow-2xl hover:shadow-3xl text-sm md:text-base w-full sm:w-auto text-center"
+                    className="group px-6 py-3 md:px-8 md:py-4 bg-gold text-navy font-bold rounded-lg hover:from-yellow-400 hover:to-gold transition-all duration-300 transform hover:scale-105 md:hover:scale-110 shadow-lg md:shadow-2xl hover:shadow-3xl text-sm md:text-base w-full sm:w-auto text-center"
                   >
                     {slide.buttonText}
                     <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -222,7 +222,7 @@ const HeroCarousel = () => {
                   {/* Secondary button hidden on mobile */}
                   <Link
                     to="/about"
-                    className="hidden md:block px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+                    className="hidden md:block px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
                   >
                     About Us
                   </Link>

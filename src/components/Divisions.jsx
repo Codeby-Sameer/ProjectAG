@@ -12,21 +12,21 @@ const Divisions = () => {
       title: 'Anand Reality',
       description: 'Building landmark properties and sustainable communities across continents',
       icon: '🏢',
-      color: 'from-blue-500 to-blue-700',
+      color: 'from-navy to-blue-900',
       link: '/real-estate'
     },
     {
       title: ' Anand Cinema',
       description: 'Creating compelling stories that entertain and inspire audiences worldwide',
       icon: '🎬',
-      color: 'from-purple-500 to-purple-700',
+      color: 'from-navy to-blue-900',
       link: '/production'
     },
     {
       title: ' Anand Infras',
       description: 'Building tomorrow\'s foundation with innovative infrastructure solutions',
       icon: '🏗️',
-      color: 'from-green-500 to-green-700',
+      color: 'from-navy to-blue-700',
       link: '/infrastructure'
     }
   ];

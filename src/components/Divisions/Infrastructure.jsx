@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Infrastructure = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -62,7 +63,7 @@ const Infrastructure = () => {
   ];
 
   const techFeatures = [
-    { icon: '🤖', title: 'Smart Systems', description: 'AI-powered monitoring and automation' },
+    { icon: '🤖', title: 'Smart Systems', description: 'AI-powered monitoring ' },
     { icon: '♻️', title: 'Sustainable', description: 'Eco-friendly building materials' },
     { icon: '🔒', title: 'Safety First', description: 'Zero tolerance for accidents' },
     { icon: '⚡', title: 'Energy Efficient', description: 'Renewable energy integration' }
@@ -130,12 +131,10 @@ const Infrastructure = () => {
             
             {/* CTA Buttons */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+              <Link to={'/about'} className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 📞 Get Project Consultation
-              </button>
-              <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
-                📋 View Our Portfolio
-              </button>
+              </Link>
+              
             </div>
           </div>
         </div>
@@ -159,7 +158,7 @@ const Infrastructure = () => {
               <div className="text-gray-600 font-semibold">Projects Completed</div>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-4xl lg:text-5xl font-bold text-blue-600 mb-2">$500M+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-blue-600 mb-2">$50M+</div>
               <div className="text-gray-600 font-semibold">Investment Value</div>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
@@ -395,12 +394,12 @@ const Infrastructure = () => {
               Partner with Anand Infra for innovative, sustainable, and world-class infrastructure solutions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+              <Link to={'/contact'} className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 🏗️ Start Your Project
-              </button>
-              <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
+              </Link>
+              {/* <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
                 📞 Contact Our Team
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

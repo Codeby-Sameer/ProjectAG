@@ -141,9 +141,9 @@ const Contact = () => {
                     {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((platform) => (
                       <div
                         key={platform}
-                        className="bg-white p-3 lg:p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer border border-gray-200"
+                        className="bg-white  group hover:bg-navy  p-3 lg:p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer border border-gray-200"
                       >
-                        <span className="text-gold font-semibold text-sm lg:text-base">
+                        <span className="text-navy group-hover:text-white font-semibold text-sm lg:text-base">
                           {platform}
                         </span>
                       </div>
@@ -325,7 +325,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={formik.isSubmitting}
-                    className="w-full bg-gradient-to-r from-gold to-yellow-400 text-navy py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:from-yellow-400 hover:to-gold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    className="w-full bg-navy text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:from-yellow-400 hover:to-gold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {formik.isSubmitting ? 'Booking Appointment...' : 'Book Appointment Now'}
                   </button>
