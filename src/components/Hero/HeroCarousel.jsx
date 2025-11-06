@@ -9,7 +9,7 @@ const HeroCarousel = () => {
   const carouselSlides = [
     {
       type: 'image',
-      imageUrl: 'src/assets/venture.jpg',
+      imageUrl: '/venture.jpg',
       badge: '🏗️ Infrastructure Excellence',
       title: 'Building Tomorrow',
       subtitle: '',
@@ -23,7 +23,7 @@ const HeroCarousel = () => {
     },
     {
       type: 'image',
-      imageUrl: 'src/assets/Production.png',
+      imageUrl: '/Production.png',
       badge: '🎬 Production & Cinema',
       title: 'Entertainment Universe',
       subtitle: 'Creating Magic on Screen',
@@ -37,7 +37,7 @@ const HeroCarousel = () => {
     },
     {
       type: 'image',
-      imageUrl: 'src/assets/infra.png',
+      imageUrl: '/infra.png',
       badge: '🏢 Real Estate Pioneer',
       title: 'Premium Living Spaces',
       subtitle: 'Your Dream Home Awaits',

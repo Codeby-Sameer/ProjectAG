@@ -11,7 +11,7 @@ const AnandReality = () => {
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="src/assets/venture.jpg"
+            src="/venture.jpg"
             alt="Construction Site Overview"
             className="w-full h-full object-cover"
           />

@@ -412,10 +412,10 @@ const Header = () => {
                   Contact
                 </Link>
 
-               // Replace the existing CRM Link with:
+              
 <Link
   to="/crm/login"
-  className={`transition-colors px-3 py-2 rounded-lg font-medium ${
+  className={` block transition-colors px-4 py-3 rounded-lg font-medium hover:bg-blue-100 ${
     isActiveLink('/crm')
       ? 'text-navy font-bold bg-gold/20 border border-gold/30'
       : 'text-navy/90 hover:text-navy hover:bg-gold/10'
