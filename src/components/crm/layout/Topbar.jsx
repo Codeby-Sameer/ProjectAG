@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Header = () => {
+const Header = ({ onOpenSidebar }) => {
   const [userRole, setUserRole] = useState('admin');
   const [notificationCount, setNotificationCount] = useState(3);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -18,10 +18,16 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="flex justify-end items-center px-8 py-4">
-
+      <div className="flex justify-between items-center px-3  lg:px-8 py-4">
+        {/* Mobile Sidebar Toggle Button */}
+        <button 
+          className="lg:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          onClick={onOpenSidebar}
+        >
+          <span className="text-2xl">☰</span>
+        </button>
         
-        <div className="flex items-center space-x-9">
+        <div className="flex items-center lg:space-x-9 space-x-2 ml-auto">
           {/* Notification Bell */}
           <div className="relative">
             <button 
@@ -78,12 +84,12 @@ const Header = () => {
           </div>
 
           {/* User Role Selector */}
-          <div className="flex items-center space-x-8 ">
-            <span className="text-gray-600 text-sm">👤 Role:</span>
+          <div className="flex items-center lg:space-x-8 space-x-2">
+            <span className="text-gray-600 text-sm ">👤 Role:</span>
             <select 
               value={userRole} 
               onChange={(e) => setUserRole(e.target.value)}
-              className="border border-gray-300 rounded-lg px-7 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="border border-gray-300 rounded-lg px-2 lg:px-7  py-2 text-sm  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="receptionist">📝 Receptionist/Staff</option>
               <option value="admin">👨‍💼 Admin Personnel</option>
@@ -93,9 +99,7 @@ const Header = () => {
             </select>
           </div>
 
-          <span className="text-gray-600 text-sm">📧 info@anandgroup.com</span>
-          
-          
+          <span className="text-gray-600 text-sm  hidden lg:flex md:flex">📧 info@anandgroup.com</span>
         </div>
       </div>
     </header>

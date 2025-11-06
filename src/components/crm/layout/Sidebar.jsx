@@ -1,61 +1,57 @@
-// src/components/Layout/Sidebar.js
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/authcontext';
 
-
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   const location = useLocation();
   const { userRole, userEmail, logout, hasAnyRole } = useAuth();
   console.log(userEmail,userRole,"iamuser")
   
-  
   // Define menu items with permissions
-// Update the allMenuItems array:
-const allMenuItems = [
-  { 
-    path: '/crm/dashboard', 
-    icon: '🏠', 
-    label: 'Dashboard',
-    roles: ['receptionist', 'manager', 'superadmin']
-  },
-  { 
-    path: '/crm/submit-problem', 
-    icon: '📋', 
-    label: 'Submit Problem',
-    roles: ['receptionist', 'superadmin']
-  },
-  { 
-    path: '/crm/managecases', 
-    icon: '📁', 
-    label: 'Manage Cases',
-    roles: ['manager', 'superadmin']
-  },
-  { 
-    path: '/crm/appointments', 
-    icon: '📅', 
-    label: 'Appointments',
-    roles: ['manager', 'superadmin']
-  },
-  { 
-    path: '/crm/notifications', 
-    icon: '🔔', 
-    label: 'Notifications',
-    roles: ['manager', 'superadmin']
-  },
-  { 
-    path: '/crm/financial', 
-    icon: '💳', 
-    label: 'Financial',
-    roles: ['manager', 'superadmin']
-  },
-  { 
-    path: '/crm/specifications', 
-    icon: '⚙️', 
-    label: 'System Specs',
-    roles: ['superadmin']
-  }
-];
+  const allMenuItems = [
+    { 
+      path: '/crm/dashboard', 
+      icon: '🏠', 
+      label: 'Dashboard',
+      roles: ['receptionist', 'manager', 'superadmin']
+    },
+    { 
+      path: '/crm/submit-problem', 
+      icon: '📋', 
+      label: 'Submit Problem',
+      roles: ['receptionist', 'superadmin']
+    },
+    { 
+      path: '/crm/managecases', 
+      icon: '📁', 
+      label: 'Manage Cases',
+      roles: ['manager', 'superadmin']
+    },
+    { 
+      path: '/crm/appointments', 
+      icon: '📅', 
+      label: 'Appointments',
+      roles: ['manager', 'superadmin']
+    },
+    { 
+      path: '/crm/notifications', 
+      icon: '🔔', 
+      label: 'Notifications',
+      roles: ['manager', 'superadmin']
+    },
+    { 
+      path: '/crm/financial', 
+      icon: '💳', 
+      label: 'Financial',
+      roles: ['manager', 'superadmin']
+    },
+    { 
+      path: '/crm/specifications', 
+      icon: '⚙️', 
+      label: 'System Specs',
+      roles: ['superadmin']
+    }
+  ];
 
   // Filter menu items based on user role
   const userMenuItems = allMenuItems.filter(item => 
@@ -81,34 +77,40 @@ const allMenuItems = [
     }
   };
 
-  const currentRole = roleConfig[userRole] 
+  const currentRole = roleConfig[userRole];
+
+  // Handle navigation with sidebar close on mobile
+  const handleNavigation = () => {
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth < 1024) { // lg breakpoint
+      onClose();
+    }
+  };
 
   return (
-    <div className="w-64 bg-white shadow-lg z-10 flex flex-col h-screen">
-      {/* Header Section */}
-      <div className="p-6 border-b border-gray-200 flex">
-         <div className="w-17 h-17 md:w-14 md:h-14 lg:w-20 lg:h-16 rounded-full   flex items-center justify-center transition-transform duration-300">
-                <img src='/logo.png' alt="logo" className='w-full p-3 md:p-4' />
-              </div>
-        <h2 className="text-xl font-semibold text-gray-800 mb-2"><span className='text-orange-500 font-lg'>ANAND GROUP</span> <span className='text-blue-700'>CRM</span> </h2>
+    <div className="w-64 z-10 flex flex-col h-screen">
+      {/* Header Section with Close Button */}
+      <div className="p-6 border-b border-gray-200 flex justify-between items-start">
+        <div className="flex items-center">
+          <div className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-300">
+            <img 
+              src='/logo.png' 
+              alt="logo" 
+              className='w-full h-full object-contain p-1' 
+            />
+          </div>
+          <div className="font-semibold text-gray-800 mb-2 ml-3">
+            <span className='text-orange-500 lg:text-lg  text-md'>ANAND GROUP</span> <span className='text-blue-700'>CRM</span>
+          </div>
+        </div>
         
-        {/* User Info */}
-        {/* <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">Role:</span>
-            <span className={`text-xs font-medium px-2 py-1 rounded-full ${currentRole?.color}`}>
-              {currentRole.displayName}
-            </span>
-          </div>
-          
-          <div className="text-xs text-gray-500 truncate" title={userEmail}>
-            {userEmail}
-          </div>
-          
-          <div className="text-xs text-gray-400">
-            {currentRole.description}
-          </div>
-        </div> */}
+        {/* Close Button - Visible only on mobile */}
+        <button 
+          className="lg:hidden p-2 text-gray-500 hover:text-gray-700 transition-colors"
+          onClick={onClose}
+        >
+          <span className="text-xl">✕</span>
+        </button>
       </div>
 
       {/* Navigation Menu */}
@@ -118,6 +120,7 @@ const allMenuItems = [
             <Link
               key={item.path}
               to={item.path}
+              onClick={handleNavigation}
               className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 group ${
                 location.pathname === item.path 
                   ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600 shadow-sm' 
@@ -142,20 +145,19 @@ const allMenuItems = [
 
       {/* Footer Section with Logout */}
       <div className="p-4 border-t border-gray-200 bg-gray-50">
-       
-          
-          {/* Logout Button */}
-          <button
-            onClick={logout}
-            className="flex items-center w-full px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition-all duration-200 group"
-          >
-            <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">
-              🚪
-            </span>
-            <span className="font-medium">Logout</span>
-          </button>
-        </div>
-      
+        <button
+          onClick={() => {
+            handleNavigation();
+            logout();
+          }}
+          className="flex items-center w-full px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition-all duration-200 group"
+        >
+          <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">
+            🚪
+          </span>
+          <span className="font-medium">Logout</span>
+        </button>
+      </div>
     </div>
   );
 };

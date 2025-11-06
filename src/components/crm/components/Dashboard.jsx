@@ -1,3 +1,4 @@
+// src/components/Dashboard/Dashboard.js
 import React from 'react';
 
 const Dashboard = () => {
@@ -15,31 +16,31 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 lg:space-y-8 animate-fade-in">
       <div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">📊 CRM Dashboard</h2>
-        <p className="text-gray-600">Overview of problem resolution system</p>
+        <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">📊 CRM Dashboard</h2>
+        <p className="text-gray-600 text-sm lg:text-base">Overview of problem resolution system</p>
       </div>
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
         {metrics.map((metric, index) => (
           <div 
             key={index} 
-            className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 animate-slide-in-up"
+            className="bg-white rounded-lg lg:rounded-xl p-4 lg:p-6 shadow border border-gray-100 hover:shadow-md transition-all duration-300"
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">{metric.title}</p>
-                <h3 className="text-3xl font-bold text-gray-900 mt-2">{metric.value}</h3>
-                <span className={`text-sm font-medium ${
+                <p className="text-xs lg:text-sm font-medium text-gray-600">{metric.title}</p>
+                <h3 className="text-xl lg:text-3xl font-bold text-gray-900 mt-1 lg:mt-2">{metric.value}</h3>
+                <span className={`text-xs font-medium ${
                   metric.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
                 }`}>
                   {metric.change}
                 </span>
               </div>
-              <div className="text-4xl">
+              <div className="text-2xl lg:text-4xl">
                 {metric.icon}
               </div>
             </div>
@@ -48,18 +49,20 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 animate-fade-in-up">
-        <h3 className="text-xl font-semibold text-gray-900 mb-6">Recent Activity</h3>
-        <div className="space-y-4">
+      <div className="bg-white rounded-lg lg:rounded-xl shadow border border-gray-100 p-4 lg:p-6 animate-fade-in-up">
+        <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4 lg:mb-6">Recent Activity</h3>
+        <div className="space-y-3 lg:space-y-4">
           {activities.map((activity, index) => (
             <div 
               key={index}
-              className="flex items-center space-x-4 p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors duration-200"
+              className="flex items-center space-x-3 lg:space-x-4 p-3 lg:p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors duration-200"
             >
-              <span className="text-2xl">{activity.icon}</span>
-              <div className="flex-1">
-                <p className="text-gray-900 font-medium">{activity.message}</p>
-                <p className="text-sm text-gray-500 mt-1">{activity.time}</p>
+              <span className="text-xl lg:text-2xl">{activity.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-gray-900 font-medium text-sm lg:text-base truncate">
+                  {activity.message}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
               </div>
             </div>
           ))}
