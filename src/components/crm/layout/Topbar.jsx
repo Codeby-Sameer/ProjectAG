@@ -26,6 +26,12 @@ const Header = ({ onOpenSidebar }) => {
         >
           <span className="text-2xl">☰</span>
         </button>
+         <div className='lg:hidden ms-2 md:hidden flex '>
+      <div className='text-xl font-bold text-blue-600'>
+        CRM 
+      </div>
+
+    </div>
         
         <div className="flex items-center lg:space-x-9 space-x-2 ml-auto">
           {/* Notification Bell */}
@@ -82,9 +88,10 @@ const Header = ({ onOpenSidebar }) => {
               </div>
             )}
           </div>
+   
 
           {/* User Role Selector */}
-          <div className="flex items-center lg:space-x-8 space-x-2">
+          <div className=" md:flex hidden lg:flex items-center lg:space-x-8 space-x-2">
             <span className="text-gray-600 text-sm ">👤 Role:</span>
             <select 
               value={userRole} 
