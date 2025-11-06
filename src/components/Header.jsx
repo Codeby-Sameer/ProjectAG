@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ceoPhoto from '../assets/founder.jpg';
-import logo from '../assets/logo.png'
+
 import { useMultiFormModal } from './Context/ModalContext';
 
 const Header = () => {
@@ -130,7 +130,7 @@ const Header = () => {
             {/* Logo Image */}
             <div className="relative">
               <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full   flex items-center justify-center transition-transform duration-300">
-                <img src={logo} alt="logo" className='w-full p-3 md:p-4' />
+                <img src='logo.png' alt="logo" className='w-full p-3 md:p-4' />
               </div>
             </div>
 
