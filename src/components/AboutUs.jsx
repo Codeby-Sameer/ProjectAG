@@ -10,7 +10,7 @@ const AboutUs = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About Anand Group
+              About Anand Groups
             </h1>
             <div className="w-32 h-1 bg-gold mx-auto mb-8"></div>
             <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
@@ -37,8 +37,8 @@ const AboutUs = () => {
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-white text-navy p-6 rounded-2xl shadow-xl">
                   <div className="text-center">
-                    <div className="text-xl font-bold">Founder </div>
-                    <div className="text-lg font-semibold">Anand Groups</div>
+                    <div className="text-xl font-bold">Founder & Chairman </div>
+                    <div className="text-lg font-semibold text-orange-500">ANAND GROUPS</div>
                   </div>
                 </div>
               </div>
@@ -50,9 +50,9 @@ const AboutUs = () => {
                 Anand
                   </h2>
                   <div className="text-xl text-navy font-semibold mb-2">
-                    Founder
+                    Founder & Chairman
                   </div>
-                  <div className="w-20 h-1 bg-navy mb-6"></div>
+                  <div className="w-30 h-1 bg-navy mb-6"></div>
                 </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
@@ -199,11 +199,11 @@ const AboutUs = () => {
             <h3 className="text-xl font-bold text-navy mb-4">Our Legal Process</h3>
             <div className="space-y-3">
               {[
-                "1. Initial Title Search & Due Diligence",
-                "2. Document Verification & Gap Analysis",
-                "3. Legal Notice & Dispute Resolution",
-                "4. Revenue Department Approvals",
-                "5. Final Title Clearance & Registration"
+                "Initial Title Search & Due Diligence",
+                "Document Verification & Gap Analysis",
+                "Legal Notice & Dispute Resolution",
+                "Revenue Department Approvals",
+                "Final Title Clearance & Registration"
               ].map((step, index) => (
                 <div key={index} className="flex items-center text-gray-700">
                   <div className="w-6 h-6 bg-gold text-navy rounded-full flex items-center justify-center text-sm font-bold mr-3">
@@ -305,7 +305,7 @@ const AboutUs = () => {
                 to="/real-estate"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                🏢 Explore Anand Reality
+                🏢 Explore Anand Realtyy
               </Link>
               <Link
                 to="/infrastructure"

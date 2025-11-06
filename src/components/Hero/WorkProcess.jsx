@@ -1,4 +1,7 @@
+import { useMultiFormModal } from "../Context/ModalContext";
+
 const WorkProcess = () => {
+  const {openModal}=useMultiFormModal()
   const workProcess = [
     {
       icon: '📋',
@@ -71,10 +74,10 @@ const WorkProcess = () => {
                 Prefer to speak directly with our experts?
               </p>
               <button
-                onClick={() => openModal('general-inquiry', { prefillData: 'division-page-inquiry' })}
+                onClick={() => openModal('appointment', { prefillData: 'division-page-inquiry' })}
                 className="px-8 py-3  text-gray-900 font-bold rounded-lg bg-white  text-black transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                📞 Schedule a Consultation
+                📞 Schedule a Appointment
               </button>
             </div>
           </div>
