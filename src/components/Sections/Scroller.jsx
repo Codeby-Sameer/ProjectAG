@@ -6,7 +6,7 @@ const ScrollingNotice = () => {
   const scrollRef = useRef(null);
 
   const notifications = [
-    "NOTE: NO Spelling Mistake are there. The spelling are from sentiment this is our type supertistion",
+   `Note: The spellings used in this application are intentional and reflect our team’s unique sentiment and creative expression. They are not errors but part of our chosen style and identity.`,
   ];
 
   const closeNotice = () => {

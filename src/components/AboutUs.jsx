@@ -35,7 +35,7 @@ const AboutUs = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-gold text-navy p-6 rounded-2xl shadow-xl">
+                <div className="absolute -bottom-6 -right-6 bg-white text-navy p-6 rounded-2xl shadow-xl">
                   <div className="text-center">
                     <div className="text-xl font-bold">Founder OF</div>
                     <div className="text-lg font-semibold">Anand Group</div>
