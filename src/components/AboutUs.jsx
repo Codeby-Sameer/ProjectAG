@@ -111,7 +111,7 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-3 gap-8 py-12">
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className="text-4xl mb-4">🏢</div>
-                <h3 className="text-xl font-bold text-navy mb-3">Anand Reality</h3>
+                <h3 className="text-xl font-bold text-navy mb-3">Anand Realtyy</h3>
                 <p className="text-gray-600">
                   Creating premium residential and commercial spaces that redefine urban living 
                   with sustainable practices and modern amenities.
