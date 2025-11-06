@@ -1,4 +1,6 @@
 
+import ProblemSubmission from '../crm/components/ProblemSubmission';
+import AppointmentForm from './AppointmentForm';
 import { useMultiFormModal } from './ModalContext';
 import RealEstateForm from './RealEstateForm';
 
@@ -12,10 +14,14 @@ const MultiFormModal = () => {
         return <RealEstateForm initialData={formData} />;
       case 'contact':
         return <ContactForm initialData={formData} />;
+      case 'appointment':
+        return <AppointmentForm initialData={formData} />;
       case 'production-inquiry':
         return <ProductionInquiryForm initialData={formData} />;
       case 'infrastructure-consultation':
         return <InfrastructureConsultationForm initialData={formData} />;
+      case 'problem-solution':
+        return <ProblemSubmission initialData={formData} />;
       default:
         return null;
     }
@@ -24,7 +30,7 @@ const MultiFormModal = () => {
   const getModalTitle = () => {
     switch (currentForm) {
       case 'real-estate':
-        return 'Appointment Form';
+        return 'Land Information Form';
       case 'contact':
         return 'Contact Us';
       case 'production-inquiry':

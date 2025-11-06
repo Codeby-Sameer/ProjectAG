@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -17,6 +17,7 @@ import AboutUs from './components/AboutUs';
 import { MultiFormModalProvider } from './components/Context/ModalContext';
 import MultiFormModal from './components/Context/Modal';
 import AnandReality from './components/Divisions/RealEstate';
+import CrmApp from './components/crm/CrmApp';
 
 // Layout Component
 function Layout() {
@@ -65,25 +66,25 @@ function NotFound() {
 function App() {
   return (
     <MultiFormModalProvider>
-        <Router>
-      <Routes>
-        {/* All routes share the same layout */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path='about' element={<AboutUs/> } />
-          <Route path="production" element={<Production />} />
-          <Route path="real-estate" element={<AnandReality />} />
-          <Route path="infrastructure" element={<Infrastructure />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-      <MultiFormModal/>
-    </Router>
-
+      <Router>
+        <Routes>
+          {/* CRM routes */}
+          <Route path="/crm/*" element={<CrmApp/>} />
+          
+          {/* Main site routes with layout */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path='about' element={<AboutUs/> } />
+            <Route path="production" element={<Production />} />
+            <Route path="real-estate" element={<AnandReality />} />
+            <Route path="infrastructure" element={<Infrastructure />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+        <MultiFormModal/>
+      </Router>
     </MultiFormModalProvider>
-  
   );
-}
-
+} 
 export default App;

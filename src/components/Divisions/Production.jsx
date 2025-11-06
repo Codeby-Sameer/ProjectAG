@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Production = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredDream, setHoveredDream] = useState(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const videoRef = useRef(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const dreamCards = [
     {
@@ -138,33 +136,27 @@ const Production = () => {
     return () => clearInterval(interval);
   }, [recentProjects.length]);
 
-  const handleVideoLoad = () => {
-    setIsVideoLoaded(true);
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
-      {/* Hero Section with Background Video */}
-      <section className="relative py-16 lg:py-32 min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
+      {/* Hero Section with Background Image */}
+      <section className="relative py-11 lg:py-16 min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover"
-            onLoadedData={handleVideoLoad}
-          >
-            <source src="https://cdn.pixabay.com/video/2016/09/13/5130-183300011_tiny.mp4" type="video/mp4" />
-          </video>
+          <img
+            src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Cinema Background"
+            className="w-full h-full object-cover transform scale-105"
+            onLoad={handleImageLoad}
+          />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-navy/80 via-blue-900/60 to-navy/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-blue-900/70 to-navy/90"></div>
           
           {/* Loading Fallback */}
-          {!isVideoLoaded && (
+          {!isImageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-navy to-blue-900 flex items-center justify-center">
               <div className="text-white text-xl lg:text-2xl animate-pulse">🎬 Loading Anand Cinemas...</div>
             </div>
@@ -174,11 +166,11 @@ const Production = () => {
         {/* Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-6xl lg:text-9xl mb-4 lg:mb-6 animate-pulse">🎬</div>
-            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-bold mb-4 lg:mb-6 text-white leading-tight">
+            <div className="text-6xl lg:text-6xl mb-4 lg:mb-2 animate-bounce">🎬</div>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-7xl font-bold mb-4 lg:mb-3 text-white leading-tight">
               Anand Cinemaz
             </h1>
-            <p className="text-lg lg:text-2xl text-gold mb-6 lg:mb-8 font-semibold tracking-wide bg-gold/20 px-4 py-2 lg:px-6 lg:py-3 rounded-full inline-block">
+            <p className="text-lg lg:text-2xl text-white mb-6 lg:mb-3 font-semibold tracking-wide bg-gold/20 px-4 py-2 lg:px-6 lg:py-3 rounded-full inline-block">
               LIGHTS, CAMERA, ACTION
             </p>
             <p className="text-base lg:text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed bg-white/10 backdrop-blur-sm p-4 lg:p-6 rounded-2xl">
@@ -195,11 +187,17 @@ const Production = () => {
             
             {/* CTA Buttons */}
             <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <Link to={'/contact'} className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
+              <Link 
+                to={'/contact'} 
+                className="bg-white  text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-white hover:border-yellow-400 hover:shadow-gold/40 flex items-center justify-center gap-2"
+              >
                 🎥 Start Project
               </Link>
-              <Link to={'/contact'} className="bg-transparent border-2 border-gold text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
-                📞 Contact Studio
+              <Link 
+                to={'/contact'} 
+                className="bg-white border-2  hover:bg-yellow-400 hover:border-yellow-400 text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm flex items-center justify-center gap-2"
+              >
+                📞 Contact Us
               </Link>
             </div>
           </div>
@@ -219,7 +217,7 @@ const Production = () => {
       <section className="py-16 lg:py-20 bg-gradient-to-br from-white via-blue-50 to-navy/10">
         <div className="container mx-auto px-4 lg:px-6 mb-16 lg:mb-20">
           <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-2xl lg:text-5xl font-bold text-navy mb-3 lg:mb-4">
+            <h2 className="text-3xl lg:text-5xl font-bold text-navy mb-3 lg:mb-4">
               Our Legacy in Numbers
             </h2>
             <p className="text-base lg:text-xl text-blue-700 max-w-2xl mx-auto px-4">
@@ -228,29 +226,23 @@ const Production = () => {
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 text-center">
-            <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">50+</div>
-              <div className="text-navy font-semibold text-sm lg:text-lg">Films Produced</div>
-              <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">Award-winning</div>
-            </div>
-            
-            <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">5</div>
-              <div className="text-navy font-semibold text-sm lg:text-lg">Awards Won</div>
-              <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">International</div>
-            </div>
-            
-            <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">20M+</div>
-              <div className="text-navy font-semibold text-sm lg:text-lg">Total Views</div>
-              <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">Global reach</div>
-            </div>
-            
-            <div className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold">
-              <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">50K</div>
-              <div className="text-navy font-semibold text-sm lg:text-lg">Studio Sq Ft</div>
-              <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">Modern facilities</div>
-            </div>
+            {[
+              { number: '50+', label: 'Films Produced', sublabel: 'Award-winning' },
+              { number: '5', label: 'Awards Won', sublabel: 'International' },
+              { number: '20M+', label: 'Total Views', sublabel: 'Global reach' },
+              { number: '50K', label: 'Studio Sq Ft', sublabel: 'Modern facilities' }
+            ].map((stat, index) => (
+              <div 
+                key={index}
+                className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold"
+              >
+                <div className="text-2xl lg:text-6xl font-bold text-gold mb-2 lg:mb-3 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+                  {stat.number}
+                </div>
+                <div className="text-navy font-semibold text-sm lg:text-lg">{stat.label}</div>
+                <div className="text-blue-600 text-xs lg:text-sm mt-1 lg:mt-2">{stat.sublabel}</div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -259,7 +251,7 @@ const Production = () => {
           <div className="container mx-auto px-4 lg:px-6">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-12 lg:mb-16">
-                <h2 className="text-2xl lg:text-5xl font-bold mb-3 lg:mb-4 text-navy bg-gradient-to-r from-navy to-blue-800 bg-clip-text text-transparent">
+                <h2 className="text-3xl lg:text-5xl font-bold mb-3 lg:mb-4 text-navy bg-gradient-to-r from-navy to-blue-800 bg-clip-text text-transparent">
                   What's Your Dream Role?
                 </h2>
                 <p className="text-base lg:text-xl text-blue-700 max-w-3xl mx-auto px-4">
@@ -275,9 +267,6 @@ const Production = () => {
                     onMouseEnter={() => setHoveredDream(index)}
                     onMouseLeave={() => setHoveredDream(null)}
                   >
-                    {/* Glass Overlay */}
-                    <div className="absolute inset-0 bg-blue-50/50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
                     {/* Image Background */}
                     <div className="relative h-48 lg:h-72 overflow-hidden">
                       <img
@@ -332,7 +321,7 @@ const Production = () => {
           <div className="container mx-auto px-4 lg:px-6">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12 lg:mb-16">
-                <h2 className="text-2xl lg:text-5xl font-bold mb-3 lg:mb-4 text-navy bg-gradient-to-r from-navy to-blue-800 bg-clip-text text-transparent">
+                <h2 className="text-3xl lg:text-5xl font-bold mb-3 lg:mb-4 text-navy bg-gradient-to-r from-navy to-blue-800 bg-clip-text text-transparent">
                   Our Production Services
                 </h2>
                 <p className="text-base lg:text-xl text-blue-700 max-w-2xl mx-auto px-4">
@@ -342,12 +331,17 @@ const Production = () => {
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 {services.map((service, index) => (
-                  <div key={index} className="group bg-white/80 backdrop-blur-xl p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-blue-200 hover:border-gold transition-all duration-500 shadow-xl lg:shadow-2xl hover:shadow-gold/20 hover:scale-105">
+                  <div 
+                    key={index} 
+                    className="group bg-white/80 backdrop-blur-xl p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-blue-200 hover:border-gold transition-all duration-500 shadow-xl lg:shadow-2xl hover:shadow-gold/20 hover:scale-105"
+                  >
                     <div className="flex items-start">
                       <div className="w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy rounded-full flex items-center justify-center text-sm lg:text-lg font-bold mr-4 lg:mr-6 flex-shrink-0 mt-1 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
                         {index + 1}
                       </div>
-                      <p className="text-navy text-base lg:text-xl font-semibold group-hover:text-blue-800 transition-colors leading-relaxed">{service}</p>
+                      <p className="text-navy text-base lg:text-xl font-semibold group-hover:text-blue-800 transition-colors leading-relaxed">
+                        {service}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -366,7 +360,7 @@ const Production = () => {
                     {/* Image Left */}
                     <div className="relative group order-2 lg:order-1">
                       <div className="relative rounded-xl lg:rounded-2xl overflow-hidden shadow-xl lg:shadow-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                        <div className="absolute inset-0  group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                         <img
                           src={section.image}
                           alt={section.title}
@@ -441,7 +435,7 @@ const Production = () => {
                     {/* Image Right */}
                     <div className="relative group">
                       <div className="relative rounded-xl lg:rounded-2xl overflow-hidden shadow-xl lg:shadow-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                        <div className="absolute inset-0  group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                         <img
                           src={section.image}
                           alt={section.title}
@@ -464,7 +458,7 @@ const Production = () => {
       <section className="py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl lg:text-5xl font-bold text-navy mb-8 lg:mb-12 text-center">Blockbuster Projects</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-navy mb-8 lg:mb-12 text-center">Blockbuster Projects</h2>
             
             {/* Carousel */}
             <div className="relative h-[400px] lg:h-[600px] overflow-hidden rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-2 border-blue-200">
@@ -538,15 +532,17 @@ const Production = () => {
       <section className="py-16 lg:py-20 bg-gradient-to-br from-navy to-blue-900 text-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl lg:text-5xl font-bold mb-4 lg:mb-6 text-gold">Ready to Create Magic?</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6 text-gold">Ready to Create Magic?</h2>
             <p className="text-base lg:text-xl text-blue-200 mb-6 lg:mb-8 max-w-2xl mx-auto px-4">
               Join Anand Cinemas and be part of cinematic storytelling
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <Link to={'/contact'} className="bg-gold text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-gold hover:shadow-gold/40">
+              <Link 
+                to={'/contact'} 
+                className="bg-white text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg hover:text-white font-bold text-base lg:text-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl  hover:shadow-gold/40 flex items-center justify-center gap-2"
+              >
                 🎬 Start Film Project
               </Link>
-            
             </div>
           </div>
         </div>

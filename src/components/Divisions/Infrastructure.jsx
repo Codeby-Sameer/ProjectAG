@@ -121,7 +121,7 @@ const Infrastructure = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
               Anand Infra
             </h1>
-            <p className="text-xl lg:text-2xl text-gold mb-8 font-semibold">
+            <p className="text-xl lg:text-2xl text-white mb-8 font-semibold">
               Building India's Future Infrastructure
             </p>
             <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
@@ -131,7 +131,7 @@ const Infrastructure = () => {
             
             {/* CTA Buttons */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to={'/about'} className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+              <Link to={'/about'} className="bg-white text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 📞 Get Project Consultation
               </Link>
               
@@ -394,7 +394,7 @@ const Infrastructure = () => {
               Partner with Anand Infra for innovative, sustainable, and world-class infrastructure solutions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to={'/contact'} className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+              <Link to={'/contact'} className="bg-white text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 🏗️ Start Your Project
               </Link>
               {/* <button className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">

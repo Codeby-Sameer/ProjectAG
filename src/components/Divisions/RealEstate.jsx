@@ -2,63 +2,63 @@ import { Link } from "react-router-dom";
 import { useMultiFormModal } from "../Context/ModalContext";
 
 const AnandReality = () => {
-  const{openModal}=useMultiFormModal()
+  const { openModal } = useMultiFormModal();
+  
   return (
-    <div className="min-h-screen bg-white ">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-   <section className="relative py-16 lg:py-24 min-h-[80vh] flex items-center justify-center overflow-hidden">
-  {/* Background Video */}
-  <div className="absolute inset-0 w-full h-full">
- <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-  className="w-full h-full object-cover"
->
-  <source src="https://assets.mixkit.co/videos/preview/mixkit-construction-site-overview-41568-large.mp4" type="video/mp4" />
-</video>
-    {/* Fallback gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-navy/80 via-blue-900/70 to-navy/90"></div>
-  </div>
+      <section className="relative py-16 lg:py-24 min-h-[80vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="src/assets/venture.jpg"
+            alt="Construction Site Overview"
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/80 via-green-900/70 to-green-900/90"></div>
+        </div>
 
-  {/* Content */}
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div className="max-w-4xl mx-auto text-center">
-      <div className="text-6xl lg:text-7xl mb-6">🏢</div>
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-2xl">
-        Anand Realtyy
-      </h1>
-      <p className="text-xl lg:text-2xl text-blue-100 mb-8 drop-shadow-lg">
-        Plot & Venture Development Experts
-      </p>
-      <p className="text-lg text-blue-200 max-w-2xl mx-auto drop-shadow-lg">
-        Transforming raw land into premium residential plots and successful ventures with 25+ years of expertise
-      </p>
-      
-      {/* CTA Buttons */}
-      <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-        <button
-          onClick={() => openModal('real-estate', { prefillData: 'some data' })}
-        className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-          📞 Book Plot Consultation
-        </button>
-        <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105">
-          🏡 View Our Projects
-        </Link>
-      </div>
-    </div>
-  </div>
+        {/* Content */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="text-6xl lg:text-7xl mb-4 lg:mb-6">🏢</div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 lg:mb-6 text-white drop-shadow-2xl leading-tight">
+              Anand Realty
+            </h1>
+            <p className="text-xl lg:text-2xl text-blue-100 mb-6 lg:mb-8 drop-shadow-lg">
+              Plot & Venture Development Experts
+            </p>
+            <p className="text-lg text-blue-200 max-w-2xl mx-auto drop-shadow-lg leading-relaxed px-4">
+              Transforming raw land into premium residential plots and successful ventures with 25+ years of expertise
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center px-4">
+              <button
+                onClick={() => openModal('real-estate', { prefillData: 'some data' })}
+                className="bg-white text-navy px-6 lg:px-8 py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl w-full sm:w-auto"
+              >
+                📞 Book Plot Consultation
+              </button>
+              <Link 
+                to="/about" 
+                className="bg-navy  hover:text-navy hover:bg-white text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 text-center w-full sm:w-auto"
+              >
+                🏡 View Our Projects
+              </Link>
+            </div>
+          </div>
+        </div>
 
-  {/* Scroll Indicator */}
-  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <div className="w-8 h-8 border-r-2 border-b-2 border-gold rotate-45"></div>
-  </div>
-</section>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+          <div className="w-6 h-6 lg:w-8 lg:h-8 border-r-2 border-b-2 border-gold rotate-45"></div>
+        </div>
+      </section>
 
       {/* Main Content Section */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-12 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -66,7 +66,7 @@ const AnandReality = () => {
               {/* Left Content */}
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4 leading-tight">
                     Plot Development & Venture Solutions
                   </h2>
                   <div className="w-16 lg:w-20 h-1 bg-gold mb-6"></div>
@@ -124,7 +124,7 @@ const AnandReality = () => {
                         <div className="w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
                           {index + 1}
                         </div>
-                        <span className="text-gray-700 font-medium">{step}</span>
+                        <span className="text-gray-700 font-medium text-sm lg:text-base">{step}</span>
                       </div>
                     ))}
                   </div>
@@ -132,22 +132,20 @@ const AnandReality = () => {
 
                 {/* Success Metrics */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-4 lg:p-6 rounded-2xl text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-2">100+</div>
-                    <div className="text-xs lg:text-sm">Ventures Completed</div>
-                  </div>
-                  <div className="bg-gradient-to-br from-green-500 to-green-700 text-white p-4 lg:p-6 rounded-2xl text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-2">50K+</div>
-                    <div className="text-xs lg:text-sm">Plots Developed</div>
-                  </div>
-                  <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white p-4 lg:p-6 rounded-2xl text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-2">25+</div>
-                    <div className="text-xs lg:text-sm">Years Experience</div>
-                  </div>
-                  <div className="bg-gradient-to-br from-orange-500 to-orange-700 text-white p-4 lg:p-6 rounded-2xl text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-2">99%</div>
-                    <div className="text-xs lg:text-sm">Customer Satisfaction</div>
-                  </div>
+                  {[
+                    { number: "100+", label: "Ventures Completed", gradient: "from-blue-500 to-blue-700" },
+                    { number: "50K+", label: "Plots Developed", gradient: "from-green-500 to-green-700" },
+                    { number: "25+", label: "Years Experience", gradient: "from-purple-500 to-purple-700" },
+                    { number: "99%", label: "Customer Satisfaction", gradient: "from-orange-500 to-orange-700" }
+                  ].map((metric, index) => (
+                    <div 
+                      key={index} 
+                      className={`bg-gradient-to-br ${metric.gradient} text-white p-4 lg:p-6 rounded-2xl text-center`}
+                    >
+                      <div className="text-2xl lg:text-3xl font-bold mb-2">{metric.number}</div>
+                      <div className="text-xs lg:text-sm">{metric.label}</div>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Plot Types */}
@@ -161,7 +159,7 @@ const AnandReality = () => {
                     ].map((plot, index) => (
                       <div key={index} className="flex items-center">
                         <span className="text-gold mr-2 text-lg">•</span>
-                        <span className="text-white/90">{plot}</span>
+                        <span className="text-white/90 text-sm lg:text-base">{plot}</span>
                       </div>
                     ))}
                   </div>
@@ -171,29 +169,23 @@ const AnandReality = () => {
 
             {/* Additional Development Services */}
             <div className="mt-12 lg:mt-16 bg-gradient-to-r from-gold/10 to-yellow-400/10 rounded-2xl p-6 lg:p-8 border border-gold/30">
-              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-6 text-center">Comprehensive Plot Services</h3>
+              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-6 lg:mb-8 text-center">
+                Comprehensive Plot Services
+              </h3>
               <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">🏡</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Plot Development</h4>
-                  <p className="text-gray-600 text-sm lg:text-base">
-                    Complete transformation of raw land into premium residential plots with all amenities
-                  </p>
-                </div>
-                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">📈</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Venture Planning</h4>
-                  <p className="text-gray-600 text-sm lg:text-base">
-                    Strategic planning and execution of successful land development ventures
-                  </p>
-                </div>
-                <div className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl lg:text-5xl mb-3">🤝</div>
-                  <h4 className="font-bold text-navy mb-2 text-lg">Joint Ventures</h4>
-                  <p className="text-gray-600 text-sm lg:text-base">
-                    Partnership opportunities for landowners and investors in plot development
-                  </p>
-                </div>
+                {[
+                  { icon: "🏡", title: "Plot Development", desc: "Complete transformation of raw land into premium residential plots with all amenities" },
+                  { icon: "📈", title: "Venture Planning", desc: "Strategic planning and execution of successful land development ventures" },
+                  { icon: "🤝", title: "Joint Ventures", desc: "Partnership opportunities for landowners and investors in plot development" }
+                ].map((service, index) => (
+                  <div key={index} className="text-center p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div className="text-4xl lg:text-5xl mb-3">{service.icon}</div>
+                    <h4 className="font-bold text-navy mb-2 text-lg">{service.title}</h4>
+                    <p className="text-gray-600 text-sm lg:text-base leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -201,20 +193,20 @@ const AnandReality = () => {
       </section>
 
       {/* Case Studies Section */}
-      <section className="py-16 lg:py-20 bg-gray-50">
+      <section className="py-8 lg:py-12 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 lg:mb-16">
+            <div className="text-center mb-8 lg:mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">
                 Successful Ventures
               </h2>
               <div className="w-16 lg:w-20 h-1 bg-gold mx-auto mb-6"></div>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto px-4">
                 Real projects where we transformed raw land into premium plots
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 px-4 sm:px-0">
               {[
                 {
                   title: "Green Valley Plots",
@@ -259,34 +251,36 @@ const AnandReality = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-20 bg-gradient-to-br from-navy to-blue-900 text-white">
+      <section className="py-12 lg:py-20 bg-gradient-to-br from-navy to-blue-900 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 px-4">
               Ready to Develop Your Land?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-100 mb-6 lg:mb-8 max-w-2xl mx-auto px-4 leading-relaxed">
               Transform your raw land into profitable plots with our expert development services
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center px-4">
               <Link
                 to="/contact"
-                className="bg-gold text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-white text-navy px-6 lg:px-8 py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto text-center"
               >
                 🏡 Start Your Venture
               </Link>
-              <Link to={'/about'} className="bg-transparent border-2 border-gold text-gold px-8 py-4 rounded-lg font-bold text-lg hover:bg-gold hover:text-navy transition-all duration-300">
+              <Link 
+                to="/about" 
+                className="bg-blue-light hover:bg-white text-navy  border-gold  px-6 lg:px-8 py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 text-center w-full sm:w-auto"
+              >
                 View Our Plots
               </Link>
             </div>
             
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-2 gap-4 text-center">
+            <div className="mt-8 grid grid-cols-2 gap-4 text-center max-w-xs mx-auto">
               <div>
                 <div className="text-2xl font-bold text-gold">Free</div>
                 <div className="text-blue-200 text-sm">Site Evaluation</div>
               </div>
-              
               <div>
                 <div className="text-2xl font-bold text-gold">100%</div>
                 <div className="text-blue-200 text-sm">Approval Guarantee</div>

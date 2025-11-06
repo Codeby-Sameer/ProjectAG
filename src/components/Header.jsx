@@ -202,7 +202,7 @@ const Header = () => {
                   >
                     <div className="font-semibold flex items-center gap-2">
                       <span>🎬</span>
-                      <span>Anand Cinemas</span>
+                      <span>Anand Cinemaz</span>
                     </div>
                   </Link>
                   <Link
@@ -216,7 +216,7 @@ const Header = () => {
                   >
                     <div className="font-semibold flex items-center gap-2">
                       <span>🏢</span>
-                      <span>Anand Reality</span>
+                      <span>Anand Realtyy</span>
                     </div>
                   </Link>
                   <Link
@@ -238,6 +238,16 @@ const Header = () => {
             </div>
 
             <Link
+              to="/crm"
+              className={`transition-colors px-3 py-2 rounded-lg font-medium ${
+                isActiveLink('/crm')
+                  ? 'text-navy font-bold bg-gold/20 border border-gold/30'
+                  : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+              }`}
+            >
+              CRM
+            </Link>
+            <Link
               to="/contact"
               className={`transition-colors px-3 py-2 rounded-lg font-medium ${
                 isActiveLink('/contact')
@@ -251,9 +261,16 @@ const Header = () => {
             {/* Appointment Button */}
             <button
               onClick={() => openModal('real-estate', { prefillData: 'some data' })}
-              className="bg-green-500 text-white  px-5 py-2.5 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
+              className="bg-green-500 text-white  px-2 py-2.5 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
             >
-              Book Appointment
+          Land Information Form
+            </button>
+            {/* Appointment Button */}
+            <button
+              onClick={() => openModal('problem-solution', { prefillData: 'some data' })}
+              className="bg-green-500 text-white  px-2 py-2.5 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
+            >
+        Appointment Form
             </button>
           </div>
 
@@ -392,6 +409,18 @@ const Header = () => {
                   onClick={closeMenu}
                 >
                   Contact
+                </Link>
+
+                <Link
+                  to="/crm"
+                  className={`block transition-all px-4 py-3 rounded-lg font-medium hover:bg-blue-100 ${
+                    isActiveLink('/crm')
+                      ? 'text-navy font-bold bg-gold/20 border border-gold/30'
+                      : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+                  }`}
+                  onClick={closeMenu}
+                >
+                CRM
                 </Link>
 
                 {/* Mobile Appointment Button */}

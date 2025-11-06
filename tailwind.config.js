@@ -8,7 +8,26 @@ export default {
     extend: {
       colors: {
         navy: '#0A2E5B',
-        gold: '#faf9f8ff',
+        
+        blue: {
+          light: '#93c5fd',
+        },
+        yellow: {
+          light: '#fef08a',
+        },
+        gold: {
+          light: '#fde68a',
+        },
+       
+        silver: {
+          light: '#e5e7eb',
+        },
+        orange: {
+          light: '#fdba74',
+        },
+        purple: {
+          light: '#d8b4fe',
+        }
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],

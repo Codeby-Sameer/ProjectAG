@@ -55,13 +55,28 @@ const WorkProcess = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-2xl">
-            <h3 className="text-3xl font-bold mb-4">Ready to Find Your Dream Property?</h3>
-            <p className="text-xl mb-6 opacity-90">Book your appointment today and let us guide you home</p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
-              Book Appointment Now
-            </button>
+       {/* Enhanced Call to Action */}
+        <div className="text-center my-16">
+          <div className="bg-gradient-to-r from-purple-700 to-violet-900 rounded-2xl p-12 text-white shadow-2xl">
+            <h3 className="text-3xl font-bold mb-4">
+              Ready to Begin Your Journey With Us?
+            </h3>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Discover how our diversified expertise can help you achieve your dreams, whether it's your dream home, 
+              next investment, or creative project.
+            </p>
+       
+            <div className="mt-8 pt-8 border-t border-gray-700">
+              <p className="text-gray-400 mb-4">
+                Prefer to speak directly with our experts?
+              </p>
+              <button
+                onClick={() => openModal('general-inquiry', { prefillData: 'division-page-inquiry' })}
+                className="px-8 py-3  text-gray-900 font-bold rounded-lg bg-white  text-black transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                📞 Schedule a Consultation
+              </button>
+            </div>
           </div>
         </div>
       </div>

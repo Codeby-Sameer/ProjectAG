@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -15,18 +16,13 @@ const About = () => {
             through innovation, integrity, and social impact.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-8">
-            <a
-              href="#divisions"
+            <Link
+              to={"about"}
               className="px-8 py-3 bg-navy text-white font-semibold rounded-lg hover:bg-blue-900 transition-all duration-300 shadow-lg"
             >
               Learn More About Anand Group
-            </a>
-            <a
-              href="#divisions"
-              className="px-8 py-3 bg-gold text-navy font-semibold rounded-lg hover:bg-navy hover:text-white transition-all duration-300 shadow-lg"
-            >
-              Our Divisions
-            </a>
+            </Link>
+           
           </div>
         </div>
       </div>
