@@ -51,12 +51,7 @@ api.interceptors.response.use(
       const { status, data } = error.response;
       
       switch (status) {
-        case 401:
-          // Unauthorized - clear token and redirect to login
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('userRole');
-          window.location.href = '/login';
-          break;
+       
           
         case 403:
           // Forbidden - insufficient permissions

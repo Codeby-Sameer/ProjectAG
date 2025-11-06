@@ -77,6 +77,7 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: AuthActionTypes.LOGOUT });
   };
 
+  
   // Update user function
   const updateUser = (userData) => {
     if (userData.role) {
