@@ -100,11 +100,11 @@ const Header = () => {
       {/* Top Bar */}
       <div className=' bg-navy text-white lg:px-20 md:px-20 sm:px-10 px-3'>
         <div className='flex justify-between'>
-          <div className='text-md md:text-sm sm:text-xs'>
-            Born in 1988
+          <div className='lg:text-lg md:text-md sm:text-sm'>
+            Born in <b>1988</b>
           </div>
-          <div className='text-md md:text-sm sm:text-xs'>
-            Established in 2025
+          <div className='text-md lg:text-lg md:text-md sm:text-sm'>
+            Established in <b>2025</b>
           </div>
         </div>
       </div>
