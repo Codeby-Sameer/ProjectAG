@@ -37,8 +37,8 @@ const AboutUs = () => {
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-white text-navy p-6 rounded-2xl shadow-xl">
                   <div className="text-center">
-                    <div className="text-xl font-bold">Founder OF</div>
-                    <div className="text-lg font-semibold">Anand Group</div>
+                    <div className="text-xl font-bold">Founder </div>
+                    <div className="text-lg font-semibold">Anand Groups</div>
                   </div>
                 </div>
               </div>

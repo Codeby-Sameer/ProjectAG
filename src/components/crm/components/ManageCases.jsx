@@ -114,10 +114,10 @@ const ManageCasesTab = () => {
                     {caseItem.category}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status={caseItem.priority} type="urgency" />
+                    {/* <StatusBadge status={caseItem.priority} type="urgency" /> */}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status={caseItem.status} type="status" />
+                    {/* <StatusBadge status={caseItem.status} type="status" /> */}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                     {new Date(caseItem.lastUpdated).toLocaleDateString()}

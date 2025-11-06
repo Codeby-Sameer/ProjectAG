@@ -18,13 +18,10 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="flex justify-between items-center px-8 py-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900"></h1>
-          <p className="text-orange-500 text-lg font-bold mt-1">Anand Group</p>
-        </div>
+      <div className="flex justify-end items-center px-8 py-4">
+
         
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-9">
           {/* Notification Bell */}
           <div className="relative">
             <button 
@@ -81,12 +78,12 @@ const Header = () => {
           </div>
 
           {/* User Role Selector */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-8 ">
             <span className="text-gray-600 text-sm">👤 Role:</span>
             <select 
               value={userRole} 
               onChange={(e) => setUserRole(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="border border-gray-300 rounded-lg px-7 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="receptionist">📝 Receptionist/Staff</option>
               <option value="admin">👨‍💼 Admin Personnel</option>
@@ -96,11 +93,9 @@ const Header = () => {
             </select>
           </div>
 
-          <span className="text-gray-600 text-sm">📧 support@company.com</span>
+          <span className="text-gray-600 text-sm">📧 info@anandgroup.com</span>
           
-          <div className="bg-blue-600 text-white px-4 py-2 rounded-full font-semibold text-sm">
-            0 Records
-          </div>
+          
         </div>
       </div>
     </header>

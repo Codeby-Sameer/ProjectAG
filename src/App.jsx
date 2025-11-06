@@ -68,13 +68,13 @@ function App() {
     <MultiFormModalProvider>
       <Router>
         <Routes>
-          {/* CRM routes */}
-          <Route path="/crm/*" element={<CrmApp/>} />
+          {/* CRM routes - placed first for priority */}
+          <Route path="/crm/*" element={<CrmApp />} />
           
           {/* Main site routes with layout */}
-          <Route path="/" element={<Layout />}>
+          <Route element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path='about' element={<AboutUs/> } />
+            <Route path="about" element={<AboutUs />} />
             <Route path="production" element={<Production />} />
             <Route path="real-estate" element={<AnandReality />} />
             <Route path="infrastructure" element={<Infrastructure />} />
@@ -82,7 +82,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-        <MultiFormModal/>
+        <MultiFormModal />
       </Router>
     </MultiFormModalProvider>
   );

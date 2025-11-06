@@ -69,7 +69,7 @@ const AppointmentsTab = () => {
           <div className="text-2xl mb-2">🔄</div>
           <div className="font-semibold">Reschedule</div>
         </button>
-        <button className="bg-red-500 text-white p-4 rounded-lg hover:bg-red-600 transition-colors text-center">
+        <button className="bg-orange-500 text-white p-4 rounded-lg hover:bg-red-600 transition-colors text-center">
           <div className="text-2xl mb-2">📊</div>
           <div className="font-semibold">Reports</div>
         </button>
@@ -124,7 +124,7 @@ const AppointmentsTab = () => {
                   <button className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors">
                     ✏️ Edit
                   </button>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition-colors">
+                  <button className="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition-colors">
                     🗑️ Cancel
                   </button>
                 </div>

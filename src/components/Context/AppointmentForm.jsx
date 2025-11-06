@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { appointmentService } from '../../services/appointmentService';
 
 const AppointmentForm = () => {
   // Form validation schema
@@ -35,9 +36,16 @@ const AppointmentForm = () => {
       message: ''
     },
     validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
+    onSubmit:async (values, { setSubmitting, resetForm }) => {
       console.log('Form submitted:', values);
-      // Simulate API call
+      try {
+          const response = await appointmentService.createAppointment(values);
+          console.log('✅ Submission successful:', response);
+          // Optionally show success UI or redirect
+        } catch (error) {
+          console.error('❌ Submission failed:', error);
+          // Optionally show error UI
+        }
       setTimeout(() => {
         setSubmitting(false);
         resetForm();

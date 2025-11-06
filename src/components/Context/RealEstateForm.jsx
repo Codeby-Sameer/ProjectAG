@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMultiFormModal } from './ModalContext';
 import { useEffect } from 'react';
+import { realEstateService } from '../../services/realEstateService';
 
 
 const RealEstateForm = ({ initialData }) => {
@@ -40,7 +41,7 @@ const RealEstateForm = ({ initialData }) => {
      
     initialValues: {
       fileNo: initialData.fileNo||'',
-      date:initialData.date|| '',
+      date:initialData.date,
       referenceId: '',
       farmerId: '',
       extent: '',
@@ -88,28 +89,36 @@ const RealEstateForm = ({ initialData }) => {
       deathCertificates: '',
       note: ''
     },
-    validationSchema: Yup.object({
-      fileNo: Yup.string().required('File No. is required'),
-      date: Yup.date().required('Date is required'),
-      farmerId: Yup.string().required('Farmer ID/Name is required'),
-      aadharNo: Yup.string()
-        .matches(/^\d{12}$/, 'Aadhar must be 12 digits')
-        .required('Aadhar No. is required'),
-      contact: Yup.string()
-        .matches(/^\d{10}$/, 'Contact must be 10 digits')
-        .required('Contact is required'),
-      referenceAadhar: Yup.string()
-        .matches(/^\d{12}$/, 'Aadhar must be 12 digits'),
-      referenceContact1: Yup.string()
-        .matches(/^\d{10}$/, 'Contact must be 10 digits'),
-      referenceContact2: Yup.string()
-        .matches(/^\d{10}$/, 'Contact must be 10 digits')
-    }),
-    onSubmit: (values, { resetForm }) => {
+    // validationSchema: Yup.object({
+    //   fileNo: Yup.string().required('File No. is required'),
+    //   date: Yup.date().required('Date is required'),
+    //   farmerId: Yup.string().required('Farmer ID/Name is required'),
+    //   aadharNo: Yup.string()
+    //     .matches(/^\d{12}$/, 'Aadhar must be 12 digits')
+    //     .required('Aadhar No. is required'),
+    //   contact: Yup.string()
+    //     .matches(/^\d{10}$/, 'Contact must be 10 digits')
+    //     .required('Contact is required'),
+    //   referenceAadhar: Yup.string()
+    //     .matches(/^\d{12}$/, 'Aadhar must be 12 digits'),
+    //   referenceContact1: Yup.string()
+    //     .matches(/^\d{10}$/, 'Contact must be 10 digits'),
+    //   referenceContact2: Yup.string()
+    //     .matches(/^\d{10}$/, 'Contact must be 10 digits')
+    // }),
+    onSubmit: async(values, { resetForm }) => {
       console.log('Real Estate Form:', values);
-      // Handle submission
-      resetForm();
-      closeModal();
+
+            try {
+                const response = await realEstateService.createRealEstate(values);
+                console.log('✅ Submission successful:', response);
+                // Optionally show success UI or redirect
+              } catch (error) {
+                console.error('❌ Submission failed:', error);
+                // Optionally show error UI
+              }
+    
+      
     }
   });
 
@@ -641,7 +650,7 @@ const RealEstateForm = ({ initialData }) => {
   <div className="flex gap-4 justify-end pt-6">
     <button
       type="button"
-      onClick={closeModal}
+    
       className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
     >
       రద్దు / Cancel

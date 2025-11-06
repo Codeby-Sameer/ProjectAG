@@ -1,0 +1,1849 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Problem Resolution System</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        html {
+            height: 100%;
+        }
+        .audio-waveform {
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            height: 4px;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .urgency-high { background: #fee2e2; color: #991b1b; }
+        .urgency-medium { background: #fef3c7; color: #92400e; }
+        .urgency-low { background: #dbeafe; color: #1e40af; }
+        .urgency-critical { background: #fecaca; color: #7f1d1d; }
+        .status-new { background: #e0e7ff; color: #3730a3; }
+        .status-under-review { background: #fef3c7; color: #92400e; }
+        .status-appointment-scheduled { background: #dbeafe; color: #1e40af; }
+        .status-in-progress { background: #fed7aa; color: #9a3412; }
+        .status-resolved { background: #d1fae5; color: #065f46; }
+        .status-closed { background: #f3f4f6; color: #374151; }
+        .status-cancelled { background: #fee2e2; color: #991b1b; }
+        .appointment-pending { background: #fef3c7; color: #92400e; }
+        .appointment-scheduled { background: #d1fae5; color: #065f46; }
+        .appointment-completed { background: #e0e7ff; color: #3730a3; }
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        .notification-item {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #3b82f6;
+        }
+        .notification-unread {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        .task-item {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #10b981;
+        }
+        .task-overdue {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        .task-high-priority {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .waveform-bar {
+            background: linear-gradient(to top, #3b82f6, #8b5cf6);
+            width: 3px;
+            border-radius: 2px;
+            transition: height 0.3s ease;
+        }
+        .sentiment-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            gap: 4px;
+        }
+        .sentiment-positive { background: #d1fae5; color: #065f46; }
+        .sentiment-neutral { background: #f3f4f6; color: #374151; }
+        .sentiment-negative { background: #fecaca; color: #991b1b; }
+        .sentiment-urgent { background: #fed7aa; color: #9a3412; }
+        .keyword-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .speed-control.active {
+            background: #3b82f6 !important;
+            color: white !important;
+        }
+        .report-tab.active {
+            background: #3b82f6 !important;
+            color: white !important;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .record-button {
+            transition: all 0.3s ease;
+        }
+        .record-button.recording {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .data-requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .data-requirements-table th,
+        .data-requirements-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .data-requirements-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .validation-rules {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .dashboard-widget {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #3b82f6;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .workflow-step {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid #10b981;
+            position: relative;
+        }
+        .workflow-step.active {
+            border-left-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .workflow-step.completed {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+        .commission-tier {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .invoice-template {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body>
+  <div id="app" class="h-full overflow-auto" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><!-- Header -->
+   <div style="background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);">
+    <div style="max-width: 1400px; margin: 0 auto; padding: 24px 32px;">
+     <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+       <h1 id="system-title" style="font-size: 28px; font-weight: 700; color: #1f2937; margin: 0;">Client Problem Resolution System</h1>
+       <p id="company-name" style="color: #6b7280; margin: 8px 0 0 0; font-size: 14px;">Your Company Name</p>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: center;"><!-- Notification Bell -->
+       <div style="position: relative;"><button id="notification-bell" style="background: none; border: none; font-size: 24px; cursor: pointer; position: relative;"> 🔔 <span id="notification-count" style="position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: 600;">3</span> </button>
+       </div><!-- User Role Selector -->
+       <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #6b7280; font-size: 14px;">👤 Role:</span> <select id="user-role" style="padding: 6px 12px; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 14px; background: white; font-weight: 500;"> <option value="receptionist">📝 Receptionist/Staff</option> <option value="admin" selected>👨‍💼 Admin Personnel</option> <option value="specialist">🔧 Specialist</option> <option value="manager">📊 Manager</option> <option value="administrator">⚙️ Administrator</option> </select>
+       </div><span style="color: #6b7280; font-size: 14px;">📧 <span id="support-email">support@company.com</span></span>
+       <div id="record-count" style="background: #3b82f6; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">
+        0 Records
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Main Content -->
+   <div style="max-width: 1400px; margin: 0 auto; padding: 32px;"><!-- Tabs -->
+    <div style="background: white; border-radius: 12px 12px 0 0; padding: 0 32px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+     <div id="tabs-container" style="display: flex; gap: 32px; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap;"><button id="tab-submit" class="tab-active" data-roles="receptionist,admin,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 📝 Submit Problem </button> <button id="tab-manage" data-roles="admin,specialist,manager,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 📋 Manage Cases </button> <button id="tab-appointments" data-roles="admin,specialist,manager,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 📅 Appointments </button> <button id="tab-notifications" data-roles="admin,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 🔔 Notifications </button> <button id="tab-tasks" data-roles="admin,specialist,manager,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> ✅ Tasks </button> <button id="tab-financial" data-roles="admin,manager,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 💰 Financial </button> <button id="tab-admin" data-roles="admin,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 👨‍💼 Admin Dashboard </button> <button id="tab-reports" data-roles="admin,manager,administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 📈 Reports &amp; Analytics </button> <button id="tab-permissions" data-roles="administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 🔐 User Management </button> <button id="tab-specifications" data-roles="administrator" style="background: none; border: none; padding: 16px 0; cursor: pointer; font-size: 16px; color: #6b7280; transition: all 0.3s;"> 📋 System Specs </button>
+     </div>
+    </div><!-- Tab Content -->
+    <div style="background: white; border-radius: 0 0 12px 12px; padding: 32px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); min-height: 600px;"><!-- Submit Problem Tab -->
+     <div id="content-submit">
+      <form id="problem-form"><!-- Client Information -->
+       <div class="form-section">
+        <h3 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">👤 Client Information</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Full Name *</label> <input type="text" id="client-name" required minlength="2" maxlength="100" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="Enter client name (2-100 characters)">
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Primary Phone Number *</label> <input type="tel" id="contact-phone" required pattern="[0-9]{10}" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="+1 (555) 000-0000 (10 digits)">
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Email Address *</label> <input type="email" id="contact-email" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="client@email.com (valid format)">
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Existing Client ID (Optional)</label> <input type="text" id="existing-client-id" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="Links to existing client record">
+         </div>
+        </div>
+       </div><!-- Business Details -->
+       <div class="form-section">
+        <h3 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">🏢 Business Details</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Business Vertical *</label> <select id="business-vertical" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="">Select vertical</option> <option value="real-estate">🏠 Real Estate</option> <option value="film-entertainment">🎬 Film &amp; Entertainment</option> <option value="events">🎉 Events</option> </select>
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Referring Source *</label> <select id="referring-source" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="">Select source</option> <option value="walk-in">🚶 Walk-in</option> <option value="phone">📞 Phone Call</option> <option value="email">📧 Email</option> <option value="referral">🤝 Referral</option> <option value="social-media">📱 Social Media</option> <option value="website">🌐 Website</option> <option value="other">📋 Other</option> </select>
+         </div>
+         <div id="referral-person-field" style="display: none;"><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Referral Person Name *</label> <input type="text" id="referral-person-name" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="Enter referral person's name">
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Problem Category *</label> <select id="problem-category" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="">Select category</option> <option value="documentation">📄 Documentation Issues</option> <option value="settlement">💰 Settlement Problems</option> <option value="registration">📝 Registration Issues</option> <option value="production">🎥 Production Problems</option> <option value="event">🎉 Event Management</option> <option value="promotion">📢 Promotion Issues</option> <option value="legal">⚖️ Legal Matters</option> <option value="financial">💳 Financial Issues</option> <option value="technical">🔧 Technical Problems</option> <option value="scheduling">📅 Scheduling Conflicts</option> <option value="communication">📞 Communication Issues</option> <option value="quality">⭐ Quality Concerns</option> <option value="other">✏️ Other (Specify)</option> </select>
+         </div>
+         <div id="custom-problem-field" style="display: none;"><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Specify Problem Type *</label> <input type="text" id="custom-problem-type" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;" placeholder="Describe the problem type">
+         </div>
+         <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Priority Level *</label> <select id="urgency-level" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="">Select priority</option> <option value="low">🟢 Low - Routine</option> <option value="medium">🟡 Medium - Within 48hrs</option> <option value="high">🔴 High - Immediate</option> <option value="critical">🚨 Critical - Emergency</option> </select>
+         </div>
+        </div>
+       </div><!-- Problem Description -->
+       <div class="form-section">
+        <h3 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">🎤 Problem Description</h3><!-- Data Capture Requirements Notice -->
+        <div style="background: #e0f2fe; border: 2px solid #0288d1; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+         <div style="display: flex; align-items: start; gap: 12px;">
+          <div style="font-size: 24px;">
+           📋
+          </div>
+          <div>
+           <h4 style="font-size: 16px; font-weight: 600; color: #01579b; margin: 0 0 8px 0;">Audio Recording Required</h4>
+           <p style="color: #0277bd; font-size: 14px; margin: 0 0 12px 0; line-height: 1.5;">Audio documentation is mandatory for complete problem context preservation. This ensures accurate problem resolution and maintains quality standards.</p>
+           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 13px; color: #0277bd;">
+            <div>
+             <strong>Formats:</strong> MP3, WAV, M4A, OGG, AAC
+            </div>
+            <div>
+             <strong>Max Size:</strong> 50 MB per recording
+            </div>
+            <div>
+             <strong>Max Duration:</strong> 30 minutes
+            </div>
+            <div>
+             <strong>Min Quality:</strong> 32 kbps, 16 kHz
+            </div>
+           </div>
+          </div>
+         </div>
+        </div><!-- Audio Recording -->
+        <div style="background: #f9fafb; border: 2px dashed #d1d5db; border-radius: 12px; padding: 32px; text-align: center; margin-bottom: 20px;">
+         <div id="audio-upload-area">
+          <div style="font-size: 48px; margin-bottom: 16px;">
+           🎙️
+          </div>
+          <h4 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">Record or Upload Audio</h4>
+          <p style="color: #6b7280; font-size: 14px; margin: 0 0 20px 0;">Supported formats: MP3, WAV, M4A, OGG, AAC (Max: 50MB, 30min)</p><input type="file" id="audio-file" accept="audio/*" style="display: none;">
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;"><button type="button" id="record-audio-btn" class="record-button" style="background: #ef4444; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;"> <span>⏺</span> Start Recording </button> <button type="button" id="upload-audio-btn" style="background: #3b82f6; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;"> 📁 Upload Audio File </button>
+          </div>
+         </div>
+         <div id="audio-preview" style="display: none;"><!-- Enhanced Audio Player -->
+          <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);"><!-- File Info Header -->
+           <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+            <div>
+             <div id="audio-filename" style="font-weight: 600; color: #1f2937; font-size: 16px; margin-bottom: 4px;"></div>
+             <div style="display: flex; gap: 16px; font-size: 12px; color: #6b7280;"><span>📁 Size: <span id="audio-size">0 MB</span></span> <span>🎵 Quality: <span id="audio-quality">32 kbps</span></span> <span>⏱️ Duration: <span id="audio-duration">0:00</span></span>
+             </div>
+            </div><button type="button" id="download-audio-btn" style="background: #6b7280; color: white; padding: 8px 12px; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;"> 💾 Download </button>
+           </div><!-- Waveform Visualization -->
+           <div style="background: #f9fafb; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px; height: 60px; cursor: pointer;" id="progress-bar">
+             <div id="waveform-bars" style="display: flex; align-items: end; gap: 2px; height: 40px; flex: 1;"></div>
+            </div>
+            <div style="background: #e5e7eb; height: 4px; border-radius: 2px; overflow: hidden; margin-top: 8px;">
+             <div id="waveform-progress" class="audio-waveform" style="width: 0%;"></div>
+            </div>
+           </div><!-- Enhanced Controls -->
+           <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;"><button type="button" id="skip-back-btn" style="background: #e5e7eb; color: #374151; width: 36px; height: 36px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer;">⏪</button> <button type="button" id="play-audio-btn" style="background: #3b82f6; color: white; width: 48px; height: 48px; border: none; border-radius: 50%; font-size: 20px; cursor: pointer;">▶️</button> <button type="button" id="skip-forward-btn" style="background: #e5e7eb; color: #374151; width: 36px; height: 36px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer;">⏩</button>
+            <div style="display: flex; align-items: center; gap: 8px; margin-left: 16px;"><span style="font-size: 12px; color: #6b7280;" id="current-time">0:00</span> <span style="font-size: 12px; color: #6b7280;">/</span> <span style="font-size: 12px; color: #6b7280;" id="total-time">0:00</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-left: auto;"><button type="button" id="mute-btn" style="background: none; border: none; font-size: 16px; cursor: pointer;">🔊</button> <input type="range" id="volume-control" min="0" max="100" value="100" style="width: 80px;">
+            </div>
+           </div><!-- Playback Speed Controls -->
+           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;"><span style="font-size: 12px; color: #6b7280; margin-right: 8px;">Speed:</span> <button class="speed-control" data-speed="0.5" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">0.5x</button> <button class="speed-control" data-speed="0.75" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">0.75x</button> <button class="speed-control active" data-speed="1" style="background: #3b82f6; color: white; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">1x</button> <button class="speed-control" data-speed="1.25" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">1.25x</button> <button class="speed-control" data-speed="1.5" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">1.5x</button> <button class="speed-control" data-speed="2" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">2x</button>
+           </div>
+           <audio id="audio-player" style="display: none;"></audio>
+          </div><!-- AI Analysis Results -->
+          <div id="ai-analysis" style="display: none; background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+           <h4 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 16px 0;">🤖 AI Analysis Results</h4>
+           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+            <div style="padding: 16px; background: #f9fafb; border-radius: 8px;">
+             <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+              Sentiment Analysis
+             </div>
+             <div id="sentiment-result" class="sentiment-badge sentiment-neutral">
+              😐 Analyzing...
+             </div>
+            </div>
+            <div style="padding: 16px; background: #f9fafb; border-radius: 8px;">
+             <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+              AI Priority Suggestion
+             </div>
+             <div style="font-weight: 600; color: #3b82f6;" id="priority-suggestion">
+              Analyzing...
+             </div>
+            </div>
+           </div><!-- Speech-to-Text Transcription -->
+           <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+             <h5 style="font-size: 14px; font-weight: 600; color: #1f2937; margin: 0;">📝 Speech-to-Text Transcription</h5><button type="button" id="toggle-transcription" style="background: #e5e7eb; color: #374151; padding: 4px 8px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;"> 👁️ Show/Hide </button>
+            </div>
+            <div id="transcription-text" style="background: #f9fafb; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.6; max-height: 120px; overflow-y: auto;">
+             <div style="color: #6b7280; text-align: center; padding: 20px;">
+              <div style="font-size: 24px; margin-bottom: 8px;">
+               🤖
+              </div>
+              <p style="margin: 0;">Processing speech-to-text...</p>
+             </div>
+            </div>
+           </div><!-- Keyword Extraction -->
+           <div>
+            <h5 style="font-size: 14px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">🏷️ Extracted Keywords</h5>
+            <div id="keywords-container" style="display: flex; gap: 8px; flex-wrap: wrap;"><span style="background: #e5e7eb; color: #374151; padding: 4px 8px; border-radius: 12px; font-size: 12px;">Processing...</span>
+            </div>
+           </div>
+          </div><button type="button" id="remove-audio-btn" style="background: #ef4444; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600;"> 🗑️ Remove Audio </button>
+         </div>
+        </div><!-- Written Summary -->
+        <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Written Problem Summary (Optional)</label> <textarea id="problem-summary" rows="4" maxlength="2000" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; resize: vertical;" placeholder="Provide additional details about the problem... (up to 2000 characters)"></textarea>
+         <div style="text-align: right; font-size: 12px; color: #6b7280; margin-top: 4px;"><span id="summary-char-count">0</span>/2000 characters
+         </div>
+        </div>
+       </div><!-- Submit Button -->
+       <div style="text-align: center;"><button type="submit" id="submit-btn" style="background: #10b981; color: white; padding: 16px 48px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: all 0.3s;"> <span id="submit-button-text">Submit Problem Report</span> </button>
+       </div>
+      </form>
+     </div><!-- Notifications Tab -->
+     <div id="content-notifications" style="display: none;">
+      <div style="margin-bottom: 24px;">
+       <h3 style="font-size: 20px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">🔔 Notification System</h3>
+       <p style="color: #6b7280; font-size: 14px; margin: 0;">Automated notifications for appointments, status changes, and system alerts</p>
+      </div><!-- Notification Settings -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">⚙️ Notification Settings</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 16px 0;">📧 Email Notifications</h5>
+         <div style="display: flex; flex-direction: column; gap: 12px;"><label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">Appointment confirmations</span> </label> <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">24-hour reminders</span> </label> <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">2-hour reminders</span> </label> <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">Status changes</span> </label>
+         </div>
+        </div>
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 16px 0;">📱 SMS Notifications</h5>
+         <div style="display: flex; flex-direction: column; gap: 12px;"><label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">Urgent appointments</span> </label> <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" style="width: 16px; height: 16px;"> <span style="font-size: 14px;">All reminders</span> </label> <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;"> <input type="checkbox" checked style="width: 16px; height: 16px;"> <span style="font-size: 14px;">Cancellations</span> </label>
+         </div>
+        </div>
+       </div>
+      </div><!-- Notification Types Table -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">📋 Notification Types &amp; Timing</h4>
+       <table class="data-requirements-table">
+        <thead>
+         <tr>
+          <th>Notification Type</th>
+          <th>Timing</th>
+          <th>Recipients</th>
+          <th>Method</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>Appointment Confirmation</td>
+          <td>Immediately after scheduling</td>
+          <td>Client, Specialist, Admin</td>
+          <td>📧 Email + 📱 SMS</td>
+         </tr>
+         <tr>
+          <td>24-Hour Reminder</td>
+          <td>24 hours before appointment</td>
+          <td>Client, Specialist</td>
+          <td>📧 Email</td>
+         </tr>
+         <tr>
+          <td>2-Hour Reminder</td>
+          <td>2 hours before appointment</td>
+          <td>Client, Specialist</td>
+          <td>📱 SMS</td>
+         </tr>
+         <tr>
+          <td>Appointment Reschedule</td>
+          <td>When rescheduled by admin</td>
+          <td>Client, Specialist, Admin</td>
+          <td>📧 Email + 📱 SMS</td>
+         </tr>
+         <tr>
+          <td>Appointment Cancellation</td>
+          <td>When cancelled by any party</td>
+          <td>Client, Specialist, Admin</td>
+          <td>📧 Email + 📱 SMS</td>
+         </tr>
+         <tr>
+          <td>No-Show Alert</td>
+          <td>15 min after appointment time</td>
+          <td>Admin only</td>
+          <td>🔔 System Alert</td>
+         </tr>
+         <tr>
+          <td>Resolution Completed</td>
+          <td>After specialist closes ticket</td>
+          <td>Client (with satisfaction survey)</td>
+          <td>📧 Email</td>
+         </tr>
+        </tbody>
+       </table>
+      </div><!-- Recent Notifications -->
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">📬 Recent Notifications</h4>
+       <div id="notifications-list">
+        <div class="notification-item notification-unread">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+          <div style="font-weight: 600; color: #1f2937;">
+           🚨 No-Show Alert
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           2 min ago
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 8px;">
+          Client John Smith missed appointment at 2:00 PM - Problem #PR-2024-001
+         </div>
+         <div style="display: flex; gap: 8px;"><button style="background: #3b82f6; color: white; padding: 4px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">Reschedule</button> <button style="background: #6b7280; color: white; padding: 4px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">Mark Read</button>
+         </div>
+        </div>
+        <div class="notification-item">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+          <div style="font-weight: 600; color: #1f2937;">
+           ✅ Resolution Completed
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           1 hour ago
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 8px;">
+          Problem #PR-2024-002 resolved by Sarah Johnson. Satisfaction survey sent to client.
+         </div>
+        </div>
+        <div class="notification-item">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+          <div style="font-weight: 600; color: #1f2937;">
+           📅 Appointment Scheduled
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           3 hours ago
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 8px;">
+          New appointment scheduled for tomorrow at 10:00 AM with Mike Davis - Problem #PR-2024-003
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Tasks Tab -->
+     <div id="content-tasks" style="display: none;">
+      <div style="margin-bottom: 24px;">
+       <h3 style="font-size: 20px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">✅ Task &amp; Workflow Management</h3>
+       <p style="color: #6b7280; font-size: 14px; margin: 0;">Comprehensive task management with automated workflows and intelligent reminders</p>
+      </div><!-- Task Creation -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">➕ Create New Task</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 20px;">
+        <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Task Title</label> <input type="text" id="task-title" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px;" placeholder="Enter task title">
+        </div>
+        <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Assign To</label> <select id="task-assignee" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="">Select assignee</option> <option value="sarah-johnson">Sarah Johnson (Specialist)</option> <option value="mike-davis">Mike Davis (Admin)</option> <option value="lisa-chen">Lisa Chen (Manager)</option> </select>
+        </div>
+        <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Priority</label> <select id="task-priority" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white;"> <option value="low">🟢 Low</option> <option value="medium" selected>🟡 Medium</option> <option value="high">🔴 High</option> <option value="critical">🚨 Critical</option> </select>
+        </div>
+        <div><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Due Date</label> <input type="datetime-local" id="task-due-date" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px;">
+        </div>
+       </div>
+       <div style="margin-bottom: 20px;"><label style="display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px;">Task Description</label> <textarea id="task-description" rows="3" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; resize: vertical;" placeholder="Describe the task details..."></textarea>
+       </div>
+       <div style="display: flex; gap: 12px;"><button id="create-task-btn" style="background: #10b981; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;"> ➕ Create Task </button> <button style="background: #6b7280; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;"> 📋 Create from Template </button>
+       </div>
+      </div><!-- Task List -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0;">📋 Active Tasks</h4>
+        <div style="display: flex; gap: 8px;"><select style="padding: 8px 12px; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 14px; background: white;"> <option>All Tasks</option> <option>My Tasks</option> <option>Overdue</option> <option>High Priority</option> </select> <button style="background: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;"> 🔄 Refresh </button>
+        </div>
+       </div>
+       <div id="tasks-list">
+        <div class="task-item task-overdue">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div>
+           <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+            🚨 Review critical problem audio
+           </div>
+           <div style="font-size: 12px; color: #6b7280;">
+            Assigned to: Sarah Johnson • Due: Yesterday 5:00 PM
+           </div>
+          </div>
+          <div style="display: flex; gap: 8px;"><span class="status-badge urgency-critical">Overdue</span> <span class="status-badge urgency-critical">Critical</span>
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 12px;">
+          Urgent client complaint about settlement delay. Audio contains important details about timeline expectations.
+         </div>
+         <div style="display: flex; gap: 8px; align-items: center;"><button style="background: #10b981; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">✅ Complete</button> <button style="background: #f59e0b; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">📅 Reschedule</button> <button style="background: #6b7280; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">💬 Comment</button>
+          <div style="margin-left: auto; font-size: 12px; color: #6b7280;">
+           📎 2 attachments • 💬 3 comments
+          </div>
+         </div>
+        </div>
+        <div class="task-item task-high-priority">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div>
+           <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+            📞 Schedule follow-up appointment
+           </div>
+           <div style="font-size: 12px; color: #6b7280;">
+            Assigned to: Mike Davis • Due: Today 3:00 PM
+           </div>
+          </div>
+          <div style="display: flex; gap: 8px;"><span class="status-badge urgency-high">High</span>
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 12px;">
+          Client requested follow-up meeting after initial consultation. Need to coordinate with specialist availability.
+         </div>
+         <div style="display: flex; gap: 8px; align-items: center;"><button style="background: #10b981; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">✅ Complete</button> <button style="background: #3b82f6; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">📝 Update</button>
+          <div style="margin-left: auto; font-size: 12px; color: #6b7280;">
+           📎 1 attachment • 💬 1 comment
+          </div>
+         </div>
+        </div>
+        <div class="task-item">
+         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div>
+           <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+            📄 Prepare documentation package
+           </div>
+           <div style="font-size: 12px; color: #6b7280;">
+            Assigned to: Lisa Chen • Due: Tomorrow 2:00 PM
+           </div>
+          </div>
+          <div style="display: flex; gap: 8px;"><span class="status-badge urgency-medium">Medium</span>
+          </div>
+         </div>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 12px;">
+          Compile all required documents for real estate settlement process. Include property inspection reports.
+         </div>
+         <div style="display: flex; gap: 8px; align-items: center;"><button style="background: #10b981; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">✅ Complete</button> <button style="background: #3b82f6; color: white; padding: 6px 12px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">📝 Update</button>
+          <div style="margin-left: auto; font-size: 12px; color: #6b7280;">
+           📎 5 attachments
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Workflow Templates -->
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">🔄 Automated Workflow Templates</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px; border: 2px solid #e5e7eb;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🏠 Real Estate Settlement</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          Automated workflow for property settlement processes with milestone tracking and document management.
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <div class="workflow-step completed">
+           <div style="font-size: 12px; font-weight: 600;">
+            ✅ Initial consultation
+           </div>
+          </div>
+          <div class="workflow-step completed">
+           <div style="font-size: 12px; font-weight: 600;">
+            ✅ Document collection
+           </div>
+          </div>
+          <div class="workflow-step active">
+           <div style="font-size: 12px; font-weight: 600;">
+            🔄 Property inspection
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            ⏳ Final settlement
+           </div>
+          </div>
+         </div><button style="background: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📋 Use Template </button>
+        </div>
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px; border: 2px solid #e5e7eb;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎬 Film Production Support</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          Comprehensive workflow for film production issues including permits, locations, and crew management.
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            📋 Requirements analysis
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            📄 Permit applications
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            📍 Location coordination
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            🎬 Production support
+           </div>
+          </div>
+         </div><button style="background: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📋 Use Template </button>
+        </div>
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px; border: 2px solid #e5e7eb;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎉 Event Management</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          End-to-end event planning workflow with vendor coordination, timeline management, and execution tracking.
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            🎯 Event planning
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            🤝 Vendor coordination
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            📅 Timeline management
+           </div>
+          </div>
+          <div class="workflow-step">
+           <div style="font-size: 12px; font-weight: 600;">
+            🎉 Event execution
+           </div>
+          </div>
+         </div><button style="background: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📋 Use Template </button>
+        </div>
+       </div>
+      </div>
+     </div><!-- Financial Management Tab -->
+     <div id="content-financial" style="display: none;">
+      <div style="margin-bottom: 24px;">
+       <h3 style="font-size: 20px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">💰 Financial Management</h3>
+       <p style="color: #6b7280; font-size: 14px; margin: 0;">Invoice processing, payment tracking, and commission management</p>
+      </div><!-- Financial Overview -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 24px;">
+       <div class="metric-card">
+        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">
+         $127,450
+        </div>
+        <div style="font-size: 14px; opacity: 0.9;">
+         Total Revenue (This Month)
+        </div>
+        <div style="font-size: 12px; opacity: 0.7; margin-top: 4px;">
+         ↗️ +12.5% from last month
+        </div>
+       </div>
+       <div class="metric-card">
+        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">
+         $23,890
+        </div>
+        <div style="font-size: 14px; opacity: 0.9;">
+         Outstanding Invoices
+        </div>
+        <div style="font-size: 12px; opacity: 0.7; margin-top: 4px;">
+         ⏰ 15 invoices pending
+        </div>
+       </div>
+       <div class="metric-card">
+        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">
+         $8,750
+        </div>
+        <div style="font-size: 14px; opacity: 0.9;">
+         Commissions Due
+        </div>
+        <div style="font-size: 12px; opacity: 0.7; margin-top: 4px;">
+         💰 Next payout: Dec 15
+        </div>
+       </div>
+       <div class="metric-card">
+        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">
+         94.2%
+        </div>
+        <div style="font-size: 14px; opacity: 0.9;">
+         Collection Rate
+        </div>
+        <div style="font-size: 12px; opacity: 0.7; margin-top: 4px;">
+         📈 Above target (90%)
+        </div>
+       </div>
+      </div><!-- Invoice Management -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">🧾 Invoice &amp; Payment Processing</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px;">
+        <div class="invoice-template">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🏠 Real Estate Services</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          Standard template for property settlement and consultation services
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 13px; color: #6b7280;">
+          <div>
+           • Consultation fee: $150/hour
+          </div>
+          <div>
+           • Document preparation: $75/document
+          </div>
+          <div>
+           • Settlement coordination: $500 flat fee
+          </div>
+          <div>
+           • Travel expenses: $0.65/mile
+          </div>
+         </div><button style="background: #10b981; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📄 Generate Invoice </button>
+        </div>
+        <div class="invoice-template">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎬 Film Production</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          Template for film production support and permit services
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 13px; color: #6b7280;">
+          <div>
+           • Permit processing: $200/permit
+          </div>
+          <div>
+           • Location scouting: $300/day
+          </div>
+          <div>
+           • Production coordination: $500/day
+          </div>
+          <div>
+           • Equipment rental: Variable
+          </div>
+         </div><button style="background: #10b981; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📄 Generate Invoice </button>
+        </div>
+        <div class="invoice-template">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎉 Event Services</h5>
+         <div style="font-size: 14px; color: #374151; margin-bottom: 16px;">
+          Template for event planning and management services
+         </div>
+         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 13px; color: #6b7280;">
+          <div>
+           • Event planning: $1000 base fee
+          </div>
+          <div>
+           • Vendor coordination: $150/vendor
+          </div>
+          <div>
+           • Day-of coordination: $400/day
+          </div>
+          <div>
+           • Additional services: Variable
+          </div>
+         </div><button style="background: #10b981; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; width: 100%;"> 📄 Generate Invoice </button>
+        </div>
+       </div><!-- Payment Methods -->
+       <div style="background: #f9fafb; border-radius: 8px; padding: 20px;">
+        <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 16px 0;">💳 Supported Payment Methods</h5>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+         <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">💳</span> <span style="font-size: 14px;">Credit/Debit Cards</span>
+         </div>
+         <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">🏦</span> <span style="font-size: 14px;">Bank Transfers</span>
+         </div>
+         <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">📱</span> <span style="font-size: 14px;">Digital Wallets</span>
+         </div>
+         <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">💰</span> <span style="font-size: 14px;">Cash Payments</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Commission Management -->
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">💼 Commission Management</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px;">
+        <div class="commission-tier">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🏠 Real Estate Specialists</h5>
+         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #374151;">
+          <div style="display: flex; justify-content: space-between;"><span>Settlement Services:</span> <span style="font-weight: 600;">15% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Consultation Services:</span> <span style="font-weight: 600;">20% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Document Preparation:</span> <span style="font-weight: 600;">10% commission</span>
+          </div>
+         </div>
+        </div>
+        <div class="commission-tier">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎬 Film Production Team</h5>
+         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #374151;">
+          <div style="display: flex; justify-content: space-between;"><span>Permit Processing:</span> <span style="font-weight: 600;">12% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Location Services:</span> <span style="font-weight: 600;">18% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Production Support:</span> <span style="font-weight: 600;">15% commission</span>
+          </div>
+         </div>
+        </div>
+        <div class="commission-tier">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎉 Event Coordinators</h5>
+         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #374151;">
+          <div style="display: flex; justify-content: space-between;"><span>Event Planning:</span> <span style="font-weight: 600;">20% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Vendor Coordination:</span> <span style="font-weight: 600;">15% commission</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;"><span>Day-of Services:</span> <span style="font-weight: 600;">25% commission</span>
+          </div>
+         </div>
+        </div>
+       </div><!-- Commission Tracking -->
+       <div style="background: #f9fafb; border-radius: 8px; padding: 20px;">
+        <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 16px 0;">📊 Commission Tracking &amp; Payouts</h5>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+         <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">
+           $3,250
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Sarah Johnson
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Real Estate
+          </div>
+         </div>
+         <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">
+           $2,890
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Mike Davis
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Film Production
+          </div>
+         </div>
+         <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">
+           $2,610
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Lisa Chen
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+           Events
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Status Workflow Tab -->
+     <div id="content-workflow" style="display: none;">
+      <div style="margin-bottom: 24px;">
+       <h3 style="font-size: 20px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">🔄 Status Workflow &amp; Transitions</h3>
+       <p style="color: #6b7280; font-size: 14px; margin: 0;">Problems move through defined status stages with controlled transitions</p>
+      </div><!-- Workflow Diagram -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">📊 Workflow Status Transitions</h4>
+       <table class="data-requirements-table">
+        <thead>
+         <tr>
+          <th>Status</th>
+          <th>Description</th>
+          <th>Next Status</th>
+          <th>Trigger</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td><span class="status-badge status-new">New</span></td>
+          <td>Problem submitted, awaiting admin review</td>
+          <td><span class="status-badge status-under-review">Under Review</span></td>
+          <td>Admin opens record</td>
+         </tr>
+         <tr>
+          <td><span class="status-badge status-under-review">Under Review</span></td>
+          <td>Admin reviewing details and audio</td>
+          <td><span class="status-badge status-appointment-scheduled">Appointment Scheduled</span></td>
+          <td>Admin schedules appointment</td>
+         </tr>
+         <tr>
+          <td><span class="status-badge status-appointment-scheduled">Appointment Scheduled</span></td>
+          <td>Appointment confirmed, waiting for date</td>
+          <td><span class="status-badge status-in-progress">In Progress</span></td>
+          <td>Appointment starts</td>
+         </tr>
+         <tr>
+          <td><span class="status-badge status-in-progress">In Progress</span></td>
+          <td>Specialist working on resolution</td>
+          <td><span class="status-badge status-resolved">Resolved</span></td>
+          <td>Specialist marks complete</td>
+         </tr>
+         <tr>
+          <td><span class="status-badge status-resolved">Resolved</span></td>
+          <td>Problem addressed, pending feedback</td>
+          <td><span class="status-badge status-closed">Closed</span></td>
+          <td>Client provides feedback</td>
+         </tr>
+         <tr>
+          <td><span class="status-badge status-closed">Closed</span></td>
+          <td>Final status, archived</td>
+          <td>N/A</td>
+          <td>Final state</td>
+         </tr>
+        </tbody>
+       </table>
+       <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 16px; margin-top: 20px;">
+        <div style="display: flex; align-items: start; gap: 12px;">
+         <div style="font-size: 20px;">
+          ⚠️
+         </div>
+         <div>
+          <h5 style="font-size: 14px; font-weight: 600; color: #92400e; margin: 0 0 8px 0;">Special Case: Cancellations</h5>
+          <p style="color: #92400e; font-size: 14px; margin: 0; line-height: 1.5;">Problems can be cancelled from any status before resolution. Cancelled problems move directly to <span class="status-badge status-cancelled">Cancelled</span> status with appropriate notes.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- System Specifications Tab -->
+     <div id="content-specifications" style="display: none;">
+      <div style="margin-bottom: 24px;">
+       <h3 style="font-size: 20px; font-weight: 600; color: #1f2937; margin: 0 0 8px 0;">📋 System Specifications &amp; Data Requirements</h3>
+       <p style="color: #6b7280; font-size: 14px; margin: 0;">Comprehensive data capture requirements and audio handling specifications</p>
+      </div><!-- Data Capture Requirements -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">📊 Data Capture Requirements</h4><!-- Client Information Fields -->
+       <div style="margin-bottom: 32px;">
+        <h5 style="font-size: 16px; font-weight: 600; color: #374151; margin: 0 0 16px 0;">👤 Client Information Fields</h5>
+        <table class="data-requirements-table">
+         <thead>
+          <tr>
+           <th>Field Name</th>
+           <th>Data Type</th>
+           <th>Required</th>
+           <th>Validation Rules</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Full Name</td>
+           <td>Text</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>2-100 characters</td>
+          </tr>
+          <tr>
+           <td>Primary Phone Number</td>
+           <td>Phone</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>Valid format, 10 digits</td>
+          </tr>
+          <tr>
+           <td>Email Address</td>
+           <td>Email</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>Valid email format</td>
+          </tr>
+          <tr>
+           <td>Referring Source</td>
+           <td>Dropdown</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>From predefined list</td>
+          </tr>
+          <tr>
+           <td>Business Vertical</td>
+           <td>Dropdown</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>Real Estate, Film, Events</td>
+          </tr>
+          <tr>
+           <td>Existing Client ID</td>
+           <td>Reference</td>
+           <td style="color: #059669; font-weight: 600;">No</td>
+           <td>Links to existing client</td>
+          </tr>
+         </tbody>
+        </table>
+       </div><!-- Problem Record Fields -->
+       <div style="margin-bottom: 32px;">
+        <h5 style="font-size: 16px; font-weight: 600; color: #374151; margin: 0 0 16px 0;">🎯 Problem Record Fields</h5>
+        <table class="data-requirements-table">
+         <thead>
+          <tr>
+           <th>Field Name</th>
+           <th>Data Type</th>
+           <th>Required</th>
+           <th>Validation Rules</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Problem ID</td>
+           <td>Auto-generated</td>
+           <td style="color: #3b82f6; font-weight: 600;">Auto</td>
+           <td>Unique identifier</td>
+          </tr>
+          <tr>
+           <td>Problem Category</td>
+           <td>Dropdown</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>Based on vertical</td>
+          </tr>
+          <tr>
+           <td>Priority Level</td>
+           <td>Dropdown</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>Low, Medium, High, Critical</td>
+          </tr>
+          <tr>
+           <td>Audio Recording</td>
+           <td>File Upload</td>
+           <td style="color: #dc2626; font-weight: 600;">Yes</td>
+           <td>MP3/WAV/M4A, max 50MB</td>
+          </tr>
+          <tr>
+           <td>Audio Duration</td>
+           <td>Time</td>
+           <td style="color: #3b82f6; font-weight: 600;">Auto</td>
+           <td>Extracted from file</td>
+          </tr>
+          <tr>
+           <td>Written Summary</td>
+           <td>Text Area</td>
+           <td style="color: #059669; font-weight: 600;">No</td>
+           <td>Up to 2000 characters</td>
+          </tr>
+          <tr>
+           <td>Date/Time Submitted</td>
+           <td>DateTime</td>
+           <td style="color: #3b82f6; font-weight: 600;">Auto</td>
+           <td>System timestamp</td>
+          </tr>
+          <tr>
+           <td>Status</td>
+           <td>Status Field</td>
+           <td style="color: #3b82f6; font-weight: 600;">Auto</td>
+           <td>Workflow state tracking</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div><!-- Audio Handling Specifications -->
+      <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">🎵 Audio Handling &amp; Processing Specifications</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;"><!-- Audio Upload Process -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">📤 Audio Upload Process</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           <strong>Supported Formats:</strong> MP3, WAV, M4A, OGG, AAC
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Maximum File Size:</strong> 50 MB per recording
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Minimum Quality:</strong> 32 kbps bitrate, 16 kHz sample rate
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Maximum Duration:</strong> 30 minutes per recording
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Validation:</strong> Automatic format validation, corruption check
+          </div>
+          <div>
+           <strong>Compression:</strong> Automatic optimization for storage
+          </div>
+         </div>
+        </div><!-- Storage and Security -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🔒 Storage and Security</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           <strong>Storage:</strong> AWS S3 or Azure Blob Storage with redundancy
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Encryption:</strong> AES-256 at rest, TLS 1.3 in transit
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Access Control:</strong> Role-based permissions with audit logging
+          </div>
+          <div style="margin-bottom: 8px;">
+           <strong>Retention:</strong> 7 years for compliance with automated archival
+          </div>
+          <div>
+           <strong>Backup:</strong> Daily incremental backups, 30-day retention
+          </div>
+         </div>
+        </div><!-- Playback Features -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🎧 Playback Features</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           ✅ HTML5 audio player with progress bar
+          </div>
+          <div style="margin-bottom: 8px;">
+           ✅ Variable playback speed: 0.5x to 2x
+          </div>
+          <div style="margin-bottom: 8px;">
+           ✅ Skip forward/backward 10 seconds
+          </div>
+          <div style="margin-bottom: 8px;">
+           ✅ Volume control with mute option
+          </div>
+          <div style="margin-bottom: 8px;">
+           ✅ Download option for authorized users
+          </div>
+          <div>
+           ✅ Waveform visualization showing audio levels
+          </div>
+         </div>
+        </div><!-- Advanced Features -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">🚀 Advanced Features (Phase 3)</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           🔮 Speech-to-Text transcription using AI
+          </div>
+          <div style="margin-bottom: 8px;">
+           😊 Sentiment Analysis: Detect emotion and urgency
+          </div>
+          <div style="margin-bottom: 8px;">
+           🏷️ Keyword Extraction: Auto-tag with relevant keywords
+          </div>
+          <div style="margin-bottom: 8px;">
+           🌍 Multi-language Support for transcription
+          </div>
+          <div>
+           🔍 Search across transcriptions for quick lookup
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Appointment Scheduling Specifications -->
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+       <h4 style="font-size: 18px; font-weight: 600; color: #1f2937; margin: 0 0 20px 0;">📅 Appointment Scheduling Specifications</h4>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;"><!-- Admin Personnel Dashboard -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">👨‍💼 Admin Personnel Dashboard</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           📋 <strong>Queue Management:</strong> Real-time view of pending, scheduled, in-progress, and resolved problems
+          </div>
+          <div style="margin-bottom: 8px;">
+           ⚡ <strong>Priority Sorting:</strong> Automatic sorting by urgency, submission time, and business vertical
+          </div>
+          <div style="margin-bottom: 8px;">
+           🎧 <strong>Audio Quick Preview:</strong> Listen to first 30 seconds without opening full record
+          </div>
+          <div style="margin-bottom: 8px;">
+           📦 <strong>Bulk Actions:</strong> Schedule multiple appointments, reassign problems, send batch notifications
+          </div>
+          <div>
+           📊 <strong>Performance Metrics:</strong> Track average resolution time, appointment show rates, satisfaction scores
+          </div>
+         </div>
+        </div><!-- Appointment Scheduling Interface -->
+        <div style="padding: 20px; background: #f9fafb; border-radius: 12px;">
+         <h5 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 12px 0;">📅 Appointment Scheduling Interface</h5>
+         <div style="font-size: 14px; color: #374151; line-height: 1.6;">
+          <div style="margin-bottom: 8px;">
+           ✅ <strong>Calendar Integration:</strong> Syncs with Google Calendar, Outlook, and system calendar
+          </div>
+          <div style="margin-bottom: 8px;">
+           👥 <strong>Availability Management:</strong> View specialist availability across departments
+          </div>
+          <div style="margin-bottom: 8px;">
+           ⏰ <strong>Time Slot Selection:</strong> 15, 30, 45, or 60-minute appointment durations
+          </div>
+          <div style="margin-bottom: 8px;">
+           🚫 <strong>Conflict Detection:</strong> Prevents double-booking and scheduling conflicts
+          </div>
+          <div style="margin-bottom: 8px;">
+           ⏳ <strong>Buffer Time:</strong> Configurable buffer between appointments (5-30 minutes)
+          </div>
+          <div>
+           📍 <strong>Location Assignment:</strong> Specify meeting location, room number, or virtual meeting link
+          </div>
+         </div>
+        </div>
+       </div><!-- Workflow Process -->
+       <div style="margin-top: 24px; padding: 20px; background: #e0f2fe; border-radius: 12px; border: 2px solid #0288d1;">
+        <h5 style="font-size: 16px; font-weight: 600; color: #01579b; margin: 0 0 16px 0;">🔄 Complete Workflow Process</h5>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+         <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+          <div style="font-weight: 600; color: #1f2937; margin-bottom: 8px;">
+           1. Problem Submission
+          </div>
+          <div style="font-size: 13px; color: #6b7280;">
+           Client approaches → Staff captures details → Audio recording → System categorization
+          </div>
+         </div>
+         <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+          <div style="font-weight: 600; color: #1f2937; margin-bottom: 8px;">
+           2. Admin Review
+          </div>
+          <div style="font-size: 13px; color: #6b7280;">
+           Admin reviews audio → Determines priority → Routes to appropriate department
+          </div>
+         </div>
+         <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
+          <div style="font-weight: 600; color: #1f2937; margin-bottom: 8px;">
+           3. Appointment Scheduling
+          </div>
+          <div style="font-size: 13px; color: #6b7280;">
+           Contact client → Schedule with specialist → Send confirmations → Set reminders
+          </div>
+         </div>
+         <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+          <div style="font-weight: 600; color: #1f2937; margin-bottom: 8px;">
+           4. Resolution
+          </div>
+          <div style="font-size: 13px; color: #6b7280;">
+           Specialist reviews audio → Meets client → Addresses problem → Records outcome
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Other existing tabs content would continue here... --> <!-- [Previous tab content for manage, appointments, admin, reports, permissions] -->
+    </div>
+   </div>
+  </div><!-- Notification Dropdown -->
+  <div id="notification-dropdown" style="display: none; position: fixed; top: 80px; right: 32px; width: 400px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); z-index: 1000; overflow-y: auto;">
+   <div style="padding: 20px; border-bottom: 1px solid #e5e7eb;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+     <h4 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0;">🔔 Notifications</h4><button id="mark-all-read" style="background: none; border: none; color: #3b82f6; font-size: 12px; cursor: pointer;">Mark all read</button>
+    </div>
+   </div>
+   <div style="padding: 16px;">
+    <div class="notification-item notification-unread" style="margin-bottom: 12px;">
+     <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+      🚨 No-Show Alert
+     </div>
+     <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+      2 minutes ago
+     </div>
+     <div style="font-size: 14px; color: #374151;">
+      Client missed appointment - Problem #PR-2024-001
+     </div>
+    </div>
+    <div class="notification-item" style="margin-bottom: 12px;">
+     <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+      ✅ Resolution Completed
+     </div>
+     <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+      1 hour ago
+     </div>
+     <div style="font-size: 14px; color: #374151;">
+      Problem #PR-2024-002 resolved successfully
+     </div>
+    </div>
+    <div class="notification-item">
+     <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">
+      📅 Appointment Reminder
+     </div>
+     <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
+      2 hours ago
+     </div>
+     <div style="font-size: 14px; color: #374151;">
+      Upcoming appointment at 3:00 PM today
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Global variables
+        let currentRecords = [];
+        let isRecording = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let currentAudio = null;
+        let currentUser = 'admin';
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            updateRoleBasedUI();
+        });
+
+        function initializeApp() {
+            // Set default tab
+            switchTab('submit');
+            
+            // Initialize notification system
+            updateNotificationCount();
+            
+            // Set current date/time for task due date
+            const now = new Date();
+            now.setHours(now.getHours() + 1); // Default to 1 hour from now
+            document.getElementById('task-due-date').value = now.toISOString().slice(0, 16);
+        }
+
+        function setupEventListeners() {
+            // Tab switching
+            document.querySelectorAll('[id^="tab-"]').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabName = tab.id.replace('tab-', '');
+                    switchTab(tabName);
+                });
+            });
+
+            // Role change
+            document.getElementById('user-role').addEventListener('change', function() {
+                currentUser = this.value;
+                updateRoleBasedUI();
+            });
+
+            // Notification bell
+            document.getElementById('notification-bell').addEventListener('click', toggleNotificationDropdown);
+            
+            // Mark all notifications as read
+            document.getElementById('mark-all-read').addEventListener('click', markAllNotificationsRead);
+
+            // Form submission
+            document.getElementById('problem-form').addEventListener('submit', handleFormSubmission);
+
+            // Audio recording
+            document.getElementById('record-audio-btn').addEventListener('click', toggleRecording);
+            document.getElementById('upload-audio-btn').addEventListener('click', () => {
+                document.getElementById('audio-file').click();
+            });
+            document.getElementById('audio-file').addEventListener('change', handleAudioUpload);
+
+            // Task creation
+            document.getElementById('create-task-btn').addEventListener('click', createNewTask);
+
+            // Character counter for problem summary
+            document.getElementById('problem-summary').addEventListener('input', function() {
+                const charCount = this.value.length;
+                document.getElementById('summary-char-count').textContent = charCount;
+                
+                if (charCount > 1800) {
+                    this.style.borderColor = '#f59e0b';
+                } else if (charCount > 2000) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+
+            // Show/hide referral person field
+            document.getElementById('referring-source').addEventListener('change', function() {
+                const referralField = document.getElementById('referral-person-field');
+                if (this.value === 'referral') {
+                    referralField.style.display = 'block';
+                    document.getElementById('referral-person-name').required = true;
+                } else {
+                    referralField.style.display = 'none';
+                    document.getElementById('referral-person-name').required = false;
+                }
+            });
+
+            // Show/hide custom problem field
+            document.getElementById('problem-category').addEventListener('change', function() {
+                const customField = document.getElementById('custom-problem-field');
+                if (this.value === 'other') {
+                    customField.style.display = 'block';
+                    document.getElementById('custom-problem-type').required = true;
+                } else {
+                    customField.style.display = 'none';
+                    document.getElementById('custom-problem-type').required = false;
+                }
+            });
+
+            // Close notification dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                const dropdown = document.getElementById('notification-dropdown');
+                const bell = document.getElementById('notification-bell');
+                if (!dropdown.contains(event.target) && !bell.contains(event.target)) {
+                    dropdown.style.display = 'none';
+                }
+            });
+        }
+
+        function switchTab(tab) {
+            const tabs = ['submit', 'manage', 'appointments', 'notifications', 'tasks', 'financial', 'admin', 'reports', 'permissions', 'specifications', 'workflow'];
+            tabs.forEach(t => {
+                const tabElement = document.getElementById(`tab-${t}`);
+                const contentElement = document.getElementById(`content-${t}`);
+                if (tabElement) tabElement.classList.remove('tab-active');
+                if (contentElement) contentElement.style.display = 'none';
+            });
+            
+            const selectedTab = document.getElementById(`tab-${tab}`);
+            const selectedContent = document.getElementById(`content-${tab}`);
+            if (selectedTab) selectedTab.classList.add('tab-active');
+            if (selectedContent) selectedContent.style.display = 'block';
+        }
+
+        function updateRoleBasedUI() {
+            const userRole = document.getElementById('user-role').value;
+            
+            // Show/hide tabs based on role
+            document.querySelectorAll('[data-roles]').forEach(element => {
+                const allowedRoles = element.getAttribute('data-roles').split(',');
+                if (allowedRoles.includes(userRole)) {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+
+            // Switch to appropriate default tab
+            if (userRole === 'receptionist') {
+                switchTab('submit');
+            } else if (userRole === 'specialist') {
+                switchTab('manage');
+            } else {
+                switchTab('admin');
+            }
+        }
+
+        function toggleNotificationDropdown() {
+            const dropdown = document.getElementById('notification-dropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function markAllNotificationsRead() {
+            document.getElementById('notification-count').textContent = '0';
+            document.getElementById('notification-count').style.display = 'none';
+            
+            // Remove unread styling from all notifications
+            document.querySelectorAll('.notification-unread').forEach(notification => {
+                notification.classList.remove('notification-unread');
+            });
+            
+            showToast('All notifications marked as read', 'success');
+        }
+
+        function updateNotificationCount() {
+            const count = 3; // This would come from actual data
+            const countElement = document.getElementById('notification-count');
+            countElement.textContent = count;
+            countElement.style.display = count > 0 ? 'flex' : 'none';
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            // Validate required fields
+            const requiredFields = ['client-name', 'contact-phone', 'contact-email', 'business-vertical', 'referring-source', 'problem-category', 'urgency-level'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e5e7eb';
+                }
+            });
+
+            // Check if audio is uploaded
+            if (!currentAudio) {
+                showToast('Audio recording is required for problem submission', 'error');
+                return;
+            }
+
+            if (!isValid) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Simulate form submission
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-button-text');
+            
+            submitBtn.disabled = true;
+            submitText.textContent = 'Submitting...';
+            
+            setTimeout(() => {
+                showToast('Problem report submitted successfully!', 'success');
+                document.getElementById('problem-form').reset();
+                resetAudioUpload();
+                submitBtn.disabled = false;
+                submitText.textContent = 'Submit Problem Report';
+                
+                // Update record count
+                currentRecords.push({
+                    id: `PR-2024-${String(currentRecords.length + 1).padStart(3, '0')}`,
+                    client: document.getElementById('client-name').value,
+                    category: document.getElementById('problem-category').value,
+                    priority: document.getElementById('urgency-level').value,
+                    status: 'new',
+                    submittedAt: new Date().toISOString()
+                });
+                
+                updateRecordCount();
+            }, 2000);
+        }
+
+        function toggleRecording() {
+            if (!isRecording) {
+                startRecording();
+            } else {
+                stopRecording();
+            }
+        }
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    displayAudioPreview(audioUrl, 'recorded-audio.wav', audioBlob.size);
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+
+                const recordBtn = document.getElementById('record-audio-btn');
+                recordBtn.innerHTML = '<span>⏹</span> Stop Recording';
+                recordBtn.classList.add('recording');
+                recordBtn.style.background = '#10b981';
+
+            } catch (error) {
+                showToast('Error accessing microphone. Please check permissions.', 'error');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                isRecording = false;
+
+                const recordBtn = document.getElementById('record-audio-btn');
+                recordBtn.innerHTML = '<span>⏺</span> Start Recording';
+                recordBtn.classList.remove('recording');
+                recordBtn.style.background = '#ef4444';
+            }
+        }
+
+        function handleAudioUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Validate file type
+                const allowedTypes = ['audio/mp3', 'audio/wav', 'audio/m4a', 'audio/ogg', 'audio/aac'];
+                if (!allowedTypes.includes(file.type)) {
+                    showToast('Please upload a valid audio file (MP3, WAV, M4A, OGG, AAC)', 'error');
+                    return;
+                }
+
+                // Validate file size (50MB limit)
+                if (file.size > 50 * 1024 * 1024) {
+                    showToast('Audio file size must be less than 50MB', 'error');
+                    return;
+                }
+
+                const audioUrl = URL.createObjectURL(file);
+                displayAudioPreview(audioUrl, file.name, file.size);
+            }
+        }
+
+        function displayAudioPreview(audioUrl, filename, fileSize) {
+            currentAudio = audioUrl;
+            
+            document.getElementById('audio-upload-area').style.display = 'none';
+            document.getElementById('audio-preview').style.display = 'block';
+            
+            // Update file info
+            document.getElementById('audio-filename').textContent = filename;
+            document.getElementById('audio-size').textContent = (fileSize / (1024 * 1024)).toFixed(2) + ' MB';
+            
+            // Setup audio player
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.src = audioUrl;
+            
+            // Generate waveform visualization
+            generateWaveform();
+            
+            // Show AI analysis (simulated)
+            setTimeout(() => {
+                document.getElementById('ai-analysis').style.display = 'block';
+                simulateAIAnalysis();
+            }, 1000);
+
+            // Setup audio controls
+            setupAudioControls();
+        }
+
+        function generateWaveform() {
+            const waveformContainer = document.getElementById('waveform-bars');
+            waveformContainer.innerHTML = '';
+            
+            // Generate random waveform bars (in real implementation, this would analyze actual audio)
+            for (let i = 0; i < 100; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'waveform-bar';
+                bar.style.height = Math.random() * 30 + 5 + 'px';
+                waveformContainer.appendChild(bar);
+            }
+        }
+
+        function simulateAIAnalysis() {
+            // Simulate sentiment analysis
+            const sentiments = [
+                { class: 'sentiment-positive', text: '😊 Positive - Cooperative' },
+                { class: 'sentiment-neutral', text: '😐 Neutral - Professional' },
+                { class: 'sentiment-negative', text: '😟 Frustrated - Needs attention' },
+                { class: 'sentiment-urgent', text: '😤 Urgent - Immediate action required' }
+            ];
+            
+            const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
+            const sentimentElement = document.getElementById('sentiment-result');
+            sentimentElement.className = `sentiment-badge ${randomSentiment.class}`;
+            sentimentElement.textContent = randomSentiment.text;
+            
+            // Simulate priority suggestion
+            const priorities = ['Low - Routine matter', 'Medium - Standard timeline', 'High - Urgent attention needed', 'Critical - Immediate escalation'];
+            document.getElementById('priority-suggestion').textContent = priorities[Math.floor(Math.random() * priorities.length)];
+            
+            // Simulate transcription
+            const sampleTranscriptions = [
+                "Hello, I'm calling about an issue with my property settlement. The closing date has been delayed twice now and I need to understand what's causing these delays. I have a moving truck scheduled and this is causing significant inconvenience...",
+                "Hi, I'm having problems with the film permit application. The location we need has some restrictions that weren't mentioned initially, and we're running out of time before our scheduled shoot date...",
+                "Good morning, I need help with event planning coordination. Several vendors are not responding to our requests and we're three weeks away from the event date. This is becoming quite stressful..."
+            ];
+            
+            document.getElementById('transcription-text').innerHTML = sampleTranscriptions[Math.floor(Math.random() * sampleTranscriptions.length)];
+            
+            // Simulate keyword extraction
+            const keywords = ['settlement', 'delay', 'urgent', 'timeline', 'coordination', 'vendor', 'permit', 'location', 'deadline'];
+            const keywordsContainer = document.getElementById('keywords-container');
+            keywordsContainer.innerHTML = '';
+            
+            // Show 3-5 random keywords
+            const numKeywords = Math.floor(Math.random() * 3) + 3;
+            const selectedKeywords = keywords.sort(() => 0.5 - Math.random()).slice(0, numKeywords);
+            
+            selectedKeywords.forEach(keyword => {
+                const tag = document.createElement('span');
+                tag.className = 'keyword-tag';
+                tag.textContent = keyword;
+                keywordsContainer.appendChild(tag);
+            });
+        }
+
+        function setupAudioControls() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playBtn = document.getElementById('play-audio-btn');
+            const currentTimeSpan = document.getElementById('current-time');
+            const totalTimeSpan = document.getElementById('total-time');
+            const progressBar = document.getElementById('waveform-progress');
+            const volumeControl = document.getElementById('volume-control');
+            const muteBtn = document.getElementById('mute-btn');
+
+            // Play/pause functionality
+            playBtn.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    playBtn.textContent = '⏸️';
+                } else {
+                    audioPlayer.pause();
+                    playBtn.textContent = '▶️';
+                }
+            });
+
+            // Time updates
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                totalTimeSpan.textContent = formatTime(audioPlayer.duration);
+                document.getElementById('audio-duration').textContent = formatTime(audioPlayer.duration);
+            });
+
+            audioPlayer.addEventListener('timeupdate', () => {
+                currentTimeSpan.textContent = formatTime(audioPlayer.currentTime);
+                const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressBar.style.width = progress + '%';
+            });
+
+            // Volume control
+            volumeControl.addEventListener('input', () => {
+                audioPlayer.volume = volumeControl.value / 100;
+            });
+
+            // Mute functionality
+            muteBtn.addEventListener('click', () => {
+                audioPlayer.muted = !audioPlayer.muted;
+                muteBtn.textContent = audioPlayer.muted ? '🔇' : '🔊';
+            });
+
+            // Speed controls
+            document.querySelectorAll('.speed-control').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.speed-control').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    audioPlayer.playbackRate = parseFloat(btn.dataset.speed);
+                });
+            });
+
+            // Skip controls
+            document.getElementById('skip-back-btn').addEventListener('click', () => {
+                audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 10);
+            });
+
+            document.getElementById('skip-forward-btn').addEventListener('click', () => {
+                audioPlayer.currentTime = Math.min(audioPlayer.duration, audioPlayer.currentTime + 10);
+            });
+
+            // Remove audio
+            document.getElementById('remove-audio-btn').addEventListener('click', resetAudioUpload);
+
+            // Download audio
+            document.getElementById('download-audio-btn').addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.href = audioPlayer.src;
+                link.download = document.getElementById('audio-filename').textContent;
+                link.click();
+            });
+
+            // Toggle transcription
+            document.getElementById('toggle-transcription').addEventListener('click', () => {
+                const transcriptionDiv = document.getElementById('transcription-text');
+                transcriptionDiv.style.display = transcriptionDiv.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+
+        function resetAudioUpload() {
+            currentAudio = null;
+            document.getElementById('audio-upload-area').style.display = 'block';
+            document.getElementById('audio-preview').style.display = 'none';
+            document.getElementById('ai-analysis').style.display = 'none';
+            document.getElementById('audio-file').value = '';
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function createNewTask() {
+            const title = document.getElementById('task-title').value;
+            const assignee = document.getElementById('task-assignee').value;
+            const priority = document.getElementById('task-priority').value;
+            const dueDate = document.getElementById('task-due-date').value;
+            const description = document.getElementById('task-description').value;
+
+            if (!title || !assignee || !dueDate) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Simulate task creation
+            showToast('Task created successfully!', 'success');
+            
+            // Clear form
+            document.getElementById('task-title').value = '';
+            document.getElementById('task-assignee').value = '';
+            document.getElementById('task-priority').value = 'medium';
+            document.getElementById('task-due-date').value = '';
+            document.getElementById('task-description').value = '';
+        }
+
+        function updateRecordCount() {
+            document.getElementById('record-count').textContent = `${currentRecords.length} Records`;
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
+            toast.style.background = bgColor;
+            toast.style.color = 'white';
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initialize record count
+        updateRecordCount();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9989a18f51c12e8a',t:'MTc2MjE0OTQxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

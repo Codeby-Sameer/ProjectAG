@@ -1,3 +1,4 @@
+// src/components/crm/CrmApp.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
@@ -9,37 +10,83 @@ import SystemSpecs from './components/SystemSpecs';
 import Layout from './layout/Layout';
 import AppointmentsTab from './components/Appointment';
 import ManageCasesTab from './components/ManageCases';
+import { AuthProvider, useAuth } from './context/authcontext'; // Updated import path
 
+// Protected Route component using AuthContext
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  const { isAuthenticated, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+  
   return isAuthenticated ? children : <Navigate to="/crm/login" />;
 };
+
+// Public Route component
+const PublicRoute = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  return !isAuthenticated ? children : <Navigate to="/crm/dashboard" />;
+};
+
 function CrmApp() {
   return (
-  
+    <AuthProvider>
       <div className="App">
         <Routes>
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={
-            <ProtectedRoute>
-              <Layout>
-                <Routes>
-                  <Route path="dashboard" element={<Dashboard />} />
-                  <Route path="managecases" element={<ManageCasesTab />} />
-                  <Route path="submit-problem" element={<ProblemSubmission />} />
-                  <Route path="appointments" element={<AppointmentsTab />} />
-                  <Route path="notifications" element={<Notifications />} />
-                  <Route path="financial" element={<Financial />} />
-                  <Route path="specifications" element={<SystemSpecs />} />
-                  <Route path="/" element={<Navigate to="dashboard" />} />
-                </Routes>
-              </Layout>
-            </ProtectedRoute>
-          } />
-          <Route path="/" element={<Navigate to="login" />} />
+          {/* Login Route */}
+          <Route 
+            path="login" 
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            } 
+          />
+          
+          {/* Protected Routes */}
+          <Route 
+            path="/*" 
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Routes>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="managecases" element={<ManageCasesTab />} />
+                    <Route path="submit-problem" element={<ProblemSubmission />} />
+                    <Route path="appointments" element={<AppointmentsTab />} />
+                    <Route path="notifications" element={<Notifications />} />
+                    <Route path="financial" element={<Financial />} />
+                    <Route path="specifications" element={<SystemSpecs />} />
+                    {/* Redirect from /crm to /crm/dashboard if authenticated */}
+                    <Route path="" element={<Navigate to="dashboard" replace />} />
+                  </Routes>
+                </Layout>
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </div>
-  
+    </AuthProvider>
   );
 }
 export default CrmApp;

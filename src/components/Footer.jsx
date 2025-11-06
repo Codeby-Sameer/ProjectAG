@@ -95,6 +95,9 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               &copy; 2024 Anand Group. All rights reserved.
             </p>
+            <p className="text-gray-400 text-sm">
+              &copy;Developed by <a href="designcareermetrics.com">Designcareermetrics.com</a>
+            </p>
             <div className="flex space-x-6 text-sm">
               <a href="" className="text-gray-400 hover:text-gold transition-colors">Privacy Policy</a>
               <a href="" className="text-gray-400 hover:text-gold transition-colors">Terms of Service</a>

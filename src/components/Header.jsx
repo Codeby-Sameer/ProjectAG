@@ -98,7 +98,7 @@ const Header = () => {
   return (
     <header className="fixed w-full top-0 z-50 bg-white text-navy shadow-lg backdrop-blur-sm border-b border-gold/20">
       {/* Top Bar */}
-      <div className=' bg-navy text-white lg:px-20 md:px-20 sm:px-10 px-3'>
+      <div className=' bg-navy text-white  px-2'>
         <div className='flex justify-between'>
           <div className='lg:text-lg md:text-md sm:text-sm'>
             Born in <b>1988</b>
@@ -110,8 +110,8 @@ const Header = () => {
       </div>
       
       {/* Main Navigation */}
-      <nav className="container mx-auto lg:py-3 py-3 px-4">
-        <div className="flex items-center justify-between">
+      <nav className="  lg:py-3 lg:px-4 py-3 ">
+        <div className="flex items-center  justify-between">
           {/* Logo & Brand */}
           <Link
             to="/"
@@ -144,7 +144,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <div className="hidden lg:flex items-center space-x-1  xl:space-x-6">
             <Link
               to="/"
               className={`transition-colors px-3 py-2 rounded-lg font-medium ${
@@ -237,16 +237,17 @@ const Header = () => {
               )}
             </div>
 
-            <Link
-              to="/crm"
-              className={`transition-colors px-3 py-2 rounded-lg font-medium ${
-                isActiveLink('/crm')
-                  ? 'text-navy font-bold bg-gold/20 border border-gold/30'
-                  : 'text-navy/90 hover:text-navy hover:bg-gold/10'
-              }`}
-            >
-              CRM
-            </Link>
+     
+<Link
+  to="/crm/login"
+  className={`transition-colors px-3 py-2 rounded-lg font-medium ${
+    isActiveLink('/crm')
+      ? 'text-navy font-bold bg-gold/20 border border-gold/30'
+      : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+  }`}
+>
+  CRM
+</Link>
             <Link
               to="/contact"
               className={`transition-colors px-3 py-2 rounded-lg font-medium ${
@@ -261,16 +262,16 @@ const Header = () => {
             {/* Appointment Button */}
             <button
               onClick={() => openModal('real-estate', { prefillData: 'some data' })}
-              className="bg-green-500 text-white  px-2 py-2.5 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
+              className="bg-green-500 text-white sm:text-xs md:text-sm lg:text-md px-2 py-3 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
             >
           Land Information Form
             </button>
             {/* Appointment Button */}
             <button
               onClick={() => openModal('problem-solution', { prefillData: 'some data' })}
-              className="bg-green-500 text-white  px-2 py-2.5 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
+              className="bg-green-500 text-white sm:text-xs md:text-sm lg:text-md  px-2 py-3 rounded-lg font-semibold  transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 "
             >
-        Appointment Form
+        Problem Submission Form
             </button>
           </div>
 
@@ -411,26 +412,34 @@ const Header = () => {
                   Contact
                 </Link>
 
-                <Link
-                  to="/crm"
-                  className={`block transition-all px-4 py-3 rounded-lg font-medium hover:bg-blue-100 ${
-                    isActiveLink('/crm')
-                      ? 'text-navy font-bold bg-gold/20 border border-gold/30'
-                      : 'text-navy/90 hover:text-navy hover:bg-gold/10'
-                  }`}
-                  onClick={closeMenu}
-                >
-                CRM
-                </Link>
+               // Replace the existing CRM Link with:
+<Link
+  to="/crm/login"
+  className={`transition-colors px-3 py-2 rounded-lg font-medium ${
+    isActiveLink('/crm')
+      ? 'text-navy font-bold bg-gold/20 border border-gold/30'
+      : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+  }`}
+>
+  CRM
+</Link>
 
                 {/* Mobile Appointment Button */}
                 <div className="px-2 pt-3 border-t border-gold/20 mt-2">
-                  <button
-                    onClick={() => openAppointmentForm('general')}
-                    className="w-full bg-navy text-white px-4 py-3.5 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg text-center active:scale-95"
-                  >
-                    Book Appointment
-                  </button>
+                 
+                     <button
+              onClick={() => openModal('real-estate', { prefillData: 'some data' })}
+              className="w-full bg-green-500 text-white  mb-3 px-4 py-3.5 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg text-center active:scale-95"
+            >
+          Land Information Form
+            </button>
+            {/* Appointment Button */}
+            <button
+              onClick={() => openModal('problem-solution', { prefillData: 'some data' })}
+              className="w-full bg-green-500 text-white px-4 py-3.5 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg text-center active:scale-95"
+            >
+    Problem Submission Form
+            </button>
                 </div>
               </div>
             </div>
