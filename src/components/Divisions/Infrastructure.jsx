@@ -109,7 +109,7 @@ const Infrastructure = () => {
       <section 
         className="relative py-20 lg:py-32 min-h-[80vh] flex items-center justify-center overflow-hidden bg-navy"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 30, 60, 0.8), rgba(0, 30, 60, 0.9)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+          backgroundImage: `linear-gradient(rgba(0, 30, 60, 0.8), rgba(0, 30, 60, 0.9)), url('infra1.avif')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
@@ -215,7 +215,7 @@ const Infrastructure = () => {
                           {card.description}
                         </p>
                       </div>
-                      <button className="w-full bg-gold hover:bg-yellow-400 text-navy font-bold py-3 px-6 rounded-lg transform transition-transform hover:scale-105 shadow-xl">
+                      <button className="w-full bg-white hover:bg-yellow-400 text-navy font-bold py-3 px-6 rounded-lg transform transition-transform hover:scale-105 shadow-xl">
                         {card.buttonText}
                       </button>
                     </div>

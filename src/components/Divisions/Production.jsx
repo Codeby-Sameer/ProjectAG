@@ -147,14 +147,14 @@ const Production = () => {
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <img
-src='/Production.png'
-alt="Cinema Background"
+            src='/Production.png'
+            alt="Cinema Background"
             className="w-full h-full object-cover transform scale-105"
             onLoad={handleImageLoad}
           />
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-blue-900/70 to-navy/90"></div>
-          
+
           {/* Loading Fallback */}
           {!isImageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-navy to-blue-900 flex items-center justify-center">
@@ -175,26 +175,26 @@ alt="Cinema Background"
             </p>
             <p className="text-base lg:text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed bg-white/10 backdrop-blur-sm p-4 lg:p-6 rounded-2xl">
               <span className="hidden lg:inline">
-                Producing high-quality films, web series, and digital content for global audiences. 
-                From big-budget blockbusters to independent cinema, we push creative boundaries 
+                Producing high-quality films, web series, and digital content for global audiences.
+                From big-budget blockbusters to independent cinema, we push creative boundaries
                 and deliver unforgettable cinematic experiences.
               </span>
               <span className="lg:hidden text-sm">
-                Producing high-quality films and digital content for global audiences. 
+                Producing high-quality films and digital content for global audiences.
                 We push creative boundaries and deliver unforgettable cinematic experiences.
               </span>
             </p>
-            
+
             {/* CTA Buttons */}
             <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <Link 
-                to={'/contact'} 
+              <Link
+                to={'/contact'}
                 className="bg-white  text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl border-2 border-white hover:border-yellow-400 hover:shadow-gold/40 flex items-center justify-center gap-2"
               >
                 🎥 Start Project
               </Link>
-              <Link 
-                to={'/contact'} 
+              <Link
+                to={'/contact'}
                 className="bg-white border-2  hover:bg-yellow-400 hover:border-yellow-400 text-gold px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105 backdrop-blur-sm flex items-center justify-center gap-2"
               >
                 📞 Contact Us
@@ -224,7 +224,7 @@ alt="Cinema Background"
               Decades of excellence in film production
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 text-center">
             {[
               { number: '50+', label: 'Films Produced', sublabel: 'Award-winning' },
@@ -232,7 +232,7 @@ alt="Cinema Background"
               { number: '20M+', label: 'Total Views', sublabel: 'Global reach' },
               { number: '50K', label: 'Studio Sq Ft', sublabel: 'Modern facilities' }
             ].map((stat, index) => (
-              <div 
+              <div
                 key={index}
                 className="p-4 lg:p-8 bg-white/80 rounded-xl lg:rounded-2xl backdrop-blur-xl border border-blue-200 shadow-lg lg:shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:border-gold"
               >
@@ -258,7 +258,7 @@ alt="Cinema Background"
                   Discover your path in cinema with our career tracks
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {dreamCards.map((card, index) => (
                   <div
@@ -275,7 +275,7 @@ alt="Cinema Background"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
-                      
+
                       {/* Icon Overlay */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-4xl lg:text-6xl transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 text-gold drop-shadow-2xl">
@@ -283,13 +283,12 @@ alt="Cinema Background"
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Card Content - Appears on Hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} p-4 lg:p-8 transition-all duration-500 ${
-                      hoveredDream === index
+                    <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} p-4 lg:p-8 transition-all duration-500 ${hoveredDream === index
                         ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-full'
-                    }`}>
+                      }`}>
                       <div className="h-full flex flex-col justify-between">
                         <div>
                           <h3 className="text-lg lg:text-2xl font-bold text-white mb-2 lg:mb-4">{card.title}</h3>
@@ -302,7 +301,7 @@ alt="Cinema Background"
                         </button>
                       </div>
                     </div>
-                    
+
                     {/* Title Label Below Card */}
                     <div className="bg-white p-4 lg:p-6 border-t-2 border-blue-200 group-hover:border-gold transition-all duration-300">
                       <p className="text-center font-bold text-navy text-base lg:text-lg tracking-wide">
@@ -328,11 +327,11 @@ alt="Cinema Background"
                   Comprehensive film production from concept to final cut
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 {services.map((service, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="group bg-white/80 backdrop-blur-xl p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-blue-200 hover:border-gold transition-all duration-500 shadow-xl lg:shadow-2xl hover:shadow-gold/20 hover:scale-105"
                   >
                     <div className="flex items-start">
@@ -371,7 +370,7 @@ alt="Cinema Background"
                       <div className="hidden lg:block absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-200 rounded-full opacity-80 shadow-2xl shadow-yellow-500/50"></div>
                       <div className="hidden lg:block absolute -bottom-4 -right-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-200 rounded-full opacity-80 shadow-2xl shadow-yellow-500/50"></div>
                     </div>
-                    
+
                     {/* Text Right */}
                     <div className="text-navy order-1 lg:order-2">
                       <p className="text-gold uppercase text-xs lg:text-sm mb-3 lg:mb-4 tracking-widest font-bold bg-gold/20 px-3 py-1 lg:px-4 lg:py-2 rounded-full inline-block">
@@ -383,7 +382,7 @@ alt="Cinema Background"
                       <p className="text-base lg:text-xl text-blue-700 mb-6 lg:mb-8 leading-relaxed bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl lg:rounded-2xl border border-blue-200">
                         {section.description}
                       </p>
-                      
+
                       {section.features.map((feature, idx) => (
                         <div key={idx} className="mb-4 lg:mb-6 flex items-start group hover:bg-white/80 p-3 lg:p-4 rounded-xl lg:rounded-2xl transition-all duration-300 border border-transparent hover:border-blue-200">
                           <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy flex items-center justify-center mr-4 lg:mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -414,7 +413,7 @@ alt="Cinema Background"
                       <p className="text-base lg:text-xl text-blue-700 mb-6 lg:mb-8 leading-relaxed bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl lg:rounded-2xl border border-blue-200">
                         {section.description}
                       </p>
-                      
+
                       {section.features.map((feature, idx) => (
                         <div key={idx} className="mb-4 lg:mb-6 flex items-start group hover:bg-white/80 p-3 lg:p-4 rounded-xl lg:rounded-2xl transition-all duration-300 border border-transparent hover:border-blue-200">
                           <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy flex items-center justify-center mr-4 lg:mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -431,7 +430,7 @@ alt="Cinema Background"
                         </div>
                       ))}
                     </div>
-                    
+
                     {/* Image Right */}
                     <div className="relative group">
                       <div className="relative rounded-xl lg:rounded-2xl overflow-hidden shadow-xl lg:shadow-2xl">
@@ -459,30 +458,29 @@ alt="Cinema Background"
         <div className="container mx-auto px-4 lg:px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold text-navy mb-8 lg:mb-12 text-center">Blockbuster Projects</h2>
-            
+
             {/* Carousel */}
             <div className="relative h-[400px] lg:h-[600px] overflow-hidden rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-2 border-blue-200">
               {recentProjects.map((project, index) => (
                 <div
                   key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                    index === currentSlide
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide
                       ? 'opacity-100 z-10 scale-100'
                       : 'opacity-0 z-0 scale-95'
-                  }`}
+                    }`}
                 >
                   <div className={`bg-gradient-to-br ${project.color} rounded-2xl lg:rounded-3xl p-6 lg:p-12 h-full flex flex-col justify-between text-white relative overflow-hidden`}>
                     {/* Project Background Pattern */}
                     <div className="absolute inset-0 opacity-10">
-                      <div className="w-full h-full bg-repeat bg-center" style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E")'}}></div>
+                      <div className="w-full h-full bg-repeat bg-center" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E")' }}></div>
                     </div>
-                    
+
                     <div className="relative z-10">
                       <div className="text-6xl lg:text-8xl mb-4 lg:mb-6 animate-bounce">{project.image}</div>
                       <h3 className="text-2xl lg:text-5xl font-bold mb-3 lg:mb-4">{project.title}</h3>
                       <p className="text-base lg:text-xl text-white text-opacity-90 mb-4 lg:mb-6">{project.description}</p>
                     </div>
-                    
+
                     <div className="relative z-10 grid grid-cols-2 gap-3 lg:gap-4 mb-4 lg:mb-6">
                       <div className="bg-white bg-opacity-20 backdrop-blur-sm p-2 lg:p-4 rounded-lg lg:rounded-xl text-center border border-white/30">
                         <p className="text-xs lg:text-sm mb-1 font-semibold">Rating</p>
@@ -508,18 +506,17 @@ alt="Cinema Background"
                   </div>
                 </div>
               ))}
-              
+
               {/* Navigation Dots */}
               <div className="absolute bottom-4 lg:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 lg:gap-3 z-20">
                 {recentProjects.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === currentSlide
+                    className={`transition-all duration-300 rounded-full ${index === currentSlide
                         ? 'w-6 lg:w-10 h-1.5 lg:h-3 bg-gold'
                         : 'w-1.5 lg:w-3 h-1.5 lg:h-3 bg-white bg-opacity-40 hover:bg-opacity-60'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -537,8 +534,8 @@ alt="Cinema Background"
               Join Anand Cinemas and be part of cinematic storytelling
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <Link 
-                to={'/contact'} 
+              <Link
+                to={'/contact'}
                 className="bg-white text-navy px-6 py-3 lg:px-8 lg:py-4 rounded-lg hover:text-white font-bold text-base lg:text-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-xl lg:shadow-2xl  hover:shadow-gold/40 flex items-center justify-center gap-2"
               >
                 🎬 Start Film Project

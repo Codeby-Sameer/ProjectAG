@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-navy via-blue-900 to-purple-900 text-white relative overflow-hidden">
+      <section className="pt-32 mt-4 pb-20 bg-gradient-to-br from-navy via-blue-900 to-purple-900 text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -left-40 w-80 h-80 bg-gold/10 rounded-full filter blur-3xl"></div>
@@ -18,7 +18,7 @@ const AboutUs = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-white/20">
               <span className="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
-              <span className="text-gold font-semibold">Since 1995</span>
+              <span className="text-gold font-semibold">Since 1988</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gold bg-clip-text text-transparent">
@@ -149,7 +149,7 @@ const AboutUs = () => {
             name: "Anand Realty",
             tagline: "Land Plots & Ventures",
             gradient: "from-green-500 to-green-700",
-            hoverGradient: "from-green-600 to-green-800",
+            // hoverGradient: "from-green-600 to-green-800",
             icon: "🏢",
             features: [
               "Premium Residential Plots",
@@ -168,7 +168,7 @@ const AboutUs = () => {
             name: "Anand Cinemaz",
             tagline: "Film Production & Entertainment",
             gradient: "from-purple-500 to-purple-700",
-            hoverGradient: "from-purple-600 to-purple-800",
+            // hoverGradient: "from-purple-600 to-purple-800",
             icon: "🎬",
             features: [
               "Movie Production",
@@ -187,7 +187,7 @@ const AboutUs = () => {
             name: "Anand Infra",
             tagline: "Development & Construction",
             gradient: "from-blue-500 to-blue-700",
-            hoverGradient: "from-blue-600 to-blue-800",
+            // hoverGradient: "from-blue-600 to-blue-800",
             icon: "🏗️",
             features: [
               "Gated Communities",

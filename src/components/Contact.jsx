@@ -108,7 +108,12 @@ const Contact = () => {
               </div>
 
               {/* Imported Appointment Form Component */}
-              <AppointmentForm />
+             <div>
+              <div className='text-2xl lg:text-4xl text-center font-bold text-navy mb-4 lg:mb-6'>
+                Book Your Appointment
+              </div>
+               <AppointmentForm />
+             </div>
             </div>
           </div>
         </div>
