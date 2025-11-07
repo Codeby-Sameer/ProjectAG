@@ -56,20 +56,18 @@ const AppointmentForm = () => {
   });
 
   return (
-    <div className="bg-white p-6 lg:p-10 rounded-xl lg:rounded-2xl shadow-lg lg:shadow-xl border border-gray-100">
-      <div className="text-center mb-6 lg:mb-8">
-        <h2 className="text-2xl lg:text-4xl font-bold text-navy mb-2 lg:mb-3">
-          Book Appointment
-        </h2>
-        <p className="text-gray-600 text-sm lg:text-base">
+    <div className="bg-white p-4 lg:p-10 rounded-lg lg:rounded-2xl shadow-lg lg:shadow-xl border border-gray-100">
+      <div className="text-center mb-4 lg:mb-3">
+        
+        <p className="text-gray-600 text-xs lg:text-base">
           Fill out the form and we'll get back to you within 24 hours.
         </p>
       </div>
 
-      <form onSubmit={formik.handleSubmit} className="space-y-4 lg:space-y-5">
+      <form onSubmit={formik.handleSubmit} className="space-y-3 lg:space-y-5">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+          <label htmlFor="name" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
             Full Name *
           </label>
           <input
@@ -85,13 +83,13 @@ const AppointmentForm = () => {
             placeholder="Enter your full name"
           />
           {formik.touched.name && formik.errors.name && (
-            <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.name}</div>
+            <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.name}</div>
           )}
         </div>
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+          <label htmlFor="email" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
             Email Address *
           </label>
           <input
@@ -107,13 +105,13 @@ const AppointmentForm = () => {
             placeholder="your.email@example.com"
           />
           {formik.touched.email && formik.errors.email && (
-            <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.email}</div>
+            <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.email}</div>
           )}
         </div>
 
         {/* Phone Field */}
         <div>
-          <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+          <label htmlFor="phone" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
             Phone Number *
           </label>
           <input
@@ -129,13 +127,13 @@ const AppointmentForm = () => {
             placeholder="+1 (555) 123-4567"
           />
           {formik.touched.phone && formik.errors.phone && (
-            <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.phone}</div>
+            <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.phone}</div>
           )}
         </div>
 
         {/* Department Field */}
         <div>
-          <label htmlFor="department" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+          <label htmlFor="department" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
             Department *
           </label>
           <select
@@ -155,14 +153,14 @@ const AppointmentForm = () => {
             <option value="general">General Inquiry</option>
           </select>
           {formik.touched.department && formik.errors.department && (
-            <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.department}</div>
+            <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.department}</div>
           )}
         </div>
 
         {/* Date and Time Fields */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4">
           <div>
-            <label htmlFor="date" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+            <label htmlFor="date" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
               Preferred Date *
             </label>
             <input
@@ -177,12 +175,12 @@ const AppointmentForm = () => {
               }`}
             />
             {formik.touched.date && formik.errors.date && (
-              <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.date}</div>
+              <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.date}</div>
             )}
           </div>
 
           <div>
-            <label htmlFor="time" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+            <label htmlFor="time" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
               Preferred Time *
             </label>
             <input
@@ -197,14 +195,14 @@ const AppointmentForm = () => {
               }`}
             />
             {formik.touched.time && formik.errors.time && (
-              <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.time}</div>
+              <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.time}</div>
             )}
           </div>
         </div>
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-gray-700 font-semibold mb-2 text-sm lg:text-base">
+          <label htmlFor="message" className="block text-gray-700 font-semibold mb-1 lg:mb-2 text-xs lg:text-base">
             Message
           </label>
           <textarea
@@ -220,7 +218,7 @@ const AppointmentForm = () => {
             placeholder="Tell us about your project or inquiry..."
           />
           {formik.touched.message && formik.errors.message && (
-            <div className="text-red-500 text-xs lg:text-sm mt-1 lg:mt-2">{formik.errors.message}</div>
+            <div className="text-red-500 text-xs lg:text-sm mt-1">{formik.errors.message}</div>
           )}
         </div>
 
@@ -228,7 +226,7 @@ const AppointmentForm = () => {
         <button
           type="submit"
           disabled={formik.isSubmitting}
-          className="w-full bg-navy text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:from-yellow-400 hover:to-gold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          className="w-full bg-navy text-white py-3 lg:py-4 rounded-lg font-bold text-sm lg:text-lg hover:from-yellow-400 hover:to-gold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           {formik.isSubmitting ? 'Booking Appointment...' : 'Book Appointment Now'}
         </button>

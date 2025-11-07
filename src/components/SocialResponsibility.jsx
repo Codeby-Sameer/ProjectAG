@@ -49,9 +49,9 @@ const SocialResponsibility = () => {
                 <span>Community development initiatives</span>
               </li>
             </ul>
-            <button className="mt-6 px-8 py-3 bg-navy text-white font-semibold rounded-lg hover:bg-blue-900 transition-all duration-300 shadow-lg">
+            {/* <button className="mt-6 px-8 py-3 bg-navy text-white font-semibold rounded-lg hover:bg-blue-900 transition-all duration-300 shadow-lg">
               Explore Initiatives
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

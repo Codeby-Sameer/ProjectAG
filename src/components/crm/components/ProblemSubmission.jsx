@@ -14,48 +14,48 @@ const ProblemSubmission = () => {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  
-const validationSchema = Yup.object({
-  clientName: Yup.string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(100, 'Name must be less than 100 characters')
-    .required('Full name is required'),
+  const validationSchema = Yup.object({
+    clientName: Yup.string()
+      .min(2, 'Name must be at least 2 characters')
+      .max(100, 'Name must be less than 100 characters')
+      .required('Full name is required'),
 
-  contactPhone: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-    .required('Phone number is required'),
+    contactPhone: Yup.string()
+      .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
+      .required('Phone number is required'),
 
-  contactEmail: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
+    contactEmail: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
 
-  businessVertical: Yup.string()
-    .required('Business vertical is required'),
+    businessVertical: Yup.string()
+      .required('Business vertical is required'),
 
-  referringSource: Yup.string()
-    .required('Referring source is required'),
+    referringSource: Yup.string()
+      .required('Referring source is required'),
 
-  referralPersonName: Yup.string().when('referringSource', {
-    is: (val) => val === 'referral',
-    then: (schema) => schema.required('Referral person name is required'),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+    referralPersonName: Yup.string().when('referringSource', {
+      is: (val) => val === 'referral',
+      then: (schema) => schema.required('Referral person name is required'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
 
-  problemCategory: Yup.string()
-    .required('Problem category is required'),
+    problemCategory: Yup.string()
+      .required('Problem category is required'),
 
-  customProblemType: Yup.string().when('problemCategory', {
-    is: (val) => val === 'other',
-    then: (schema) => schema.required('Please specify the problem type'),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+    customProblemType: Yup.string().when('problemCategory', {
+      is: (val) => val === 'other',
+      then: (schema) => schema.required('Please specify the problem type'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
 
-  urgencyLevel: Yup.string()
-    .required('Priority level is required'),
+    urgencyLevel: Yup.string()
+      .required('Priority level is required'),
 
-  problemSummary: Yup.string()
-    .max(2000, 'Summary must be less than 2000 characters'),
-});
+    problemSummary: Yup.string()
+      .max(2000, 'Summary must be less than 2000 characters'),
+  });
+
   const formik = useFormik({
     initialValues: {
       clientName: '',
@@ -94,15 +94,12 @@ const validationSchema = Yup.object({
 
   const submitProblemData = async (formData, audioFile) => {
     console.log(formData,"formdata")
-  try {
-    const response = await problemService.submitProblem(formData, audioFile);
-    console.log('✅ Submission successful:', response);
-    // Optionally show success UI or redirect
-  } catch (error) {
-    console.error('❌ Submission failed:', error);
-    // Optionally show error UI
-  }
-
+    try {
+      const response = await problemService.submitProblem(formData, audioFile);
+      console.log('✅ Submission successful:', response);
+    } catch (error) {
+      console.error('❌ Submission failed:', error);
+    }
   };
 
   const startRecording = async () => {
@@ -183,12 +180,12 @@ const validationSchema = Yup.object({
 
   const generateWaveform = () => {
     const bars = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 80; i++) {
       bars.push(
         <div
           key={i}
           className="w-0.5 rounded-full bg-gradient-to-t from-blue-500 to-purple-500 transition-all duration-300"
-          style={{ height: `${Math.random() * 30 + 5}px` }}
+          style={{ height: `${Math.random() * 20 + 3}px` }}
         />
       );
     }
@@ -196,7 +193,7 @@ const validationSchema = Yup.object({
   };
 
   const getSentimentBadgeClass = (sentiment) => {
-    const baseClasses = "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold gap-1";
+    const baseClasses = "inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold gap-1";
     
     switch(sentiment) {
       case 'positive':
@@ -211,14 +208,14 @@ const validationSchema = Yup.object({
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-6">
+    <form onSubmit={formik.handleSubmit} className="space-y-4 lg:space-y-6 mb-3">
       {/* Client Information */}
-      <div className="bg-white rounded-xl p-6 shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-5">👤 Client Information</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="bg-white rounded-lg lg:rounded-xl p-4 lg:p-6 shadow-sm">
+        <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-5">👤 Client Information</h3>
+        <div className="grid grid-cols-1 gap-3 lg:gap-5">
           {/* Client Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Full Name *
             </label>
             <input
@@ -227,7 +224,7 @@ const validationSchema = Yup.object({
               value={formik.values.clientName}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.clientName && formik.errors.clientName
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -241,7 +238,7 @@ const validationSchema = Yup.object({
 
           {/* Contact Phone */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Primary Phone Number *
             </label>
             <input
@@ -250,7 +247,7 @@ const validationSchema = Yup.object({
               value={formik.values.contactPhone}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.contactPhone && formik.errors.contactPhone
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -264,7 +261,7 @@ const validationSchema = Yup.object({
 
           {/* Contact Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Email Address *
             </label>
             <input
@@ -273,7 +270,7 @@ const validationSchema = Yup.object({
               value={formik.values.contactEmail}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.contactEmail && formik.errors.contactEmail
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -287,7 +284,7 @@ const validationSchema = Yup.object({
 
           {/* Existing Client ID */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Existing Client ID (Optional)
             </label>
             <input
@@ -295,7 +292,7 @@ const validationSchema = Yup.object({
               name="existingClientId"
               value={formik.values.existingClientId}
               onChange={formik.handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm lg:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Links to existing client record"
             />
           </div>
@@ -303,12 +300,12 @@ const validationSchema = Yup.object({
       </div>
 
       {/* Business Details */}
-      <div className="bg-white rounded-xl p-6 shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-5">🏢 Business Details</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="bg-white rounded-lg lg:rounded-xl p-4 lg:p-6 shadow-sm">
+        <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-5">🏢 Business Details</h3>
+        <div className="grid grid-cols-1 gap-3 lg:gap-5">
           {/* Business Vertical */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Business Vertical *
             </label>
             <select
@@ -316,7 +313,7 @@ const validationSchema = Yup.object({
               value={formik.values.businessVertical}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.businessVertical && formik.errors.businessVertical
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -334,7 +331,7 @@ const validationSchema = Yup.object({
 
           {/* Referring Source */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Referring Source *
             </label>
             <select
@@ -342,7 +339,7 @@ const validationSchema = Yup.object({
               value={formik.values.referringSource}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.referringSource && formik.errors.referringSource
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -365,7 +362,7 @@ const validationSchema = Yup.object({
           {/* Referral Person Name (conditionally shown) */}
           {formik.values.referringSource === 'referral' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
                 Referral Person Name *
               </label>
               <input
@@ -374,7 +371,7 @@ const validationSchema = Yup.object({
                 value={formik.values.referralPersonName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                   formik.touched.referralPersonName && formik.errors.referralPersonName
                     ? 'border-red-500'
                     : 'border-gray-300'
@@ -389,7 +386,7 @@ const validationSchema = Yup.object({
 
           {/* Problem Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Problem Category *
             </label>
             <select
@@ -397,7 +394,7 @@ const validationSchema = Yup.object({
               value={formik.values.problemCategory}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.problemCategory && formik.errors.problemCategory
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -426,7 +423,7 @@ const validationSchema = Yup.object({
           {/* Custom Problem Type (conditionally shown) */}
           {formik.values.problemCategory === 'other' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
                 Specify Problem Type *
               </label>
               <input
@@ -435,7 +432,7 @@ const validationSchema = Yup.object({
                 value={formik.values.customProblemType}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                   formik.touched.customProblemType && formik.errors.customProblemType
                     ? 'border-red-500'
                     : 'border-gray-300'
@@ -450,7 +447,7 @@ const validationSchema = Yup.object({
 
           {/* Urgency Level */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
               Priority Level *
             </label>
             <select
@@ -458,7 +455,7 @@ const validationSchema = Yup.object({
               value={formik.values.urgencyLevel}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 formik.touched.urgencyLevel && formik.errors.urgencyLevel
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -478,24 +475,24 @@ const validationSchema = Yup.object({
       </div>
 
       {/* Problem Description - Audio Recording */}
-      <div className="bg-white rounded-xl p-6 shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-5">🎤 Problem Description</h3>
+      <div className="bg-white rounded-lg lg:rounded-xl p-4 lg:p-6 shadow-sm">
+        <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-5">🎤 Problem Description</h3>
         
         {/* Audio Requirements Notice */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6">
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">📋</div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg lg:rounded-xl p-3 lg:p-5 mb-4 lg:mb-6">
+          <div className="flex items-start gap-2 lg:gap-3">
+            <div className="text-xl lg:text-2xl">📋</div>
             <div>
-              <h4 className="text-blue-900 font-semibold mb-2">Audio Recording Required</h4>
-              <p className="text-blue-700 text-sm mb-3 leading-relaxed">
+              <h4 className="text-blue-900 font-semibold text-sm lg:text-base mb-1 lg:mb-2">Audio Recording Required</h4>
+              <p className="text-blue-700 text-xs lg:text-sm mb-2 lg:mb-3 leading-relaxed">
                 Audio documentation is mandatory for complete problem context preservation. 
                 This ensures accurate problem resolution and maintains quality standards.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-blue-700">
-                <div><strong>Formats:</strong> MP3, WAV, M4A, OGG, AAC</div>
-                <div><strong>Max Size:</strong> 50 MB per recording</div>
-                <div><strong>Max Duration:</strong> 30 minutes</div>
-                <div><strong>Min Quality:</strong> 32 kbps, 16 kHz</div>
+              <div className="grid grid-cols-1 gap-1 lg:gap-3 text-xs text-blue-700">
+                <div className="text-xs"><strong>Formats:</strong> MP3, WAV, M4A, OGG, AAC</div>
+                <div className="text-xs"><strong>Max Size:</strong> 50 MB per recording</div>
+                <div className="text-xs"><strong>Max Duration:</strong> 30 minutes</div>
+                <div className="text-xs"><strong>Min Quality:</strong> 32 kbps, 16 kHz</div>
               </div>
             </div>
           </div>
@@ -503,11 +500,11 @@ const validationSchema = Yup.object({
 
         {/* Audio Upload/Recording Area */}
         {!showAudioPreview ? (
-          <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+          <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg lg:rounded-xl p-4 lg:p-8 text-center">
             <div>
-              <div className="text-5xl mb-4">🎙️</div>
-              <h4 className="text-gray-900 font-semibold mb-2">Record or Upload Audio</h4>
-              <p className="text-gray-600 text-sm mb-5">
+              <div className="text-4xl lg:text-5xl mb-2 lg:mb-4">🎙️</div>
+              <h4 className="text-gray-900 font-semibold text-sm lg:text-base mb-1 lg:mb-2">Record or Upload Audio</h4>
+              <p className="text-gray-600 text-xs lg:text-sm mb-3 lg:mb-5">
                 Supported formats: MP3, WAV, M4A, OGG, AAC (Max: 50MB, 30min)
               </p>
               <input
@@ -517,11 +514,11 @@ const validationSchema = Yup.object({
                 onChange={handleAudioUpload}
                 className="hidden"
               />
-              <div className="flex gap-3 justify-center flex-wrap">
+              <div className="flex flex-col sm:flex-row gap-2 justify-center">
                 <button
                   type="button"
                   onClick={isRecording ? stopRecording : startRecording}
-                  className={`px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 ${
+                  className={`px-4 lg:px-6 py-2 lg:py-3 text-sm lg:text-base rounded-lg font-semibold flex items-center gap-2 justify-center transition-all duration-300 ${
                     isRecording 
                       ? 'bg-green-500 hover:bg-green-600 text-white animate-pulse' 
                       : 'bg-red-500 hover:bg-red-600 text-white'
@@ -533,7 +530,7 @@ const validationSchema = Yup.object({
                 <button
                   type="button"
                   onClick={() => document.getElementById('audio-file').click()}
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 lg:px-6 py-2 lg:py-3 text-sm lg:text-base rounded-lg font-semibold transition-colors duration-300"
                 >
                   📁 Upload Audio File
                 </button>
@@ -543,11 +540,11 @@ const validationSchema = Yup.object({
         ) : (
           <div>
             {/* Audio Preview */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 mb-4">
-              <div className="flex justify-between items-start mb-4">
+            <div className="bg-white border border-gray-200 rounded-lg lg:rounded-xl p-4 lg:p-6 mb-3 lg:mb-4">
+              <div className="flex justify-between items-start mb-3 lg:mb-4">
                 <div>
-                  <div className="font-semibold text-gray-900 mb-1">Recorded Audio</div>
-                  <div className="flex gap-4 text-xs text-gray-500">
+                  <div className="font-semibold text-gray-900 text-sm lg:text-base mb-1">Recorded Audio</div>
+                  <div className="flex flex-col gap-1 text-xs text-gray-500">
                     <span>📁 Size: {audioFile ? (audioFile.size / (1024 * 1024)).toFixed(2) : '0'} MB</span>
                     <span>🎵 Quality: 32 kbps</span>
                     <span>⏱️ Duration: 0:00</span>
@@ -555,16 +552,16 @@ const validationSchema = Yup.object({
                 </div>
                 <button
                   type="button"
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded text-sm transition-colors duration-300"
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-2 lg:px-3 py-1 lg:py-2 rounded text-xs transition-colors duration-300"
                 >
                   💾 Download
                 </button>
               </div>
 
               {/* Waveform Visualization */}
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <div className="flex items-center gap-1 h-15 cursor-pointer">
-                  <div className="flex items-end gap-0.5 h-10 flex-1">
+              <div className="bg-gray-50 rounded-lg p-3 lg:p-4 mb-3 lg:mb-4">
+                <div className="flex items-center gap-1 h-12 lg:h-15 cursor-pointer">
+                  <div className="flex items-end gap-0.5 h-8 lg:h-10 flex-1">
                     {generateWaveform()}
                   </div>
                 </div>
@@ -579,7 +576,7 @@ const validationSchema = Yup.object({
               <button
                 type="button"
                 onClick={resetAudioUpload}
-                className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-lg font-semibold transition-colors duration-300"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 lg:px-5 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-colors duration-300"
               >
                 🗑️ Remove Audio
               </button>
@@ -587,25 +584,25 @@ const validationSchema = Yup.object({
 
             {/* AI Analysis Results */}
             {showAIAnalysis && (
-              <div className="bg-white border border-gray-200 rounded-xl p-6 mb-4">
-                <h4 className="text-gray-900 font-semibold mb-4">🤖 AI Analysis Results</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                  <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="bg-white border border-gray-200 rounded-lg lg:rounded-xl p-4 lg:p-6 mb-3 lg:mb-4">
+                <h4 className="text-gray-900 font-semibold text-sm lg:text-base mb-3 lg:mb-4">🤖 AI Analysis Results</h4>
+                <div className="grid grid-cols-1 gap-3 lg:gap-4 mb-4 lg:mb-5">
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg">
                     <div className="text-gray-500 text-xs mb-2">Sentiment Analysis</div>
                     <div className={getSentimentBadgeClass('neutral')}>
                       😐 Analyzing...
                     </div>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg">
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg">
                     <div className="text-gray-500 text-xs mb-2">AI Priority Suggestion</div>
-                    <div className="font-semibold text-blue-500">Analyzing...</div>
+                    <div className="font-semibold text-blue-500 text-sm">Analyzing...</div>
                   </div>
                 </div>
 
                 {/* Transcription */}
-                <div className="mb-4">
+                <div className="mb-3 lg:mb-4">
                   <div className="flex justify-between items-center mb-2">
-                    <h5 className="text-sm font-semibold text-gray-900">📝 Speech-to-Text Transcription</h5>
+                    <h5 className="text-xs lg:text-sm font-semibold text-gray-900">📝 Speech-to-Text Transcription</h5>
                     <button
                       type="button"
                       className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors duration-300"
@@ -613,15 +610,15 @@ const validationSchema = Yup.object({
                       👁️ Show/Hide
                     </button>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-4 text-sm leading-relaxed max-h-32 overflow-y-auto">
+                  <div className="bg-gray-50 rounded-lg p-3 text-xs lg:text-sm leading-relaxed max-h-24 lg:max-h-32 overflow-y-auto">
                     Processing speech-to-text...
                   </div>
                 </div>
 
                 {/* Keywords */}
                 <div>
-                  <h5 className="text-sm font-semibold text-gray-900 mb-2">🏷️ Extracted Keywords</h5>
-                  <div className="flex gap-2 flex-wrap">
+                  <h5 className="text-xs lg:text-sm font-semibold text-gray-900 mb-2">🏷️ Extracted Keywords</h5>
+                  <div className="flex gap-1 lg:gap-2 flex-wrap">
                     <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
                       Processing...
                     </span>
@@ -633,8 +630,8 @@ const validationSchema = Yup.object({
         )}
 
         {/* Written Summary */}
-        <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="mt-4 lg:mt-6">
+          <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
             Written Problem Summary (Optional)
           </label>
           <textarea
@@ -642,8 +639,8 @@ const validationSchema = Yup.object({
             value={formik.values.problemSummary}
             onChange={handleSummaryChange}
             onBlur={formik.handleBlur}
-            rows={4}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
+            rows={3}
+            className={`w-full px-3 py-2 text-sm lg:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${
               formik.touched.problemSummary && formik.errors.problemSummary
                 ? 'border-red-500'
                 : summaryCharCount > 1800 
@@ -652,7 +649,7 @@ const validationSchema = Yup.object({
             }`}
             placeholder="Provide additional details about the problem... (up to 2000 characters)"
           />
-          <div className="text-right text-sm text-gray-500 mt-1">
+          <div className="text-right text-xs lg:text-sm text-gray-500 mt-1">
             <span className={summaryCharCount > 1800 ? 'text-yellow-600' : ''}>
               {summaryCharCount}
             </span>
@@ -665,11 +662,11 @@ const validationSchema = Yup.object({
       </div>
 
       {/* Submit Button */}
-      <div className="text-center">
+      <div className="text-center mb-3">
         <button
           type="submit"
           disabled={formik.isSubmitting}
-          className="bg-green-500 hover:bg-green-600 disabled:bg-green-400 text-white px-12 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed"
+          className="bg-green-500 hover:bg-green-600 disabled:bg-green-400 text-white px-8 lg:px-12 py-3 lg:py-4 rounded-lg font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed"
         >
           {formik.isSubmitting ? 'Submitting...' : 'Submit Problem Report'}
         </button>

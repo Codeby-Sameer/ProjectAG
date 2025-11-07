@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ProblemSubmission from './components/ProblemSubmission';
 import Notifications from './components/Notifications';
-import Financial from './components/Financial';
 import SystemSpecs from './components/SystemSpecs';
 import Layout from './layout/Layout';
 import AppointmentsTab from './components/Appointment';
@@ -75,7 +74,7 @@ function CrmApp() {
                     <Route path="submit-problem" element={<ProblemSubmission />} />
                     <Route path="appointments" element={<AppointmentsTab />} />
                     <Route path="notifications" element={<Notifications />} />
-                    <Route path="financial" element={<Financial />} />
+                  
                     <Route path="specifications" element={<SystemSpecs />} />
                     {/* Redirect from /crm to /crm/dashboard if authenticated */}
                     <Route path="" element={<Navigate to="dashboard" replace />} />

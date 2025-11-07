@@ -39,12 +39,7 @@ const Sidebar = ({ onClose }) => {
       label: 'Notifications',
       roles: ['manager', 'superadmin']
     },
-    { 
-      path: '/crm/financial', 
-      icon: '💳', 
-      label: 'Financial',
-      roles: ['manager', 'superadmin']
-    },
+    
     { 
       path: '/crm/specifications', 
       icon: '⚙️', 

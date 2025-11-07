@@ -1,4 +1,7 @@
+import { useMultiFormModal } from "../Context/ModalContext";
+
 const KeyTopics = () => {
+ const{openModal}= useMultiFormModal()
   const keyTopics = [
     {
       icon: '🏗️',
@@ -69,7 +72,7 @@ const KeyTopics = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center " onClick={()=>{openModal('appointment')}}>
           <div className="inline-block bg-gradient-to-r from-blue-800 to-navy text-white px-12 py-6 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
             <h3 className="text-3xl  font-bold mb-2">Ready to Work Together?</h3>
             <p className="text-lg font-semibold">Let's build something extraordinary</p>

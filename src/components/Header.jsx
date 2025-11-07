@@ -103,9 +103,7 @@ const Header = () => {
           <div className='lg:text-lg md:text-md sm:text-sm'>
             Born in <b>1988</b>
           </div>
-          <div className='text-md lg:text-lg md:text-md sm:text-sm'>
-            Established in <b>2025</b>
-          </div>
+          
         </div>
       </div>
       
@@ -137,8 +135,8 @@ const Header = () => {
             {/* Company Name */}
             <div className="flex flex-col">
               <div className="flex items-center space-x-1 md:space-x-2">
-                <div className="text-lg md:text-xl font-bold text-orange-500">ANAND</div>
-                <div className="text-lg md:text-xl font-bold text-orange-500">GROUP</div>
+                <div className="text-lg md:text-xl font-bold text-stone-500">ANAND</div>
+                <div className="text-lg md:text-xl font-bold text-stone-500">GROUP</div>
               </div>
             </div>
           </Link>

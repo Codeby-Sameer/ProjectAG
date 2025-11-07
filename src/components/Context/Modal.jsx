@@ -16,10 +16,6 @@ const MultiFormModal = () => {
         return <ContactForm initialData={formData} />;
       case 'appointment':
         return <AppointmentForm initialData={formData} />;
-      case 'production-inquiry':
-        return <ProductionInquiryForm initialData={formData} />;
-      case 'infrastructure-consultation':
-        return <InfrastructureConsultationForm initialData={formData} />;
       case 'problem-solution':
         return <ProblemSubmission initialData={formData} />;
       default:
@@ -33,10 +29,10 @@ const MultiFormModal = () => {
         return 'Land Information Form';
       case 'contact':
         return 'Contact Us';
-      case 'production-inquiry':
-        return 'Production Inquiry';
-      case 'infrastructure-consultation':
-        return 'Infrastructure Consultation';
+     case 'problem-solution':
+        return "Problem Submission ";
+      case 'appointment':
+        return 'Book Appointment';
       default:
         return 'Form';
     }
@@ -49,7 +45,7 @@ const MultiFormModal = () => {
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-navy">{getModalTitle()}</h2>
+          <h2 className="lg:text-2xl text-xl  font-bold text-navy">{getModalTitle()}</h2>
           <button
             onClick={closeModal}
             className="text-gray-500 hover:text-gray-700 text-2xl"
@@ -59,7 +55,7 @@ const MultiFormModal = () => {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6">
+        <div >
           {renderForm()}
         </div>
       </div>
