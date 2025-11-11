@@ -16,7 +16,7 @@ const Founder = () => {
               <div className="md:w-2/5  p-6 sm:p-8 flex items-center justify-center">
                 <div className="text-center">
                   
-                  <img src="src/assets/founder.jpg" alt="" />
+                  <img src="founder.jpg" alt="" />
                 </div>
               </div>
               

@@ -31,12 +31,12 @@ import Contact from './components/Contact';
 // Layout Component
 function Layout() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
      
 
       <Header />
     
-      <main className='pt-20 '>
+      <main className='pt-20 w-full '>
         
         <Outlet />
       </main>
