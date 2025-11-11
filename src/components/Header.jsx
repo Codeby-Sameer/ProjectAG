@@ -97,15 +97,7 @@ const Header = () => {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white text-navy shadow-lg backdrop-blur-sm border-b border-gold/20">
-      {/* Top Bar */}
-      <div className=' bg-navy text-white  px-2'>
-        <div className='flex justify-between'>
-          <div className='lg:text-lg md:text-md sm:text-sm'>
-            Born in <b>1988</b>
-          </div>
-          
-        </div>
-      </div>
+    
       
       {/* Main Navigation */}
       <nav className="  lg:py-3 lg:px-4 py-3 ">
@@ -138,6 +130,7 @@ const Header = () => {
                 <div className="text-lg md:text-xl font-bold text-blue-500">ANAND</div>
                 <div className="text-lg md:text-xl font-bold text-blue-500">GROUP</div>
               </div>
+               <p className="text-sm italic mb-2">"Dharmo Rakshati Rakshitah"</p>
             </div>
           </Link>
 
