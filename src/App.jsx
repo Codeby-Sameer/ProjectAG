@@ -31,13 +31,9 @@ import Contact from './components/Contact';
 // Layout Component
 function Layout() {
   return (
-    <div className="min-h-screen ">
-     
-
+    <div className="min-h-screen overflow-x-hidden">
       <Header />
-    
-      <main className='pt-20 w-full '>
-        
+      <main className="pt-20 w-full overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />
