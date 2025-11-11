@@ -544,7 +544,7 @@ export default function AppointmentsTab() {
                     <button onClick={() => handleView(item)} className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors">👁️ View</button>
                     {item.__type === 'appointment' && (
                       <>
-                        <button onClick={() => { setSelected(item); openModal('appointment', ); }} className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors">✏️ Edit</button>
+                        <button onClick={() => { setSelected(item); openModal('appointment', { appointment: item.raw || item }); }} className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors">✏️ Edit</button>
                         <button onClick={() => handleCancel(item)} className="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition-colors">🗑️ Cancel</button>
                       </>
                     )}
