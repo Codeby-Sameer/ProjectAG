@@ -27,6 +27,7 @@ import Founder from './components/Sections/Founder';
 import CaseStudies from './components/Sections/CaseStudies';
 import ContactUs from './components/Sections/Contactus';
 import Contact from './components/Contact';
+import ChatBotIcon from './components/Sections/ChatBotIcon';
 
 // Layout Component
 function Layout() {
@@ -36,6 +37,7 @@ function Layout() {
       <main className="pt-20 w-full overflow-x-hidden">
         <Outlet />
       </main>
+      <ChatBotIcon/>
       <Footer />
     </div>
   );
