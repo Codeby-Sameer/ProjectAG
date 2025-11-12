@@ -81,9 +81,10 @@ export default function AppointmentsTab() {
 
 
   // try to use external modal context if available — fall back to local modal
- 
-  const {openModal} = useMultiFormModal();
-  /* ignore */ }
+  let modalCtx = null;
+  try {
+    modalCtx = useMultiFormModal?.();
+  } catch (e) { /* ignore */ }
 
   const externalOpenModal = modalCtx?.openModal;
 
