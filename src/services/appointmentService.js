@@ -11,6 +11,14 @@ export const appointmentService = {
       throw error;
     }
   },
+  getAppointmentsbyId: async (id) => {
+    try {
+      const response = await api.get(`/api/appointments/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
 
   // Create appointment
   createAppointment: async (appointmentData) => {

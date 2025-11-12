@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import KeyTopics from "./Hero/KeyTopics"
-import ceoPhoto from '../assets/founder.jpg';
+
 
 const AboutUs = () => {
   return (
@@ -58,7 +58,7 @@ const AboutUs = () => {
         <div className="relative group">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
             <img
-              src={ceoPhoto}
+              src='/founder.jpg'
               alt="Anand - Founder & Chairman"
               className="w-full h-[800px] object-cover"
             />
