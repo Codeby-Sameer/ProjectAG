@@ -21,7 +21,7 @@ const AboutUs = () => {
               <span className="text-gold font-semibold">Since 1988</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gold bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-white bg-clip-text text-transparent">
               Anand Groups
             </h1>
             <div className="w-32 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto mb-8 rounded-full"></div>
@@ -214,27 +214,9 @@ const AboutUs = () => {
                 <h3 className="text-2xl font-bold text-white">{vertical.name}</h3>
                 <p className={`text-${vertical.gradient.split('-')[1]}-100`}>{vertical.tagline}</p>
               </div>
+             
               
-              {/* Floating Map Icon for Realty */}
-              {vertical.name === "Anand Realty" && (
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2">
-                  <div className="text-2xl">🗺️</div>
-                </div>
-              )}
-              
-              {/* Blueprint Icon for Infra */}
-              {vertical.name === "Anand Infra" && (
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2">
-                  <div className="text-2xl">📐</div>
-                </div>
-              )}
-              
-              {/* Film Icon for Cinemaz */}
-              {vertical.name === "Anand Cinemaz" && (
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2">
-                  <div className="text-2xl">🎭</div>
-                </div>
-              )}
+            
             </div>
             
             {/* Content Section */}

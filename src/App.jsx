@@ -12,12 +12,21 @@ import Footer from './components/Footer';
 import Production from './components/Divisions/Production';
 import RealEstate from './components/Divisions/RealEstate';
 import Infrastructure from './components/Divisions/Infrastructure';
-import Contact from './components/Contact';
+// import Contact from './components/Contact';
 import AboutUs from './components/AboutUs';
 import { MultiFormModalProvider } from './components/Context/ModalContext';
 import MultiFormModal from './components/Context/Modal';
 import AnandReality from './components/Divisions/RealEstate';
 import CrmApp from './components/crm/CrmApp';
+import VisionMission from './components/Sections/VisionMIssion';
+import Services from './components/Sections/Services';
+import Achievements from './components/Sections/Achievements';
+import Founder from './components/Sections/Founder';
+
+
+import CaseStudies from './components/Sections/CaseStudies';
+import ContactUs from './components/Sections/Contactus';
+import Contact from './components/Contact';
 
 // Layout Component
 function Layout() {
@@ -41,12 +50,16 @@ function HomePage() {
   return (
     <>
       <Hero />
-      {/* <Divisions /> */}
-      <GlobalPresence />
-      <SocialResponsibility />
       <About />
+    <VisionMission/>
+    <Services/>
+    <CaseStudies/>
+    <Achievements/>
+   <ContactUs />
+    <Founder/>
       
-      <FounderMessage />
+      
+    
     </>
   );
 }

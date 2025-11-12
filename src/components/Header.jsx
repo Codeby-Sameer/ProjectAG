@@ -138,6 +138,7 @@ const Header = () => {
                 <div className="text-lg md:text-xl font-bold text-blue-500">ANAND</div>
                 <div className="text-lg md:text-xl font-bold text-blue-500">GROUP</div>
               </div>
+               <p className="text-xs italic mb-2">"Dharmo Rakshati Rakshitah"</p>
             </div>
           </Link>
 
