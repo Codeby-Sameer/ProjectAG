@@ -138,7 +138,7 @@ export default function Header() {
             </div>
 
             <div className="flex flex-col leading-tight">
-              <div className="flex items-center gap-1 text-base md:text-lg font-bold text-blue-500">
+              <div className="flex items-center gap-1 text-base md:text-lg font-bold text-orange-500">
                 <span>ANAND</span>
                 <span>GROUP</span>
               </div>
