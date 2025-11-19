@@ -9,14 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Company Info */}
           <div className="space-y-4 sm:space-y-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-4">
+            <div className="flex flex-row items-start sm:items-center space-y-3 space-x-2 mb-4">
               <div className="relative">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-lg flex items-center justify-center transition-transform duration-300 hover:scale-105">
                   <img src='logo.png' alt="logo" className='w-full p-2 sm:p-4' />
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row items-baseline space-x-0 sm:space-x-2">
-                <div className="text-xl sm:text-2xl font-bold text-white">ANAND</div>
+              <div className="flex  flex-row items-baseline space-x-1 sm:space-x-2">
+                <div className="text-xl sm:text-2xl font-bold text-white ">ANAND</div>
                 <div className="text-xl sm:text-2xl font-bold text-white">GROUP</div>
               </div>
             </div>

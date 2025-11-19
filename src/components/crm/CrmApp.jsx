@@ -10,6 +10,7 @@ import Layout from './layout/Layout';
 import AppointmentsTab from './components/Appointment';
 import ManageCasesTab from './components/ManageCases';
 import { AuthProvider, useAuth } from './context/authcontext'; // Updated import path
+import UserManagement from './components/UserManagement';
 
 // Protected Route component using AuthContext
 const ProtectedRoute = ({ children }) => {
@@ -73,9 +74,10 @@ function CrmApp() {
                     <Route path="managecases" element={<ManageCasesTab />} />
                     <Route path="submit-problem" element={<ProblemSubmission />} />
                     <Route path="appointments" element={<AppointmentsTab />} />
-                    <Route path="notifications" element={<Notifications />} />
+                    <Route path="user-management" element={<UserManagement />} />
+                    {/* <Route path="notifications" element={<Notifications />} /> */}
                   
-                    <Route path="specifications" element={<SystemSpecs />} />
+                    {/* <Route path="specifications" element={<SystemSpecs />} /> */}
                     {/* Redirect from /crm to /crm/dashboard if authenticated */}
                     <Route path="" element={<Navigate to="dashboard" replace />} />
                   </Routes>

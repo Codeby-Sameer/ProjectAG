@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/authcontext';
+import { X } from 'lucide-react';
 
-const Sidebar = ({ onClose }) => {
+const Sidebar = ({ onClose, isSidebarOpen }) => {
   const location = useLocation();
   const { userRole, userEmail, logout, hasAnyRole } = useAuth();
-  console.log(userEmail,userRole,"iamuser")
   
   // Define menu items with permissions
   const allMenuItems = [
@@ -28,84 +28,58 @@ const Sidebar = ({ onClose }) => {
       roles: ['manager', 'superadmin']
     },
     { 
+      path: '/crm/user-management', 
+      icon: '👥', 
+      label: 'User Management',
+      roles: ['manager', 'superadmin']
+    },
+    { 
       path: '/crm/appointments', 
       icon: '📅', 
       label: 'Appointments',
       roles: ['manager', 'superadmin']
     },
-    { 
-      path: '/crm/notifications', 
-      icon: '🔔', 
-      label: 'Notifications',
-      roles: ['manager', 'superadmin']
-    },
-    
-    { 
-      path: '/crm/specifications', 
-      icon: '⚙️', 
-      label: 'System Specs',
-      roles: ['superadmin']
-    }
   ];
 
   // Filter menu items based on user role
   const userMenuItems = allMenuItems.filter(item => 
-    hasAnyRole(userRole)
+    hasAnyRole(item.roles)
   );
-
-  // Role display configuration
-  const roleConfig = {
-    receptionist: {
-      displayName: 'Receptionist',
-      color: 'bg-green-100 text-green-800',
-      description: 'Front Desk Operations'
-    },
-    manager: {
-      displayName: 'Manager', 
-      color: 'bg-blue-100 text-blue-800',
-      description: 'Team Management'
-    },
-    superadmin: {
-      displayName: 'superadmin',
-      color: 'bg-purple-100 text-purple-800',
-      description: 'Full System Access'
-    }
-  };
-
-  const currentRole = roleConfig[userRole];
 
   // Handle navigation with sidebar close on mobile
   const handleNavigation = () => {
-    // Close sidebar on mobile after navigation
-    if (window.innerWidth < 1024) { // lg breakpoint
+    if (window.innerWidth < 1024) {
       onClose();
     }
   };
 
   return (
-    <div className="w-64 z-10 flex flex-col h-screen">
-      {/* Header Section with Close Button */}
-      <div className="p-6 border-b border-gray-200 flex justify-between items-start">
-        <div className="flex items-center">
-          <div className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-300">
+    <div className="w-64 flex flex-col h-screen bg-white border-r border-gray-200">
+      {/* Header Section */}
+      <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-12 rounded-full flex items-center justify-center ">
             <img 
               src='/logo.png' 
               alt="logo" 
-              className='w-full h-full object-contain p-1' 
+              className='w-8 h-8 object-contain' 
             />
           </div>
-          <div className="font-semibold text-gray-800 mb-2 ml-3">
-            <span className='text-orange-500 lg:text-lg  text-md'>ANAND GROUP</span> <span className='text-blue-700'>CRM</span>
+          <div className="font-semibold">
+            <div className='text-orange-500 text-lg'>ANAND GROUP</div>
+            <div className='text-blue-700 text-xs'>CRM</div>
           </div>
         </div>
         
-        {/* Close Button - Visible only on mobile */}
-        <button 
-          className="lg:hidden p-2 text-gray-500 hover:text-gray-700 transition-colors"
-          onClick={onClose}
-        >
-          <span className="text-xl">✕</span>
-        </button>
+        {/* Close Button - Visible on desktop when sidebar is open */}
+        {isSidebarOpen && (
+          <button 
+            className=" text-gray-500 hover:text-gray-700 transition-colors lg:flex "
+            onClick={onClose}
+          >
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       {/* Navigation Menu */}
@@ -126,13 +100,6 @@ const Sidebar = ({ onClose }) => {
                 {item.icon}
               </span>
               <span className="font-medium">{item.label}</span>
-              
-              {/* Admin-only badge */}
-              {item.roles.length === 1 && item.roles[0] === 'admin' && (
-                <span className="ml-auto text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
-                  Admin
-                </span>
-              )}
             </Link>
           ))}
         </div>

@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+         fontSize: {
+        'xxs': '0.625rem', // 10px
+        'micro': '0.5rem', // 8px
+      },
       colors: {
         navy: '#0A2E5B',
         

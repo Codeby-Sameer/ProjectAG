@@ -114,7 +114,7 @@ export default function Header() {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white text-navy shadow-lg backdrop-blur-sm border-b border-gold/20">
-      <nav className="max-w-7xl mx-auto py-4 lg:py-3">
+      <nav className="max-w-7xl mx-auto py-4 lg:py-3 px-2">
         <div className="flex items-center justify-between gap-4">
           {/* Logo & Brand */}
           <Link
@@ -142,12 +142,12 @@ export default function Header() {
                 <span>ANAND</span>
                 <span>GROUP</span>
               </div>
-              <p className="text-xs italic -mt-0.5">"Dharmo Rakshati Rakshitah"</p>
+              <p className="text-micro lg:text-xs md:text-xs italic -mt-0.5">"Dharmo Rakshati Rakshitah"</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-3 lg:space-x-2">
             <Link
               to="/"
               className={`px-3 py-2 rounded-lg font-medium transition-colors ${
@@ -166,7 +166,7 @@ export default function Header() {
               About
             </Link>
 
-            {/* Divisions Dropdown (desktop) */}
+            {/* Divisions Dropdown (desktop)
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDivisionsOpen((v) => !v)}
@@ -224,7 +224,7 @@ export default function Header() {
                   </Link>
                 </div>
               )}
-            </div>
+            </div> */}
 
             <Link to="/crm/login" className={`px-3 py-2 rounded-lg font-medium transition-colors ${isActiveLink('/crm') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`}>
               CRM
@@ -292,7 +292,7 @@ export default function Header() {
                 </Link>
 
                 {/* Mobile Divisions Dropdown */}
-                <div ref={mobileDivisionsRef}>
+                {/* <div ref={mobileDivisionsRef}>
                   <button
                     onClick={() => setIsMobileDivisionsOpen((v) => !v)}
                     className={`w-full text-left flex items-center justify-between px-4 py-3 rounded-lg font-medium ${
@@ -330,7 +330,7 @@ export default function Header() {
                       </Link>
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 <Link to="/crm/login" className={`block px-4 py-3 rounded-lg font-medium ${isActiveLink('/crm') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
                   CRM

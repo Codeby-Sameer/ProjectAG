@@ -11,7 +11,7 @@ const Services = () => {
       features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
       gradient: "from-green-500 to-green-700",
       image: "venture.jpg",
-      link: "/real-estate",
+      link: "https://anand-realtyy-new.vercel.app",
       buttonText: "Explore Properties"
     },
     {
@@ -21,7 +21,7 @@ const Services = () => {
       features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
       gradient: "from-blue-500 to-blue-700",
       image: "infra.png",
-      link: "/infrastructure",
+      link: "https://anand-project-21.vercel.app",
       buttonText: "Explore Projects"
     },
     {
@@ -31,18 +31,18 @@ const Services = () => {
       features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
       gradient: "from-purple-500 to-purple-700",
       image: "Production.png",
-      link: "/production",
+      link: "https://anand-cinemas.vercel.app",
       buttonText: "Explore Productions"
     }
   ];
 
   return (
-    <section id="services" className="py-16 sm:py-20 bg-slate-50">
+    <section id="services" className="py-12 sm:py-20 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4 sm:mb-6">Our Services</h2>
           <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-6 sm:mb-8"></div>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto px-4">
             Across all our verticals, we maintain uncompromised standards and deliver value that lasts for generations.
           </p>
         </div>
@@ -80,12 +80,13 @@ const Services = () => {
                   ))}
                 </ul>
                 
-                <Link
-                  to={service.link}
+                <a
+                  href={service.link}
+                  target="_blank" rel="noopener noreferrer"
                   className={`w-full bg-gradient-to-r ${service.gradient} text-white py-3 rounded-xl font-semibold text-center block hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg`}
                 >
                   {service.buttonText}
-                </Link>
+                </a>
               </div>
             </div>
           ))}

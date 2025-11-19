@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
-import KeyTopics from "./Hero/KeyTopics"
+
 
 
 const AboutUs = () => {
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="pt-32 mt-4 pb-20 bg-gradient-to-br from-navy via-blue-900 to-purple-900 text-white relative overflow-hidden">
+      <section className="md:pt-28 pt-20  pb-24  bg-gradient-to-br from-navy via-blue-900 to-purple-900 text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -left-40 w-80 h-80 bg-gold/10 rounded-full filter blur-3xl"></div>
@@ -60,7 +60,7 @@ const AboutUs = () => {
             <img
               src='/founder.jpg'
               alt="Anand - Founder & Chairman"
-              className="w-full h-[800px] object-cover"
+              className="w-full lg:h-[800px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             
@@ -178,7 +178,7 @@ const AboutUs = () => {
               "Studio Services",
               "Talent Management"
             ],
-            link: "/production",
+            link: "https://anand-cinemas.vercel.app",
             buttonText: "Explore Productions",
             image: "Production.png"
           },
@@ -197,7 +197,7 @@ const AboutUs = () => {
               "Smart City Projects",
               "Sustainable Development"
             ],
-            link: "/infrastructure",
+            link: "https://anand-project-21.vercel.app",
             buttonText: "Explore Projects",
             image: "infra.png"
           }
@@ -212,7 +212,7 @@ const AboutUs = () => {
               <div className="absolute bottom-6 left-6">
                 <div className="text-4xl mb-2">{vertical.icon}</div>
                 <h3 className="text-2xl font-bold text-white">{vertical.name}</h3>
-                <p className={`text-${vertical.gradient.split('-')[1]}-100`}>{vertical.tagline}</p>
+                <p className={`text-white`}>{vertical.tagline}</p>
               </div>
              
               
@@ -232,12 +232,13 @@ const AboutUs = () => {
                 ))}
               </ul>
               
-              <Link
-                to={vertical.link}
+              <a
+                href={vertical.link}
+                target="_blank" rel="noopener noreferrer"
                 className={`w-full bg-gradient-to-r ${vertical.gradient} text-white py-3 rounded-xl font-semibold text-center block hover:${vertical.hoverGradient} transition-all duration-300 transform hover:scale-105 shadow-lg`}
               >
                 {vertical.buttonText}
-              </Link>
+              </a>
             </div>
           </div>
         ))}
@@ -360,10 +361,10 @@ const AboutUs = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-2xl md:text-5xl font-bold mb-6">
               Start Your Journey With Us
             </h2>
-            <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="md:text-xl text-sm text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
               Whether you're investing in land, producing content, or developing infrastructure, 
               partner with excellence and experience the Anand difference.
             </p>
@@ -392,7 +393,7 @@ const AboutUs = () => {
                 <div key={index} className="text-center group">
                   <Link
                     to={button.to}
-                    className={`px-8 py-4 bg-gradient-to-r ${button.gradient} text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl block min-w-[200px]`}
+                    className={`px-5 py-4 bg-gradient-to-r ${button.gradient} text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl block `}
                   >
                     {button.label}
                   </Link>
@@ -406,7 +407,7 @@ const AboutUs = () => {
             {/* Contact Info */}
             <div className="mt-16 pt-8 border-t border-white/20">
               <p className="text-blue-200 mb-4">Ready to discuss your project?</p>
-              <div className="flex flex-wrap justify-center gap-8 text-blue-100">
+              <div className="flex flex-wrap justify-center md:gap-6 gap-2 text-blue-100">
                 <div className="flex items-center gap-2">
                   <span>📞</span>
                   <span>+91 XXXXXXXXXX</span>
