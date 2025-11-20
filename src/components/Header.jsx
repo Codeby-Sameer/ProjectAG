@@ -177,10 +177,12 @@ export default function Header() {
 
               {isDivisionsOpen && (
                 <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-blue-200 shadow-2xl rounded-lg py-2 z-50 backdrop-blur-sm">
-                  <Link
-                    to="/production"
+                  <a
+                    href="https://anand-cinemas.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                     className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('/production') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
+                      isActiveLink('/https://anand-cinemas.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
@@ -188,25 +190,29 @@ export default function Header() {
                       <span>🎬</span>
                       <span>Anand Cinemaz</span>
                     </div>
-                  </Link>
+                  </a>
 
-                  <Link
-                    to="/real-estate"
+                  <a
+                   href="https://anand-realtyy-new.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                     className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('/real-estate') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
+                      isActiveLink('https://anand-realtyy-new.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
                     <div className="font-semibold flex items-center gap-2">
                       <span>🏢</span>
-                      <span>Anand Realty</span>
+                      <span>Anand Realtyy</span>
                     </div>
-                  </Link>
+                  </a>
 
-                  <Link
-                    to="/infrastructure"
+                  <a
+                   href="https://anand-project-21.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                     className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('/infrastructure') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
+                      isActiveLink('https://anand-project-21.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
@@ -214,7 +220,7 @@ export default function Header() {
                       <span>🏗️</span>
                       <span>Anand Infra</span>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               )}
             </div>
@@ -331,10 +337,12 @@ export default function Header() {
 
                   {isMobileDivisionsOpen && (
                     <div className="ml-2 mt-1 space-y-1 border-l-2 border-blue-200 pl-3 py-1">
-                      <Link 
-                        to="/production" 
+                   <a
+                    href="https://anand-cinemas.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                         className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('/production') 
+                          isActiveLink('https://anand-cinemas.vercel.app') 
                             ? "text-blue-700 bg-blue-100 border border-blue-200" 
                             : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
                         }`} 
@@ -344,12 +352,14 @@ export default function Header() {
                           <span>🎬</span>
                           <span>Anand Cinemaz</span>
                         </div>
-                      </Link>
+                      </a>
 
-                      <Link 
-                        to="/real-estate" 
+                      <a
+                   href="https://anand-realtyy-new.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                         className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('/real-estate') 
+                          isActiveLink('https://anand-realtyy-new.vercel.app') 
                             ? "text-blue-700 bg-blue-100 border border-blue-200" 
                             : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
                         }`} 
@@ -357,14 +367,16 @@ export default function Header() {
                       >
                         <div className="flex items-center gap-2">
                           <span>🏢</span>
-                          <span>Anand Realty</span>
+                          <span>Anand Realtyy</span>
                         </div>
-                      </Link>
+                      </a>
 
-                      <Link 
-                        to="/infrastructure" 
+  <a
+                   href="https://anand-project-21.vercel.app"
+                     target="_blank"
+                  rel="noopener noreferrer"
                         className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('/infrastructure') 
+                          isActiveLink('"https://anand-project-21.vercel.app') 
                             ? "text-blue-700 bg-blue-100 border border-blue-200" 
                             : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
                         }`} 
@@ -374,7 +386,7 @@ export default function Header() {
                           <span>🏗️</span>
                           <span>Anand Infra</span>
                         </div>
-                      </Link>
+                      </a>
                     </div>
                   )}
                 </div>

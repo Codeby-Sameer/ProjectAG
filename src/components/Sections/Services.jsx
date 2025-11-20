@@ -1,61 +1,74 @@
 // components/Services.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Services = () => {
-  const services = [
-    {
-      title: "Anand Realtyy",
-      icon: "🏠",
-      description: "Built on trust, transparency, and long-term value. We ensure every property rests on strong legal foundations through meticulous document scrutiny and ethical practices.",
-      features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
-      gradient: "from-green-500 to-green-700",
-      image: "venture.jpg",
-      link: "https://anand-realtyy-new.vercel.app",
-      buttonText: "Explore Properties"
+  // Animation variants for staggered fade-in
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
     },
-    {
-      title: "Anand Infra",
-      icon: "🏗️",
-      description: "Creating infrastructure that endures for generations—strong, precise, and timeless. We handle commercial complexes, townships, industrial structures, and public utilities.",
-      features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
-      gradient: "from-blue-500 to-blue-700",
-      image: "infra.png",
-      link: "https://anand-project-21.vercel.app",
-      buttonText: "Explore Projects"
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
     },
-    {
-      title: "Anand Cinemaz",
-      icon: "🎬",
-      description: "Producing meaningful, impactful, and high-quality cinematic content that blends creativity with purpose—crafting films that entertain and inspire.",
-      features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
-      gradient: "from-purple-500 to-purple-700",
-      image: "Production.png",
-      link: "https://anand-cinemas.vercel.app",
-      buttonText: "Explore Productions"
-    }
-  ];
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  };
 
   return (
-  <>
-   {/* Enhanced Business Verticals Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+    <>
+      {/* Enhanced Business Verticals Section */}
+      <section className="pt-14 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">
-                Our Business Verticals
+            {/* Section Header */}
+            <motion.div
+              className="text-center md:mb-14 mb-6"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeIn}
+            >
+              <h2 className="text-3xl md:text-5xl font-bold text-navy ">
+                Our Business Divisions
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto mb-8 rounded-full"></div>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="lg:text-xl sm:text-md text-base text-gray-600 max-w-3xl mx-auto">
                 Diversified excellence across multiple sectors, united by our commitment to quality and innovation
               </p>
-            </div>
+            </motion.div>
 
             {/* Anand Realty - Enhanced Section */}
-            <div className="mb-20">
+            <motion.div
+              className="mb-20"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                <div className="relative group">
+                <motion.div variants={itemVariants} className="relative group">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
                     <img
                       src="/venture.jpg"
@@ -69,16 +82,16 @@ const Services = () => {
                       <p className="text-green-200 text-lg">Land Plots & Ventures</p>
                     </div>
                   </div>
-                </div>
-                
-                <div className="space-y-6">
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-6">
                   <h3 className="text-3xl font-bold text-navy">Premium Real Estate Development</h3>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="sm:text-lg text-md text-gray-700 leading-relaxed">
                     Anand Realty stands as a beacon of trust and transparency in the real estate sector. 
                     We specialize in transforming landscapes into thriving communities through meticulous 
                     planning and ethical practices.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       { icon: "🔒", title: "Legal Assurance", desc: "100% clear titles" },
@@ -86,25 +99,37 @@ const Services = () => {
                       { icon: "💰", title: "Best Value", desc: "Premium locations" },
                       { icon: "⚡", title: "Quick Possession", desc: "Timely delivery" }
                     ].map((feature, index) => (
-                      <div key={index} className="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white p-4 rounded-xl shadow-lg border border-gray-100"
+                      >
                         <div className="text-2xl mb-2">{feature.icon}</div>
                         <h4 className="font-bold text-navy text-sm mb-1">{feature.title}</h4>
                         <p className="text-xs text-gray-600">{feature.desc}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                  
+
                   <a
-                    href="/real-estate"
+                    href="https://anand-realtyy-new.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                   >
                     Explore Land Ventures →
                   </a>
-                </div>
+                </motion.div>
               </div>
 
               {/* Realty Features Grid */}
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <motion.div
+                className="grid md:grid-cols-3 gap-6 mb-12"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 {[
                   {
                     title: "Residential Plots",
@@ -125,19 +150,29 @@ const Services = () => {
                     color: "from-emerald-400 to-emerald-600"
                   }
                 ].map((feature, index) => (
-                  <div key={index} className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}
+                  >
                     <div className="text-3xl mb-4">{feature.icon}</div>
                     <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
                     <p className="text-white/90 text-sm">{feature.description}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Anand Cinemaz - Enhanced Section */}
-            <div className="mb-20">
+            <motion.div
+              className="mb-20"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                <div className="lg:order-2 relative group">
+                <motion.div variants={itemVariants} className="lg:order-2 relative group">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
                     <img
                       src="/Production.png"
@@ -151,16 +186,16 @@ const Services = () => {
                       <p className="text-purple-200 text-lg">Film Production & Entertainment</p>
                     </div>
                   </div>
-                </div>
-                
-                <div className="lg:order-1 space-y-6">
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="lg:order-1 space-y-6">
                   <h3 className="text-3xl font-bold text-navy">Creative Storytelling Excellence</h3>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="sm:text-lg text-md text-gray-700 leading-relaxed">
                     Anand Cinemaz brings compelling stories to life through cutting-edge production 
                     techniques and artistic vision. We create meaningful cinema that entertains, 
                     inspires, and leaves a lasting impact on audiences worldwide.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       { icon: "🎭", title: "Creative Vision", desc: "Artistic storytelling" },
@@ -168,14 +203,18 @@ const Services = () => {
                       { icon: "💫", title: "Global Reach", desc: "International distribution" },
                       { icon: "📱", title: "Digital Content", desc: "Multi-platform presence" }
                     ].map((feature, index) => (
-                      <div key={index} className="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white p-4 rounded-xl shadow-lg border border-gray-100"
+                      >
                         <div className="text-2xl mb-2">{feature.icon}</div>
                         <h4 className="font-bold text-navy text-sm mb-1">{feature.title}</h4>
                         <p className="text-xs text-gray-600">{feature.desc}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                  
+
                   <a
                     href="https://anand-cinemas.vercel.app"
                     target="_blank"
@@ -184,11 +223,17 @@ const Services = () => {
                   >
                     Explore Productions →
                   </a>
-                </div>
+                </motion.div>
               </div>
 
               {/* Cinemaz Features Grid */}
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <motion.div
+                className="grid md:grid-cols-3 gap-6 mb-12"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 {[
                   {
                     title: "Movie Production",
@@ -206,22 +251,32 @@ const Services = () => {
                     title: "Digital Content",
                     description: "OTT platforms and digital media content for modern audiences",
                     icon: "📺",
-                    color: "from-red-400 to-red-600"
+                    color: "from-cyan-400 to-cyan-600"
                   }
                 ].map((feature, index) => (
-                  <div key={index} className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}
+                  >
                     <div className="text-3xl mb-4">{feature.icon}</div>
                     <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
                     <p className="text-white/90 text-sm">{feature.description}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Anand Infra - Enhanced Section */}
-            <div className="mb-20">
+            <motion.div
+              className="mb-20"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                <div className="relative group">
+                <motion.div variants={itemVariants} className="relative group">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
                     <img
                       src="/infra.png"
@@ -235,16 +290,16 @@ const Services = () => {
                       <p className="text-blue-200 text-lg">Development & Construction</p>
                     </div>
                   </div>
-                </div>
-                
-                <div className="space-y-6">
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-6">
                   <h3 className="text-3xl font-bold text-navy">Building Tomorrow's Infrastructure</h3>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="sm:text-lg text-md text-gray-700 leading-relaxed">
                     Anand Infra is at the forefront of creating sustainable, future-ready infrastructure 
                     that stands the test of time. Our projects combine innovative engineering with 
                     environmental consciousness to build communities that thrive.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       { icon: "🏆", title: "Quality First", desc: "ISO standards" },
@@ -252,14 +307,18 @@ const Services = () => {
                       { icon: "⚡", title: "Innovation", desc: "Modern technology" },
                       { icon: "🤝", title: "Partnership", desc: "Collaborative approach" }
                     ].map((feature, index) => (
-                      <div key={index} className="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white p-4 rounded-xl shadow-lg border border-gray-100"
+                      >
                         <div className="text-2xl mb-2">{feature.icon}</div>
                         <h4 className="font-bold text-navy text-sm mb-1">{feature.title}</h4>
                         <p className="text-xs text-gray-600">{feature.desc}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                  
+
                   <a
                     href="https://anand-project-21.vercel.app"
                     target="_blank"
@@ -268,11 +327,17 @@ const Services = () => {
                   >
                     Explore Projects →
                   </a>
-                </div>
+                </motion.div>
               </div>
 
               {/* Infra Features Grid */}
-              <div className="grid md:grid-cols-3 gap-6">
+              <motion.div
+                className="grid md:grid-cols-3 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 {[
                   {
                     title: "Gated Communities",
@@ -293,19 +358,21 @@ const Services = () => {
                     color: "from-indigo-400 to-indigo-600"
                   }
                 ].map((feature, index) => (
-                  <div key={index} className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className={`bg-gradient-to-br ${feature.color} text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300`}
+                  >
                     <div className="text-3xl mb-4">{feature.icon}</div>
                     <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
                     <p className="text-white/90 text-sm">{feature.description}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-
-     
     </>
   );
 };

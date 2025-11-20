@@ -21,13 +21,14 @@ import CrmApp from './components/crm/CrmApp';
 import VisionMission from './components/Sections/VisionMIssion';
 import Services from './components/Sections/Services';
 import Achievements from './components/Sections/Achievements';
-import Founder from './components/Sections/Founder';
 
 
 import CaseStudies from './components/Sections/CaseStudies';
 import ContactUs from './components/Sections/Contactus';
 import Contact from './components/Contact';
 import ChatBotIcon from './components/Sections/ChatBotIcon';
+import ScrollToTop from './components/Sections/ScrolledToTop';
+import ScrollingNotice from './components/Sections/Scroller';
 
 // Layout Component
 function Layout() {
@@ -48,12 +49,13 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <About />
+      <ScrollingNotice/>
     <Services/>
+     
     <VisionMission/>
     <CaseStudies/>
     <Achievements/>
-   <ContactUs />
+ 
    
       
       
@@ -78,6 +80,7 @@ function App() {
   return (
     <MultiFormModalProvider>
       <Router>
+        <ScrollToTop/>
         <Routes>
           {/* CRM routes - placed first for priority */}
           <Route path="/crm/*" element={<CrmApp />} />

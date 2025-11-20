@@ -54,11 +54,38 @@ const Footer = () => {
           {/* Our Divisions */}
           <div>
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gold">Our Divisions</h3>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li><Link to="/real-estate" className="text-gray-300 hover:text-gold transition-colors block py-1">Real Estate</Link></li>
-              <li><Link to="/production" className="text-gray-300 hover:text-gold transition-colors block py-1">Film Production</Link></li>
-              <li><Link to="/infrastructure" className="text-gray-300 hover:text-gold transition-colors block py-1">Infrastructure</Link></li>
-            </ul>
+          <ul className="space-y-2 text-xs sm:text-sm">
+  <li>
+    <a
+      href="https://anand-realtyy-new.vercel.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-300 hover:text-gold transition-colors block py-1"
+    >
+      Anand Realtyy
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://anand-cinemas.vercel.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-300 hover:text-gold transition-colors block py-1"
+    >
+      Anand Cinemaz
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://anand-project-21.vercel.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-300 hover:text-gold transition-colors block py-1"
+    >
+      Anand Infra
+    </a>
+  </li>
+</ul>
           </div>
 
           {/* Contact Info */}

@@ -1,6 +1,7 @@
 // components/CaseStudies.js
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 const CaseStudies = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -65,7 +66,7 @@ const CaseStudies = () => {
 
   return (
     <section id="case-studies" className="py-2 sm:py-3 ">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div >
         {/* Header Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
@@ -192,17 +193,40 @@ const CaseStudies = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-8 text-white">
-            <h3 className="text-xl font-bold mb-3">Create Your Success Story</h3>
-            <p className="text-blue-100 text-sm mb-4 max-w-md mx-auto">
-              Let's collaborate to achieve remarkable results for your project
+        <section className="py-12 mt-9 md:py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+              Create Your Success Story
+            </h2>
+            <p className="text-lg md:text-xl text-blue-200 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
+              {/* Join thousands of satisfied families who have made Anand Realtyy their trusted partner in real estate. 
+              Let's build your legacy together. */}
+               Let's collaborate to achieve remarkable results for your project. Let's build your legacy together.
+            
             </p>
-            <button className="bg-white text-blue-900 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-100 transition-all duration-300">
-              Start Your Project
-            </button>
-          </div>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+              <Link 
+                to="/contact" 
+                className="bg-orange-500 hover:bg-orange-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
+              >
+                Start Your Project
+              </Link>
+              <Link 
+                to="/projects" 
+                className="border border-white text-white hover:bg-white hover:text-blue-800 px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all duration-300 text-sm md:text-base"
+              >
+                Browse All Projects
+              </Link>
+            </div>
+          </motion.div>
         </div>
+      </section>
       </div>
     </section>
   );
