@@ -64,7 +64,7 @@ const CaseStudies = () => {
   };
 
   return (
-    <section id="case-studies" className="py-16 sm:py-20  bg-slate-50">
+    <section id="case-studies" className="py-2 sm:py-3 ">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -148,7 +148,7 @@ const CaseStudies = () => {
                     </div>
 
                     {/* Stats */}
-                    <div className="flex justify-between mt-6 pt-4 border-t border-slate-200">
+                    <div className="lg:flex hidden justify-between mt-6 pt-4 border-t border-slate-200">
                       <div className="text-center">
                         <div className={`text-lg font-bold text-${study.gradient.split('-')[1]}-600`}>
                           {study.results.split('|')[0].split(' ')[0]}
@@ -187,24 +187,7 @@ const CaseStudies = () => {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => goToSlide((currentSlide - 1 + caseStudies.length) % caseStudies.length)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg"
-            >
-              <svg className="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={() => goToSlide((currentSlide + 1) % caseStudies.length)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg"
-            >
-              <svg className="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+        
           </div>
         </div>
 

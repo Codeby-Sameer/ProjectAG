@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import { useMultiFormModal } from './Context/ModalContext';
 
 export default function Header() {
@@ -13,7 +12,6 @@ export default function Header() {
   const mobileDropdownRef = useRef(null);
   const mobileDivisionsRef = useRef(null);
   const menuButtonRef = useRef(null);
-  const firstMobileFocusableRef = useRef(null);
 
   const { openModal } = useMultiFormModal();
   const location = useLocation();
@@ -28,19 +26,15 @@ export default function Header() {
         setIsDivisionsOpen(false);
       }
 
-      // Mobile menu (and mobile dropdown)
+      // Mobile menu
       if (
-        mobileDropdownRef.current &&
+        isMenuOpen &&
+        mobileDropdownRef.current && 
         !mobileDropdownRef.current.contains(target) &&
-        menuButtonRef.current &&
+        menuButtonRef.current && 
         !menuButtonRef.current.contains(target)
       ) {
         setIsMenuOpen(false);
-        setIsMobileDivisionsOpen(false);
-      }
-
-      // Mobile divisions dropdown only
-      if (mobileDivisionsRef.current && !mobileDivisionsRef.current.contains(target)) {
         setIsMobileDivisionsOpen(false);
       }
     };
@@ -52,7 +46,7 @@ export default function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, []);
+  }, [isMenuOpen]);
 
   // Close menus when route changes
   useEffect(() => {
@@ -63,18 +57,18 @@ export default function Header() {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = previousOverflow || 'unset';
+      document.body.style.overflow = 'unset';
     }
+    
     return () => {
-      document.body.style.overflow = previousOverflow || 'unset';
+      document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
 
-  // Close on Escape, and manage focus when mobile menu opens
+  // Close on Escape
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
@@ -82,34 +76,28 @@ export default function Header() {
         setIsDivisionsOpen(false);
         setIsMobileDivisionsOpen(false);
       }
-      // Optional: close divisions with ArrowLeft/ArrowRight - not implemented
     };
 
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
-  useEffect(() => {
-    // when mobile menu opens, focus the first interactive element for accessibility
-    if (isMenuOpen) {
-      const el = mobileDropdownRef.current?.querySelector('a, button');
-      if (el) el.focus();
-    }
-  }, [isMenuOpen]);
-
   const isActiveLink = (path) => location.pathname === path;
   const isDivisionActive = () => ['/production', '/real-estate', '/infrastructure'].includes(location.pathname);
 
-  const openAppointmentForm = (division) => {
-    openModal('real-estate', { prefillData: division });
-    setIsMenuOpen(false);
+  const toggleMenu = () => {
+    setIsMenuOpen((v) => !v);
+    setIsMobileDivisionsOpen(false);
   };
-
-  const toggleMenu = () => setIsMenuOpen((v) => !v);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
     setIsMobileDivisionsOpen(false);
+  };
+
+  const openProblemForm = () => {
+    openModal('problem-solution', { prefillData: 'some data' });
+    closeMenu();
   };
 
   return (
@@ -117,41 +105,42 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto py-4 lg:py-3 px-2">
         <div className="flex items-center justify-between gap-4">
           {/* Logo & Brand */}
-          <Link
-            to="/"
-            className="flex items-center gap-3"
-            onClick={closeMenu}
-            aria-label="Go to home"
-          >
-            <div className="flex-shrink-0 ">
+          <Link to="/" className="flex items-center space-x-2 md:space-x-3 group">
+            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
               <img
-                src='founder.jpg'
+                src="/founder.jpg"
                 alt="Founder"
-                className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full shadow-lg object-cover object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center">
-                <img src='logo.png' alt="Anand group logo" className="w-full p-2 md:p-3" />
+            <div className="flex flex-col items-start">
+              <div className="flex items-center space-x-2">
+                <img
+                  src="/logo.png"
+                  alt="Anand Logo"
+                  className="w-8 h-10 md:w-10 md:h-12 object-contain"
+                />
+                <div className="flex flex-col items-start">
+                  <h1 className="text-lg md:text-xl font-bold m-0 ">
+                    <span className="text-orange-500">ANAND GROUP </span>
+                  </h1>
+                  <p className="sm:text-xs text-xxs text-gray-600 italic mt-1">
+                    "Dharmo Rakshati Rakshitah"
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="flex flex-col leading-tight">
-              <div className="flex items-center gap-1 text-base md:text-lg font-bold text-orange-500">
-                <span>ANAND</span>
-                <span>GROUP</span>
-              </div>
-              <p className="text-micro lg:text-xs md:text-xs italic -mt-0.5">"Dharmo Rakshati Rakshitah"</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-3 lg:space-x-2">
+          <div className="hidden lg:flex items-center space-x-3">
             <Link
               to="/"
-              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
-                isActiveLink('/') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+              className={`px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                isActiveLink('/') 
+                  ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                  : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
               }`}
             >
               Home
@@ -159,21 +148,25 @@ export default function Header() {
 
             <Link
               to="/about"
-              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
-                isActiveLink('/about') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+              className={`px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                isActiveLink('/about') 
+                  ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                  : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
               }`}
             >
               About
             </Link>
 
-            {/* Divisions Dropdown (desktop)
+            {/* Divisions Dropdown (desktop) */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDivisionsOpen((v) => !v)}
                 aria-haspopup="true"
                 aria-expanded={isDivisionsOpen}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium transition-all ${
-                  isDivisionActive() ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                  isDivisionActive() 
+                    ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                    : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
                 }`}
               >
                 <span>Divisions</span>
@@ -183,11 +176,11 @@ export default function Header() {
               </button>
 
               {isDivisionsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gold/30 shadow-2xl rounded-lg py-2 z-50 backdrop-blur-sm">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-blue-200 shadow-2xl rounded-lg py-2 z-50 backdrop-blur-sm">
                   <Link
                     to="/production"
-                    className={`block w-full text-left px-4 py-3 transition-all border-b border-gold/10 hover:bg-orange-50 hover:pl-6 ${
-                      isActiveLink('/production') ? 'bg-navy text-white font-semibold' : 'text-navy'
+                    className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
+                      isActiveLink('/production') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
@@ -199,8 +192,8 @@ export default function Header() {
 
                   <Link
                     to="/real-estate"
-                    className={`block w-full text-left px-4 py-3 transition-all border-b border-gold/10 hover:bg-orange-50 hover:pl-6 ${
-                      isActiveLink('/real-estate') ? 'bg-navy text-white font-semibold' : 'text-navy'
+                    className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
+                      isActiveLink('/real-estate') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
@@ -212,8 +205,8 @@ export default function Header() {
 
                   <Link
                     to="/infrastructure"
-                    className={`block w-full text-left px-4 py-3 transition-all hover:bg-orange-50 hover:pl-6 ${
-                      isActiveLink('/infrastructure') ? 'bg-navy text-white font-semibold' : 'text-navy'
+                    className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:bg-blue-50 hover:pl-6 ${
+                      isActiveLink('/infrastructure') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
                     }`}
                     onClick={() => setIsDivisionsOpen(false)}
                   >
@@ -224,29 +217,37 @@ export default function Header() {
                   </Link>
                 </div>
               )}
-            </div> */}
+            </div>
 
-            <Link to="/crm/login" className={`px-3 py-2 rounded-lg font-medium transition-colors ${isActiveLink('/crm') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`}>
+            <Link 
+              to="/crm/login" 
+              className={`px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                isActiveLink('/crm') 
+                  ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                  : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+              }`}
+            >
               CRM
             </Link>
 
-            <Link to="/contact" className={`px-3 py-2 rounded-lg font-medium transition-colors ${isActiveLink('/contact') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`}>
+            <Link 
+              to="/contact" 
+              className={`px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                isActiveLink('/contact') 
+                  ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                  : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+              }`}
+            >
               Contact
             </Link>
 
-            <div className="flex items-center gap-2">
+            <div className="">
               <button
-                onClick={() => openModal('real-estate', { prefillData: 'some data' })}
-                className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold transition-transform duration-200 shadow-lg hover:scale-105"
+                onClick={openProblemForm}
+                className="px-6 py-3 rounded-lg text-base font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2"
               >
-                Land Information Form
-              </button>
-
-              <button
-                onClick={() => openModal('problem-solution', { prefillData: 'some data' })}
-                className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold transition-transform duration-200 shadow-lg hover:scale-105"
-              >
-                Problem Submission Form
+                <span className="text-lg">📝</span>
+                <span>Problem Submission Form</span>
               </button>
             </div>
           </div>
@@ -255,7 +256,7 @@ export default function Header() {
           <div className="lg:hidden flex items-center">
             <button
               ref={menuButtonRef}
-              className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+              className="p-2 rounded-lg text-blue-800 hover:bg-blue-50 transition-all duration-200"
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -275,28 +276,50 @@ export default function Header() {
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
           <>
-            <div className="lg:hidden fixed inset-0 z-40 bg-black/20" onClick={closeMenu} aria-hidden />
+            <div 
+              className="lg:hidden  fixed inset-0 z-40 bg-black/50" 
+              onClick={closeMenu} 
+              aria-hidden="true" 
+            />
 
             <div
               id="mobile-menu"
               ref={mobileDropdownRef}
-              className="lg:hidden fixed top-20 left-4 right-4 bg-white/95 backdrop-blur-lg border border-gold/30 rounded-xl shadow-2xl z-50 py-4 overflow-auto max-h-[70vh]"
+              className="lg:hidden fixed top-20 left-4 right-4 bg-white  border border-blue-200 rounded-xl shadow-2xl z-50 py-4 overflow-auto  max-h-[80vh]"
             >
               <div className="space-y-1 px-2">
-                <Link to="/" className={`block px-4 py-3 rounded-lg font-medium ${isActiveLink('/') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
+                <Link 
+                  to="/" 
+                  className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
+                    isActiveLink('/') 
+                      ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                      : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                  }`} 
+                  onClick={closeMenu}
+                >
                   Home
                 </Link>
 
-                <Link to="/about" className={`block px-4 py-3 rounded-lg font-medium ${isActiveLink('/about') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
+                <Link 
+                  to="/about" 
+                  className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
+                    isActiveLink('/about') 
+                      ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                      : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                  }`} 
+                  onClick={closeMenu}
+                >
                   About
                 </Link>
 
                 {/* Mobile Divisions Dropdown */}
-                {/* <div ref={mobileDivisionsRef}>
+                <div ref={mobileDivisionsRef}>
                   <button
                     onClick={() => setIsMobileDivisionsOpen((v) => !v)}
-                    className={`w-full text-left flex items-center justify-between px-4 py-3 rounded-lg font-medium ${
-                      isDivisionActive() ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'
+                    className={`w-full text-left flex items-center justify-between px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
+                      isDivisionActive() 
+                        ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                        : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
                     }`}
                     aria-expanded={isMobileDivisionsOpen}
                   >
@@ -307,46 +330,86 @@ export default function Header() {
                   </button>
 
                   {isMobileDivisionsOpen && (
-                    <div className="ml-2 mt-1 space-y-1 border-l-2 border-gold/40 pl-3 py-1">
-                      <Link to="/production" className={`block px-3 py-2.5 rounded-lg font-medium ${isActiveLink('/production') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
-                        <div className="font-semibold flex items-center gap-2">
+                    <div className="ml-2 mt-1 space-y-1 border-l-2 border-blue-200 pl-3 py-1">
+                      <Link 
+                        to="/production" 
+                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                          isActiveLink('/production') 
+                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                        }`} 
+                        onClick={closeMenu}
+                      >
+                        <div className="flex items-center gap-2">
                           <span>🎬</span>
                           <span>Anand Cinemaz</span>
                         </div>
                       </Link>
 
-                      <Link to="/real-estate" className={`block px-3 py-2.5 rounded-lg font-medium ${isActiveLink('/real-estate') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
-                        <div className="font-semibold flex items-center gap-2">
+                      <Link 
+                        to="/real-estate" 
+                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                          isActiveLink('/real-estate') 
+                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                        }`} 
+                        onClick={closeMenu}
+                      >
+                        <div className="flex items-center gap-2">
                           <span>🏢</span>
                           <span>Anand Realty</span>
                         </div>
                       </Link>
 
-                      <Link to="/infrastructure" className={`block px-3 py-2.5 rounded-lg font-medium ${isActiveLink('/infrastructure') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
-                        <div className="font-semibold flex items-center gap-2">
+                      <Link 
+                        to="/infrastructure" 
+                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                          isActiveLink('/infrastructure') 
+                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                        }`} 
+                        onClick={closeMenu}
+                      >
+                        <div className="flex items-center gap-2">
                           <span>🏗️</span>
                           <span>Anand Infra</span>
                         </div>
                       </Link>
                     </div>
                   )}
-                </div> */}
+                </div>
 
-                <Link to="/crm/login" className={`block px-4 py-3 rounded-lg font-medium ${isActiveLink('/crm') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
+                <Link 
+                  to="/crm/login" 
+                  className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
+                    isActiveLink('/crm') 
+                      ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                      : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                  }`} 
+                  onClick={closeMenu}
+                >
                   CRM
                 </Link>
 
-                <Link to="/contact" className={`block px-4 py-3 rounded-lg font-medium ${isActiveLink('/contact') ? 'text-navy font-bold bg-gold/20 border border-gold/30' : 'text-navy/90 hover:text-navy hover:bg-gold/10'}`} onClick={closeMenu}>
+                <Link 
+                  to="/contact" 
+                  className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 ${
+                    isActiveLink('/contact') 
+                      ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                      : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+                  }`} 
+                  onClick={closeMenu}
+                >
                   Contact
                 </Link>
 
-                <div className="px-2 pt-3 border-t border-gold/20 mt-2 space-y-2">
-                  <button onClick={() => openModal('real-estate', { prefillData: 'some data' })} className="w-full bg-green-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-200 shadow-lg">
-                    Land Information Form
-                  </button>
-
-                  <button onClick={() => openModal('problem-solution', { prefillData: 'some data' })} className="w-full bg-green-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-200 shadow-lg">
-                    Problem Submission Form
+                <div className="px-2 pt-3 border-t border-blue-200 mt-2">
+                  <button 
+                    onClick={openProblemForm}
+                    className="w-full px-4 py-3 rounded-lg text-sm font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg flex items-center justify-center space-x-2"
+                  >
+                    <span className="text-lg">📝</span>
+                    <span>Problem Submission Form</span>
                   </button>
                 </div>
               </div>

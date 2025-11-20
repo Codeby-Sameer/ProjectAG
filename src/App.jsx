@@ -49,12 +49,12 @@ function HomePage() {
     <>
       <Hero />
       <About />
-    <VisionMission/>
     <Services/>
+    <VisionMission/>
     <CaseStudies/>
     <Achievements/>
    <ContactUs />
-    <Founder/>
+   
       
       
     

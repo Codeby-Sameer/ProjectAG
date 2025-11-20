@@ -33,9 +33,7 @@ export default {
           light: '#d8b4fe',
         }
       },
-      fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-      },
+      
       keyframes: {
         'fade-in': {
           '0%': { opacity: '0' },

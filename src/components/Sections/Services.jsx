@@ -37,7 +37,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-12 sm:py-20 bg-slate-50">
+    <section id="services" className="py-1 sm:py-2 ">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4 sm:mb-6">Our Services</h2>
@@ -92,31 +92,30 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Additional Info Section */}
-        <div className="mt-12 sm:mt-16 grid md:grid-cols-3 gap-6 sm:gap-8 text-center">
-          {[
-            {
-              icon: "📍",
-              title: "Strategic Locations",
-              description: "Prime land parcels in developing corridors with high growth potential"
-            },
-            {
-              icon: "🎥",
-              title: "Creative Excellence",
-              description: "Award-winning production house with global recognition"
-            },
-            {
-              icon: "🏆",
-              title: "Quality Construction",
-              description: "ISO certified construction standards with premium materials"
-            }
-          ].map((info, index) => (
-            <div key={index} className="p-6 bg-white rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl mb-4">{info.icon}</div>
-              <h4 className="font-bold text-blue-900 text-lg mb-2">{info.title}</h4>
-              <p className="text-slate-600 text-sm">{info.description}</p>
-            </div>
-          ))}
+        
+
+        {/* New Unified Values Section */}
+        <div className="mt-12 sm:mt-16 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-8 sm:p-12 text-center">
+          <h3 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-6">Our Unified Commitment</h3>
+          <div className="w-16 h-1 bg-yellow-500 mx-auto mb-8"></div>
+          <p className="text-slate-700 md:text-lg text-sm leading-relaxed max-w-4xl mx-auto mb-8">
+            Whether building homes, creating infrastructure, or producing films, we operate with the same core values: 
+            <span className="font-semibold text-blue-800"> integrity in every transaction, quality in every detail, and a genuine commitment to making a positive impact</span> 
+            on our communities and the environment.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            {[
+              { value: "20+", label: "Years of Trust" },
+              { value: "1000+", label: "Happy Families" },
+              { value: "50+", label: "Projects Completed" },
+              { value: "5+", label: "Awards Won" }
+            ].map((stat, index) => (
+              <div key={index} className="bg-white bg-opacity-50 rounded-xl p-4 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-blue-900">{stat.value}</div>
+                <div className="text-sm text-slate-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -26,7 +26,7 @@ const Achievements = () => {
   ];
 
   return (
-    <section id="achievements" className="py-16 sm:py-20 bg-white">
+    <section id="achievements" className="py-7 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
