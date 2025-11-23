@@ -74,19 +74,19 @@ export default function Header() {
     },
     {
       name: "Anand Celebrity Service",
-      url: "https://anand-celebrity.vercel.app",
+      url: "https://anand-ceelebrity.vercel.app",
       icon: "⭐",
       description: "Celebrity Management"
     },
     {
       name: "Anand Lockers",
-      url: "https://anand-lockers.vercel.app",
+      url: "https://anand-lockers-safety.vercel.app",
       icon: "🗄️",
       description: "Secure Storage"
     },
     {
       name: "Anand Share Broking",
-      url: "https://anand-broking.vercel.app",
+      url: "https://anand-share-brokering.vercel.app",
       icon: "📈",
       description: "Stock Trading"
     },
@@ -165,9 +165,21 @@ export default function Header() {
   }, []);
 
   const isActiveLink = (path) => location.pathname === path;
-  const isDivisionActive = () => divisions.some(division => 
-    location.pathname === division.url.replace(/^https?:\/\/[^/]+/, '')
-  );
+  const isDivisionActive = () => {
+  const currentPath = location.pathname;
+  // Only consider divisions active when on actual division pages
+  // and explicitly exclude home and other main pages
+  const excludedPaths = ['/', '/about', '/contact', '/crm'];
+  
+  if (excludedPaths.includes(currentPath)) {
+    return false;
+  }
+  
+  return divisions.some(division => {
+    const divisionPath = division.url.replace(/^https?:\/\/[^/]+/, '');
+    return currentPath === divisionPath || currentPath === divisionPath + '/';
+  });
+};
 
   const toggleMenu = () => {
     setIsMenuOpen((v) => !v);

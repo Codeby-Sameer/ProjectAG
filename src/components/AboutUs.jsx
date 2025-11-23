@@ -418,145 +418,139 @@ const AboutUs = () => {
     </section>
  
   
-        <ServicesCarousel/>
+        {/* <ServicesCarousel/> */}
 
 {/* Enhanced CTA Section */}
 <section className="py-20 bg-gradient-to-br from-navy to-blue-900 text-white relative overflow-hidden">
   <div className="container mx-auto px-6 relative z-10">
     <div className="max-w-6xl mx-auto text-center">
-      <h2 className="text-2xl md:text-5xl font-bold mb-6">
+      <h2 className="text-3xl md:text-5xl font-bold mb-6">
         Start Your Journey With Us
       </h2>
-      <p className="md:text-xl text-sm text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+      <p className="text-lg md:text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
         Explore our diverse business divisions and discover how Anand Group can help you achieve your goals across multiple industries.
       </p>
       
-      {/* Main Business Divisions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {/* All Divisions Grid - Consistent Sizes */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
         {[
           { 
-            to: "/real-estate", 
-            label: "🏢 Land Ventures", 
-            gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+            to: "https://anand-realtyy-new.vercel.app", 
+            label: "🏢 Realtyy", 
+            gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
             desc: "Premium plots & commercial ventures"
           },
           { 
-            to: "/production", 
-            label: "🎬 Film Production", 
+            to: "https://anand-cinemas.vercel.app", 
+            label: "🎬 Cinemaz", 
             gradient: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
             desc: "Movies, music & digital content"
           },
           { 
-            to: "/infrastructure", 
-            label: "🏗️ Infrastructure", 
-            gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+            to: "https://anand-project-21.vercel.app", 
+            label: "🏗️ Infra", 
+            gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
             desc: "Gated communities & development"
           },
           { 
-            to: "/events", 
-            label: "🎪 Events & Media", 
-            gradient: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
+            to: "https://anand-events.vercel.app", 
+            label: "🎪 Events", 
+            gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
             desc: "Events, media & awards"
           },
           { 
-            to: "/imports-exports", 
-            label: "🌐 Global Trade", 
-            gradient: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
+            to: "https://anand-trade.vercel.app", 
+            label: "🌐 Trade", 
+            gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
             desc: "Import & export services"
           },
           { 
-            to: "/technology", 
-            label: "🔒 Tech & Safety", 
-            gradient: "from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700",
+            to: "https://anand-transport-12.vercel.app", 
+            label: "🔒 Tech Safety", 
+            gradient: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
             desc: "Technology solutions & security"
-          }
-        ].map((button, index) => (
-          <div key={index} className="text-center group">
-            <Link
-              to={button.to}
-              className={`px-6 py-4 bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 min-w-full justify-center h-full`}
-            >
-              <span className="text-lg">{button.label.split(' ')[0]}</span>
-              <span className="text-sm">{button.label.split(' ').slice(1).join(' ')}</span>
-            </Link>
-            <p className="text-blue-200 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {button.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Additional Specialized Services */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-        {[
+          },
           { 
-            to: "/pharma", 
+            to: "https://anand-pharma.vercel.app", 
             label: "💊 Pharma", 
             gradient: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
             desc: "Pharmaceutical products"
           },
           { 
-            to: "/devocation", 
+            to: "https://anand-devocation.vercel.app", 
             label: "🙏 Devocation", 
-            gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
+            gradient: "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
             desc: "Spiritual services"
           },
           { 
-            to: "/yatra", 
+            to: "https://anand-yathra.vercel.app", 
             label: "✈️ Yatra", 
-            gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
+            gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",
             desc: "Travel & tourism"
           },
           { 
-            to: "/celebrity", 
+            to: "https://anand-ceelebrity.vercel.app", 
             label: "⭐ Celebrity", 
-            gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
+            gradient: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
             desc: "Celebrity management"
           },
           { 
-            to: "/lockers", 
+            to: "https://anand-lockers-safety.vercel.app/", 
             label: "🗄️ Lockers", 
-            gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",
+            gradient: "from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700",
             desc: "Secure storage solutions"
           },
           { 
-            to: "/share-broking", 
-            label: "📈 Share Broking", 
-            gradient: "from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700",
+            to: "https://anand-share-brokering.vercel.app/", 
+            label: "📈 Broking", 
+            gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
             desc: "Stock trading services"
           },
           { 
-            to: "/wealth", 
+            to: "https://anand-wealth-consultancy.vercel.app", 
             label: "💰 Wealth", 
-            gradient: "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
+            gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
             desc: "Financial consultancy"
-          },
-          { 
-            to: "/cinemaz", 
-            label: "🎬 Cinemaz", 
-            gradient: "from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700",
-            desc: "Cinema & entertainment"
           }
         ].map((button, index) => (
           <div key={index} className="text-center group">
-            <Link
-              to={button.to}
-              className={`px-4 py-3 bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 min-w-full justify-center text-sm`}
+            <a
+              href={button.to}
+              target="_blank" rel="noopener noreferrer"
+              className={` bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col items-center justify-center min-h-[70px] w-full border border-white/10 hover:border-white/20`}
             >
-              <span>{button.label.split(' ')[0]}</span>
-              <span className="text-xs">{button.label.split(' ').slice(1).join(' ')}</span>
-            </Link>
-            <p className="text-blue-200 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-2xl mb-2">{button.label.split(' ')[0]}</span>
+              <span className="text-sm font-medium">{button.label.split(' ').slice(1).join(' ')}</span>
+            </a>
+            <p className="text-blue-200 text-xs mt-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300 font-medium">
               {button.desc}
             </p>
           </div>
         ))}
       </div>
 
-    
+      {/* Call to Action */}
+      <div className="mt-12">
+        <p className="text-blue-200 text-lg mb-6">
+          Can't find what you're looking for?
+        </p>
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-3 bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          <span>Contact Us</span>
+          <span className="text-xl">→</span>
+        </Link>
+      </div>
     </div>
   </div>
+  
+  {/* Background Decorations */}
+  <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+  <div className="absolute top-0 right-0 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+  <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
 </section>
+
 
      
          

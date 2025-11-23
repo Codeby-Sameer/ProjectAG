@@ -6,42 +6,151 @@ import ScrollingNotice from './Sections/Scroller';
 const CompanyServicesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const services = [
-    {
-      title: "Anand Realtyy",
-      icon: "🏠",
-      description: "Built on trust, transparency, and long-term value. We ensure every property rests on strong legal foundations through meticulous document scrutiny and ethical practices.",
-      features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
-      gradient: "from-green-500 to-green-700",
-      dotColor: "bg-green-500",
-      image: "img/venture.jpg",
-      link: "https://anand-realtyy-new.vercel.app",
-      buttonText: "Explore Properties"
-    },
-    {
-      title: "Anand Infra",
-      icon: "🏗️",
-      description: "Creating infrastructure that endures for generations—strong, precise, and timeless. We handle commercial complexes, townships, industrial structures, and public utilities.",
-      features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
-      gradient: "from-blue-500 to-blue-700",
-      dotColor: "bg-blue-500",
-      image: "img/infra.png",
-      link: "https://anand-project-21.vercel.app",
-      buttonText: "Explore Projects"
-    },
-    {
-      title: "Anand Cinemaz",
-      icon: "🎬",
-      description: "Producing meaningful, impactful, and high-quality cinematic content that blends creativity with purpose—crafting films that entertain and inspire.",
-      features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
-      gradient: "from-purple-500 to-purple-700",
-      dotColor: "bg-purple-500",
-      image: "img/Production.png",
-      link: "https://anand-cinemas.vercel.app",
-      buttonText: "Explore Productions"
-    }
-  ];
-
+ const services = [
+  {
+    title: "Anand Realtyy",
+    icon: "🏠",
+    description: "Built on trust, transparency, and long-term value. We ensure every property rests on strong legal foundations through meticulous document scrutiny and ethical practices.",
+    features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
+    gradient: "from-green-500 to-green-700",
+    dotColor: "bg-green-500",
+    image: "img/venture.jpg",
+    link: "https://anand-realtyy-new.vercel.app",
+    buttonText: "Explore Properties"
+  },
+  {
+    title: "Anand Infra",
+    icon: "🏗️",
+    description: "Creating infrastructure that endures for generations—strong, precise, and timeless. We handle commercial complexes, townships, industrial structures, and public utilities.",
+    features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
+    gradient: "from-blue-500 to-blue-700",
+    dotColor: "bg-blue-500",
+    image: "img/infra.png",
+    link: "https://anand-project-21.vercel.app",
+    buttonText: "Explore Projects"
+  },
+  {
+    title: "Anand Cinemaz",
+    icon: "🎬",
+    description: "Producing meaningful, impactful, and high-quality cinematic content that blends creativity with purpose—crafting films that entertain and inspire.",
+    features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
+    gradient: "from-purple-500 to-purple-700",
+    dotColor: "bg-purple-500",
+    image: "img/Production.png",
+    link: "https://anand-cinemas.vercel.app",
+    buttonText: "Explore Productions"
+  },
+  {
+    title: "Anand Events, Media & Awards",
+    icon: "🎪",
+    description: "Crafting Experiences. Creating Influence. Celebrating Excellence. We turn ideas into extraordinary experiences through high-impact events, meaningful media, and prestigious awards.",
+    features: ["Film & Entertainment Events", "Corporate Galas", "Media Production", "Award Ceremonies"],
+    gradient: "from-orange-500 to-yellow-500",
+    dotColor: "bg-orange-500",
+    image: "img/events-media.jpg",
+    link: "https://anand-events.vercel.app",
+    buttonText: "Explore Events"
+  },
+  {
+    title: "Anand Imports & Exports",
+    icon: "🌐",
+    description: "Connecting Markets. Delivering Excellence. Expanding Global Possibilities through reliable international trading and seamless cross-border logistics.",
+    features: ["Global Trading", "Quality Assurance", "Supply Chain Management", "Market Expansion"],
+    gradient: "from-teal-500 to-cyan-700",
+    dotColor: "bg-teal-500",
+    image: "img/import-export.jpg",
+    link: "https://anand-trade.vercel.app",
+    buttonText: "Explore Trade"
+  },
+  {
+    title: "Anand Technology & Safety",
+    icon: "🔒",
+    description: "Redefining Travel Safety Through Innovation, Monitoring, and Human Excellence with advanced transport safety systems and intelligent solutions.",
+    features: ["Vehicle Monitoring", "Driver Safety", "Emergency Response", "Predictive Analytics"],
+    gradient: "from-indigo-500 to-blue-700",
+    dotColor: "bg-indigo-500",
+    image: "img/technology-safety.jpg",
+    link: "https://anand-transport-12.vercel.app",
+    buttonText: "Explore Safety"
+  },
+  {
+    title: "Anand Pharma",
+    icon: "💊",
+    description: "Making healthcare truly accessible with genuine medicines delivered in 15 minutes. Combining technology, licensed expertise, and intelligent logistics.",
+    features: ["Quick Delivery", "Medicine Access", "Quality Assurance", "Healthcare Innovation"],
+    gradient: "from-red-500 to-pink-700",
+    dotColor: "bg-red-500",
+    image: "img/pharma.jpg",
+    link: "https://anand-pharma.vercel.app",
+    buttonText: "Explore Pharma"
+  },
+  {
+    title: "Anand Devocation",
+    icon: "🙏",
+    description: "Curated spiritual journeys to sacred destinations, offering complete guidance and authentic pilgrimage experiences for soulful retreats.",
+    features: ["Pilgrimage Tours", "Spiritual Guidance", "Cultural Immersion", "Sacred Experiences"],
+    gradient: "from-amber-500 to-orange-700",
+    dotColor: "bg-amber-500",
+    image: "img/devocation.jpg",
+    link: "https://anand-devocation.vercel.app",
+    buttonText: "Explore Pilgrimage"
+  },
+  {
+    title: "Anand Yatra",
+    icon: "✈️",
+    description: "Effortless, enriching, and perfectly organized travel experiences with comprehensive itineraries and seamless journey planning.",
+    features: ["Travel Planning", "Itinerary Management", "Hotel Bookings", "Destination Coordination"],
+    gradient: "from-sky-500 to-blue-600",
+    dotColor: "bg-sky-500",
+    image: "img/yatra.jpg",
+    link: "https://anand-yathra.vercel.app",
+    buttonText: "Explore Travel"
+  },
+  {
+    title: "Anand Celebrity Service",
+    icon: "⭐",
+    description: "End-to-end secure travel services for celebrities and high-profile individuals with luxury transport, security, and complete backend support.",
+    features: ["Security Personnel", "Luxury Transport", "Private Stays", "Discreet Service"],
+    gradient: "from-violet-500 to-purple-700",
+    dotColor: "bg-violet-500",
+    image: "img/celebrity-service.jpg",
+    link: "https://anand-celebrity.vercel.app",
+    buttonText: "Explore Services"
+  },
+  {
+    title: "Anand Lockers",
+    icon: "🗄️",
+    description: "Secure, modern storage solutions with bank-grade safety for your precious belongings, documents, and valuables.",
+    features: ["Secure Storage", "Bank-grade Safety", "Privacy Protection", "Easy Access"],
+    gradient: "from-gray-500 to-gray-700",
+    dotColor: "bg-gray-500",
+    image: "img/lockers.jpg",
+    link: "https://anand-lockers.vercel.app",
+    buttonText: "Explore Lockers"
+  },
+  {
+    title: "Anand Share Broking",
+    icon: "📈",
+    description: "Expert share trading with reliable guidance, transparent execution, and smart decision-making for all investors.",
+    features: ["Equity Trading", "Market Insights", "Portfolio Management", "Investment Guidance"],
+    gradient: "from-emerald-500 to-green-700",
+    dotColor: "bg-emerald-500",
+    image: "img/share-broking.jpg",
+    link: "https://anand-broking.vercel.app",
+    buttonText: "Explore Trading"
+  },
+  {
+    title: "Anand Wealth Consultancy",
+    icon: "💰",
+    description: "Strategic wealth management and investment guidance for long-term growth across domestic and international markets.",
+    features: ["Wealth Management", "Investment Strategies", "Financial Planning", "Global Markets"],
+    gradient: "from-amber-500 to-yellow-700",
+    dotColor: "bg-amber-500",
+    image: "img/wealth-consultancy.jpg",
+    link: "https://anand-wealth-consultancy.vercel.app",
+    buttonText: "Explore Wealth"
+  }
+];
   // Auto rotate cards
   useEffect(() => {
     const interval = setInterval(() => {

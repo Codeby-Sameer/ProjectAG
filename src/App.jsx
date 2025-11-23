@@ -38,7 +38,7 @@ function Layout() {
       <main className="pt-20 w-full overflow-x-hidden">
         <Outlet />
       </main>
-      <ChatBotIcon/>
+      {/* <ChatBotIcon/> */}
       <Footer />
     </div>
   );
