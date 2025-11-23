@@ -6,8 +6,6 @@ import ServicesCarousel from "./Sections/serviceCarousel";
 
 const AboutUs = () => {
 
-
-  
      const services = [
     {
       title: "Anand Realtyy",
@@ -153,7 +151,7 @@ const AboutUs = () => {
               <div className="relative group">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
                   <img
-                    src='/founder.jpg'
+                    src='img/founder.jpg'
                     alt="Anand - Founder & Chairman"
                     className="w-full lg:h-[800px] object-cover"
                   />
@@ -422,56 +420,143 @@ const AboutUs = () => {
   
         <ServicesCarousel/>
 
-        {/* Enhanced CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-navy to-blue-900 text-white relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-5xl font-bold mb-6">
-              Start Your Journey With Us
-            </h2>
-            <p className="md:text-xl text-sm text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Whether you're investing in land, producing content, or developing infrastructure, 
-              partner with excellence and experience the Anand difference.
+{/* Enhanced CTA Section */}
+<section className="py-20 bg-gradient-to-br from-navy to-blue-900 text-white relative overflow-hidden">
+  <div className="container mx-auto px-6 relative z-10">
+    <div className="max-w-6xl mx-auto text-center">
+      <h2 className="text-2xl md:text-5xl font-bold mb-6">
+        Start Your Journey With Us
+      </h2>
+      <p className="md:text-xl text-sm text-blue-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+        Explore our diverse business divisions and discover how Anand Group can help you achieve your goals across multiple industries.
+      </p>
+      
+      {/* Main Business Divisions */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {[
+          { 
+            to: "/real-estate", 
+            label: "🏢 Land Ventures", 
+            gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+            desc: "Premium plots & commercial ventures"
+          },
+          { 
+            to: "/production", 
+            label: "🎬 Film Production", 
+            gradient: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
+            desc: "Movies, music & digital content"
+          },
+          { 
+            to: "/infrastructure", 
+            label: "🏗️ Infrastructure", 
+            gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+            desc: "Gated communities & development"
+          },
+          { 
+            to: "/events", 
+            label: "🎪 Events & Media", 
+            gradient: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
+            desc: "Events, media & awards"
+          },
+          { 
+            to: "/imports-exports", 
+            label: "🌐 Global Trade", 
+            gradient: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
+            desc: "Import & export services"
+          },
+          { 
+            to: "/technology", 
+            label: "🔒 Tech & Safety", 
+            gradient: "from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700",
+            desc: "Technology solutions & security"
+          }
+        ].map((button, index) => (
+          <div key={index} className="text-center group">
+            <Link
+              to={button.to}
+              className={`px-6 py-4 bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 min-w-full justify-center h-full`}
+            >
+              <span className="text-lg">{button.label.split(' ')[0]}</span>
+              <span className="text-sm">{button.label.split(' ').slice(1).join(' ')}</span>
+            </Link>
+            <p className="text-blue-200 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {button.desc}
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              {[
-                { 
-                  to: "/real-estate", 
-                  label: "🏢 Explore Land Ventures", 
-                  gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
-                  desc: "Premium plots & commercial ventures"
-                },
-                { 
-                  to: "/production", 
-                  label: "🎬 Film Production", 
-                  gradient: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
-                  desc: "Movies, music & digital content"
-                },
-                { 
-                  to: "/infrastructure", 
-                  label: "🏗️ Development Projects", 
-                  gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
-                  desc: "Gated communities & infrastructure"
-                }
-              ].map((button, index) => (
-                <div key={index} className="text-center group">
-                  <Link
-                    to={button.to}
-                    className={`px-5 py-4 bg-gradient-to-r ${button.gradient} text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl block `}
-                  >
-                    {button.label}
-                  </Link>
-                  <p className="text-blue-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {button.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
- 
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+
+      {/* Additional Specialized Services */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {[
+          { 
+            to: "/pharma", 
+            label: "💊 Pharma", 
+            gradient: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+            desc: "Pharmaceutical products"
+          },
+          { 
+            to: "/devocation", 
+            label: "🙏 Devocation", 
+            gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
+            desc: "Spiritual services"
+          },
+          { 
+            to: "/yatra", 
+            label: "✈️ Yatra", 
+            gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
+            desc: "Travel & tourism"
+          },
+          { 
+            to: "/celebrity", 
+            label: "⭐ Celebrity", 
+            gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
+            desc: "Celebrity management"
+          },
+          { 
+            to: "/lockers", 
+            label: "🗄️ Lockers", 
+            gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",
+            desc: "Secure storage solutions"
+          },
+          { 
+            to: "/share-broking", 
+            label: "📈 Share Broking", 
+            gradient: "from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700",
+            desc: "Stock trading services"
+          },
+          { 
+            to: "/wealth", 
+            label: "💰 Wealth", 
+            gradient: "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
+            desc: "Financial consultancy"
+          },
+          { 
+            to: "/cinemaz", 
+            label: "🎬 Cinemaz", 
+            gradient: "from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700",
+            desc: "Cinema & entertainment"
+          }
+        ].map((button, index) => (
+          <div key={index} className="text-center group">
+            <Link
+              to={button.to}
+              className={`px-4 py-3 bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 min-w-full justify-center text-sm`}
+            >
+              <span>{button.label.split(' ')[0]}</span>
+              <span className="text-xs">{button.label.split(' ').slice(1).join(' ')}</span>
+            </Link>
+            <p className="text-blue-200 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {button.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+    
+    </div>
+  </div>
+</section>
 
      
          

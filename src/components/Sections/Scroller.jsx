@@ -97,4 +97,4 @@ const ScrollingNotice = () => {
   );
 };
 
-export default ScrollingNotice;
+export default ScrollingNotice; 

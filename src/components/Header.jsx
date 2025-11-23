@@ -16,6 +16,88 @@ export default function Header() {
   const { openModal } = useMultiFormModal();
   const location = useLocation();
 
+  // Divisions data
+  const divisions = [
+    {
+      name: "Anand Cinemaz",
+      url: "https://anand-cinemas.vercel.app",
+      icon: "🎬",
+      description: "Cinema & Entertainment"
+    },
+    {
+      name: "Anand Realtyy",
+      url: "https://anand-realtyy-new.vercel.app",
+      icon: "🏢",
+      description: "Real Estate"
+    },
+    {
+      name: "Anand Infra",
+      url: "https://anand-project-21.vercel.app",
+      icon: "🏗️",
+      description: "Infrastructure"
+    },
+    {
+      name: "Anand Events, Media & Awards",
+      url: "https://anand-events.vercel.app",
+      icon: "🎪",
+      description: "Events & Media"
+    },
+    {
+      name: "Anand Imports & Exports",
+      url: "https://anand-trade.vercel.app",
+      icon: "🌐",
+      description: "International Trade"
+    },
+    {
+      name: "Anand Technology & Safety",
+      url: "https://anand-transport-12.vercel.app",
+      icon: "🔒",
+      description: "Tech Solutions"
+    },
+    {
+      name: "Anand Pharma",
+      url: "https://anand-pharma.vercel.app",
+      icon: "💊",
+      description: "Pharmaceuticals"
+    },
+    {
+      name: "Anand Devocation",
+      url: "https://anand-devocation.vercel.app",
+      icon: "🙏",
+      description: "Spiritual Services"
+    },
+    {
+      name: "Anand Yatra",
+      url: "https://anand-yathra.vercel.app",
+      icon: "✈️",
+      description: "Travel & Tourism"
+    },
+    {
+      name: "Anand Celebrity Service",
+      url: "https://anand-celebrity.vercel.app",
+      icon: "⭐",
+      description: "Celebrity Management"
+    },
+    {
+      name: "Anand Lockers",
+      url: "https://anand-lockers.vercel.app",
+      icon: "🗄️",
+      description: "Secure Storage"
+    },
+    {
+      name: "Anand Share Broking",
+      url: "https://anand-broking.vercel.app",
+      icon: "📈",
+      description: "Stock Trading"
+    },
+    {
+      name: "Anand Wealth Consultancy",
+      url: "https://anand-wealth-consultancy.vercel.app/",
+      icon: "💰",
+      description: "Financial Advisory"
+    }
+  ];
+
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -83,7 +165,9 @@ export default function Header() {
   }, []);
 
   const isActiveLink = (path) => location.pathname === path;
-  const isDivisionActive = () => ['/production', '/real-estate', '/infrastructure'].includes(location.pathname);
+  const isDivisionActive = () => divisions.some(division => 
+    location.pathname === division.url.replace(/^https?:\/\/[^/]+/, '')
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen((v) => !v);
@@ -100,6 +184,36 @@ export default function Header() {
     closeMenu();
   };
 
+  const DivisionLink = ({ division, onClick, isMobile = false }) => (
+    <a
+      href={division.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`block w-full text-left transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 ${
+        isMobile 
+          ? `px-3 py-2.5 rounded-lg text-base font-semibold ${
+              isActiveLink(division.url) 
+                ? "text-blue-700 bg-blue-100 border border-blue-200" 
+                : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
+            }`
+          : `px-4 py-3 hover:pl-6 ${
+              isActiveLink(division.url) ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
+            }`
+      }`}
+      onClick={onClick}
+    >
+      <div className={`flex items-center gap-3 ${isMobile ? 'flex-row' : ''}`}>
+        <span className="text-xl">{division.icon}</span>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-sm leading-tight">{division.name}</div>
+          {!isMobile && (
+            <div className="text-xs text-blue-600 mt-1">{division.description}</div>
+          )}
+        </div>
+      </div>
+    </a>
+  );
+
   return (
     <header className="fixed w-full top-0 z-50 bg-white text-navy shadow-lg backdrop-blur-sm border-b border-gold/20">
       <nav className="max-w-7xl mx-auto py-4 lg:py-3 px-2">
@@ -108,7 +222,7 @@ export default function Header() {
           <Link to="/" className="flex items-center space-x-2 md:space-x-3 group">
             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
               <img
-                src="/founder.jpg"
+                src="/img/founder.jpg"
                 alt="Founder"
                 className="w-full h-full object-cover object-top"
               />
@@ -117,7 +231,7 @@ export default function Header() {
             <div className="flex flex-col items-start">
               <div className="flex items-center space-x-2">
                 <img
-                  src="/logo.png"
+                  src="/img/logo.png"
                   alt="Anand Logo"
                   className="w-8 h-10 md:w-10 md:h-12 object-contain"
                 />
@@ -176,51 +290,14 @@ export default function Header() {
               </button>
 
               {isDivisionsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-blue-200 shadow-2xl rounded-lg py-2 z-50 backdrop-blur-sm">
-                  <a
-                    href="https://anand-cinemas.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                    className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('/https://anand-cinemas.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
-                    }`}
-                    onClick={() => setIsDivisionsOpen(false)}
-                  >
-                    <div className="font-semibold flex items-center gap-2">
-                      <span>🎬</span>
-                      <span>Anand Cinemaz</span>
-                    </div>
-                  </a>
-
-                  <a
-                   href="https://anand-realtyy-new.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                    className={`block w-full text-left px-4 py-3 transition-all duration-200 border-b border-blue-100 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('https://anand-realtyy-new.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
-                    }`}
-                    onClick={() => setIsDivisionsOpen(false)}
-                  >
-                    <div className="font-semibold flex items-center gap-2">
-                      <span>🏢</span>
-                      <span>Anand Realtyy</span>
-                    </div>
-                  </a>
-
-                  <a
-                   href="https://anand-project-21.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                    className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:bg-blue-50 hover:pl-6 ${
-                      isActiveLink('https://anand-project-21.vercel.app') ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-blue-800'
-                    }`}
-                    onClick={() => setIsDivisionsOpen(false)}
-                  >
-                    <div className="font-semibold flex items-center gap-2">
-                      <span>🏗️</span>
-                      <span>Anand Infra</span>
-                    </div>
-                  </a>
+                <div className="absolute top-full left-0 mt-2 w-80 max-h-96 overflow-y-auto bg-white border border-blue-200 shadow-2xl rounded-lg py-2 z-50 backdrop-blur-sm">
+                  {divisions.map((division, index) => (
+                    <DivisionLink
+                      key={index}
+                      division={division}
+                      onClick={() => setIsDivisionsOpen(false)}
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -283,7 +360,7 @@ export default function Header() {
         {isMenuOpen && (
           <>
             <div 
-              className="lg:hidden  fixed inset-0 z-40 bg-black/50" 
+              className="lg:hidden fixed inset-0 z-40 bg-black/50" 
               onClick={closeMenu} 
               aria-hidden="true" 
             />
@@ -291,7 +368,7 @@ export default function Header() {
             <div
               id="mobile-menu"
               ref={mobileDropdownRef}
-              className="lg:hidden fixed top-20 left-4 right-4 bg-white  border border-blue-200 rounded-xl shadow-2xl z-50 py-4 overflow-auto  max-h-[80vh]"
+              className="lg:hidden fixed top-20 left-4 right-4 bg-white border border-blue-200 rounded-xl shadow-2xl z-50 py-4 overflow-auto max-h-[80vh]"
             >
               <div className="space-y-1 px-2">
                 <Link 
@@ -336,57 +413,15 @@ export default function Header() {
                   </button>
 
                   {isMobileDivisionsOpen && (
-                    <div className="ml-2 mt-1 space-y-1 border-l-2 border-blue-200 pl-3 py-1">
-                   <a
-                    href="https://anand-cinemas.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('https://anand-cinemas.vercel.app') 
-                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
-                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
-                        }`} 
-                        onClick={closeMenu}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>🎬</span>
-                          <span>Anand Cinemaz</span>
-                        </div>
-                      </a>
-
-                      <a
-                   href="https://anand-realtyy-new.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('https://anand-realtyy-new.vercel.app') 
-                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
-                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
-                        }`} 
-                        onClick={closeMenu}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>🏢</span>
-                          <span>Anand Realtyy</span>
-                        </div>
-                      </a>
-
-  <a
-                   href="https://anand-project-21.vercel.app"
-                     target="_blank"
-                  rel="noopener noreferrer"
-                        className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
-                          isActiveLink('"https://anand-project-21.vercel.app') 
-                            ? "text-blue-700 bg-blue-100 border border-blue-200" 
-                            : "text-blue-800 hover:bg-blue-50 hover:text-blue-700"
-                        }`} 
-                        onClick={closeMenu}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>🏗️</span>
-                          <span>Anand Infra</span>
-                        </div>
-                      </a>
+                    <div className="ml-2 mt-1 space-y-1 border-l-2 border-blue-200 pl-3 py-1 max-h-64 overflow-y-auto">
+                      {divisions.map((division, index) => (
+                        <DivisionLink
+                          key={index}
+                          division={division}
+                          onClick={closeMenu}
+                          isMobile={true}
+                        />
+                      ))}
                     </div>
                   )}
                 </div>

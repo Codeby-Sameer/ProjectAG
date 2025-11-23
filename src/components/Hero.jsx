@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ScrollingNotice from './Sections/Scroller';
 
 // Single Card Auto Carousel Component
 const CompanyServicesCarousel = () => {
@@ -13,7 +14,7 @@ const CompanyServicesCarousel = () => {
       features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
       gradient: "from-green-500 to-green-700",
       dotColor: "bg-green-500",
-      image: "venture.jpg",
+      image: "img/venture.jpg",
       link: "https://anand-realtyy-new.vercel.app",
       buttonText: "Explore Properties"
     },
@@ -24,7 +25,7 @@ const CompanyServicesCarousel = () => {
       features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
       gradient: "from-blue-500 to-blue-700",
       dotColor: "bg-blue-500",
-      image: "infra.png",
+      image: "img/infra.png",
       link: "https://anand-project-21.vercel.app",
       buttonText: "Explore Projects"
     },
@@ -35,7 +36,7 @@ const CompanyServicesCarousel = () => {
       features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
       gradient: "from-purple-500 to-purple-700",
       dotColor: "bg-purple-500",
-      image: "Production.png",
+      image: "img/Production.png",
       link: "https://anand-cinemas.vercel.app",
       buttonText: "Explore Productions"
     }
@@ -58,7 +59,7 @@ const CompanyServicesCarousel = () => {
     <section className="py-2 sm:py-4 mb-2 mx-auto w-full max-w-sm ">
       <div className="px-2 sm:px-4 mb-3 sm:mb-4 text-center">
         <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white opacity-80">
-          Explore Our Companies →
+          Explore Our Companies 
         </h3>
       </div>
 
@@ -179,7 +180,7 @@ const Hero = () => {
     <section
       className="relative text-white overflow-hidden min-h-[calc(100vh-4rem)] transition-all duration-1000 ease-in-out"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(venture.jpg)`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(img/venture.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -196,9 +197,9 @@ const Hero = () => {
 
           {/* Left Content - Text Section */}
           <div className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 bg-white/90 text-blue-900 rounded-full text-[10px] sm:text-xs lg:text-sm font-semibold shadow-lg w-fit backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 bg-white/90 text-blue-900 rounded-full text-[9px] sm:text-xs  lg:text-sm font-semibold shadow-lg w-fit backdrop-blur-sm">
               <span>🏆</span>
-              <span className="whitespace-nowrap">Anand Group is a multi-sector enterprise built on one core belief</span>
+              <span className="whitespace-nowrap ">Anand Group is a multi-sector enterprise built on one core belief</span>
             </div>
 
             <div>
@@ -262,6 +263,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <ScrollingNotice/>
     </section>
   );
 };

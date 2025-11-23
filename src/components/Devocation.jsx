@@ -1,8 +1,8 @@
 const Devocation = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="container  px-6">
+        <div className="w-full">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-90"></div>
 
@@ -12,16 +12,16 @@ const Devocation = () => {
               }}></div>
             </div>
 
-            <div className="relative z-10 text-center py-20 px-6 md:px-12">
+            <div className="relative z-10 text-center py-10 px-6 md:px-12">
               <div className="text-6xl mb-6">🕉️</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
                 Devocation
               </h2>
-              <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-              <p className="text-xl md:text-2xl text-white mb-4 font-light max-w-3xl mx-auto leading-relaxed">
+              <div className="w-24 h-1 bg-white mx-auto mb-3"></div>
+              <p className="text-sm md:text-2xl text-white mb-4 font-light max-w-3xl mx-auto leading-relaxed">
                 Find peace and purpose through travel that touches the soul
               </p>
-              <p className="text-lg text-white opacity-90 mb-8 max-w-2xl mx-auto">
+              <p className="text-sm text-white opacity-90 mb-5 max-w-2xl mx-auto">
                 Embark on spiritual journeys to sacred destinations. Experience divine serenity
                 at ancient temples, holy rivers, and mystical mountains that inspire inner transformation.
               </p>
@@ -29,19 +29,19 @@ const Devocation = () => {
               <div className="flex flex-wrap justify-center gap-6 mb-8">
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-white">
                   <div className="text-3xl mb-2">🛕</div>
-                  <p className="font-semibold">Temple Tours</p>
+                  <p className="font-semibold text-sm">Temple Tours</p>
                 </div>
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-white">
                   <div className="text-3xl mb-2">⛰️</div>
-                  <p className="font-semibold">Mountain Retreats</p>
+                  <p className="font-semibold text-sm">Mountain Retreats</p>
                 </div>
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-white">
                   <div className="text-3xl mb-2">🕉️</div>
-                  <p className="font-semibold">Sacred Pilgrimages</p>
+                  <p className="font-semibold text-sm">Sacred Pilgrimages</p>
                 </div>
               </div>
 
-              <button className="px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-xl transform hover:scale-105">
+              <button className="md:px-8 md:py-4 px-2 py-3  text-sm bg-white  text-orange-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-xl transform hover:scale-105">
                 Explore Devocation Packages
               </button>
             </div>

@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex flex-row items-start sm:items-center space-y-3 space-x-2 mb-4">
               <div className="relative">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-lg flex items-center justify-center transition-transform duration-300 hover:scale-105">
-                  <img src='logo.png' alt="logo" className='w-full p-2 sm:p-4' />
+                  <img src='/img/logo.png' alt="logo" className='w-full p-2 sm:p-4' />
                 </div>
               </div>
               <div className="flex  flex-row items-baseline space-x-1 sm:space-x-2">

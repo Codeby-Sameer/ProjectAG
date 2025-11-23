@@ -49,11 +49,10 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <ScrollingNotice/>
-    <Services/>
-     
+      <Services/>
+      
     <VisionMission/>
-    <CaseStudies/>
+    {/* <CaseStudies/> */}
     <Achievements/>
  
    
