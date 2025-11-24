@@ -453,13 +453,13 @@ const AboutUs = () => {
             desc: "Gated communities & development"
           },
           { 
-            to: "https://anand-events.vercel.app", 
+            to: "https://anand-events-media-awards.vercel.app", 
             label: "🎪 Events", 
             gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
             desc: "Events, media & awards"
           },
           { 
-            to: "https://anand-trade.vercel.app", 
+            to: "https://import-and-exports.vercel.app/", 
             label: "🌐 Trade", 
             gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
             desc: "Import & export services"

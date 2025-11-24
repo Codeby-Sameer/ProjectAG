@@ -38,13 +38,13 @@ export default function Header() {
     },
     {
       name: "Anand Events, Media & Awards",
-      url: "https://anand-events.vercel.app",
+      url: "https://anand-events-media-awards.vercel.app",
       icon: "🎪",
       description: "Events & Media"
     },
     {
       name: "Anand Imports & Exports",
-      url: "https://anand-trade.vercel.app",
+      url: "https://import-and-exports.vercel.app/",
       icon: "🌐",
       description: "International Trade"
     },

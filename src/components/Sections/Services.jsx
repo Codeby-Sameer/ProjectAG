@@ -185,7 +185,9 @@ export const BusinessDivisions = () => {
           icon: "⭐",
           color: "from-amber-400 to-amber-600"
         }
-      ]
+      ],
+      website: "https://anand-events-media-awards.vercel.app",
+      image: "img/events.png"
     },
     {
       id: 5,
@@ -220,7 +222,9 @@ export const BusinessDivisions = () => {
           icon: "📦",
           color: "from-sky-400 to-sky-600"
         }
-      ]
+      ],
+      website: "https://import-and-exports.vercel.app/",
+      image: "img/importexports.png"
     },
     {
       id: 6,
@@ -255,7 +259,9 @@ export const BusinessDivisions = () => {
           icon: "👨‍✈️",
           color: "from-zinc-500 to-zinc-700"
         }
-      ]
+      ],
+      website: "https://anand-transport-12.vercel.app",
+      image: "img/safety.png"
     },
     {
       id: 7,
@@ -290,7 +296,9 @@ export const BusinessDivisions = () => {
           icon: "🏥",
           color: "from-teal-400 to-teal-600"
         }
-      ]
+      ],
+      website: "https://anand-devocation.vercel.app",
+      image: "img/pharma.png"
     },
     {
       id: 8,
@@ -325,7 +333,9 @@ export const BusinessDivisions = () => {
           icon: "☮️",
           color: "from-orange-400 to-orange-600"
         }
-      ]
+      ],
+      website: "https://anand-devocation.vercel.app",
+      image: "img/devocation.png"
     },
     {
       id: 9,
@@ -360,7 +370,9 @@ export const BusinessDivisions = () => {
           icon: "⚡",
           color: "from-sky-400 to-sky-600"
         }
-      ]
+      ],
+      website: "https://anand-yathra.vercel.app",
+      image: "img/yatra.png"
     },
     {
       id: 10,
@@ -395,7 +407,9 @@ export const BusinessDivisions = () => {
           icon: "🔧",
           color: "from-fuchsia-400 to-fuchsia-600"
         }
-      ]
+      ],
+      website: "https://anand-ceelebrity.vercel.app",
+      image: "img/celebrity.png"
     },
     {
       id: 11,
@@ -430,7 +444,9 @@ export const BusinessDivisions = () => {
           icon: "💎",
           color: "from-neutral-500 to-neutral-700"
         }
-      ]
+      ],
+      website: "https://anand-lockers-safety.vercel.app",
+      image: "img/lockers.png"
     },
     {
       id: 12,
@@ -465,7 +481,9 @@ export const BusinessDivisions = () => {
           icon: "📋",
           color: "from-lime-400 to-lime-600"
         }
-      ]
+      ],
+      website: "https://anand-share-brokering.vercel.app",
+      image: "img/shares.png"
     },
     {
       id: 13,
@@ -500,7 +518,9 @@ export const BusinessDivisions = () => {
           icon: "🚀",
           color: "from-yellow-400 to-yellow-600"
         }
-      ]
+      ],
+      website: "https://anand-wealth-consultancy.vercel.app",
+      image: "img/wealth.png"
     }
   ];
 
@@ -520,18 +540,27 @@ export const BusinessDivisions = () => {
         >
           <div className={`grid lg:grid-cols-2 gap-12 items-center mb-16 ${divisionIndex % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
             {/* Image/Visual Section */}
-            <motion.div variants={itemVariants} className={`relative group ${divisionIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
-              <div className={`relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 bg-gradient-to-br ${division.color}`}>
-                <div className="w-full h-96 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-6xl mb-4">{division.icon}</div>
-                    <h3 className="text-4xl font-bold mb-2">{division.name.split(' ')[0]}</h3>
-                    <p className="text-xl opacity-90">{division.name.split(' ').slice(1).join(' ')}</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-              </div>
-            </motion.div>
+          <motion.div variants={itemVariants} className={`relative group ${divisionIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
+  <div className={`relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 bg-gradient-to-br ${division.color}`}>
+    {/* Background Image */}
+    <img
+      src={division.image}
+      alt={division.name}
+      className="absolute inset-0 w-full h-96 object-cover"
+    />
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+    
+    {/* Content */}
+    <div className="relative w-full h-96 flex items-center justify-center">
+      <div className="text-center text-white">
+        <div className="text-6xl mb-4">{division.icon}</div>
+        <h3 className="text-4xl font-bold mb-2">{division.name.split(' ')[0]}</h3>
+        <p className="text-xl opacity-90">{division.name.split(' ').slice(1).join(' ')}</p>
+      </div>
+    </div>
+  </div>
+</motion.div>
 
             {/* Content Section */}
             <motion.div variants={itemVariants} className={`space-y-6 ${divisionIndex % 2 === 1 ? 'lg:order-1' : ''}`}>
@@ -556,9 +585,14 @@ export const BusinessDivisions = () => {
                 ))}
               </div>
 
-              <button className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                Explore {division.name.split(' ')[0]} →
-              </button>
+               <a
+                    href="https://anand-realtyy-new.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 bg-gradient-to-br ${division.color} text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105`}
+                  >
+                    Explore Anand {division.name.split(' ')[1]} →
+                  </a>
             </motion.div>
           </div>
 
