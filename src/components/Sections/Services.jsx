@@ -487,6 +487,81 @@ export const BusinessDivisions = () => {
     },
     {
       id: 13,
+      name: "Anand Shipping",
+      tagline: "Prestige in every parcel. Excellence in every delivery",
+      description: "Anand Shipping brings a new level of sophistication to logistics. Designed for clients who value precision, privacy, and premium care, we offer an elevated shipping experience where every parcel is treated with the highest level of attention and security.",
+      icon: "📦",
+      color: "from-blue-500 to-purple-500",
+      bgGradient: "from-blue-50 to-purple-50",
+      features: [
+        { icon: "⚡", title: "Priority Delivery", desc: "Domestic & international priority channels" },
+        { icon: "🛡️", title: "Elite Packaging", desc: "Premium protective packaging standards" },
+        { icon: "👐", title: "White-Glove Handling", desc: "Luxury and fragile items care" },
+        { icon: "🔒", title: "Discreet Logistics", desc: "Secure confidential shipments" }
+      ],
+      services: [
+        {
+          title: "Premium Shipping",
+          description: "Elevated shipping experience with absolute protection and elegance",
+          icon: "🎁",
+          color: "from-blue-400 to-blue-600"
+        },
+        {
+          title: "Real-Time Tracking",
+          description: "Personalized updates and luxury-level customer support",
+          icon: "📍",
+          color: "from-purple-400 to-purple-600"
+        },
+        {
+          title: "Concierge Coordination",
+          description: "White-glove handling and premium care for high-value items",
+          icon: "🤝",
+          color: "from-indigo-400 to-indigo-600"
+        }
+      ],
+      website: "#",
+      image: "img/shipping.png"
+    },
+    {
+      id: 14,
+      name: "Anand Bank NBFC",
+      tagline: "Empowering financial dreams. Strengthening futures.",
+      description: "A modern, future-focused financial institution committed to making credit, investment, and financial growth accessible to everyone with flexible, transparent, and customer-first solutions.",
+      icon: "🏦",
+      color: "from-green-500 to-teal-500",
+      bgGradient: "from-green-50 to-teal-50",
+      features: [
+        { icon: "🚀", title: "Quick Approvals", desc: "Minimal documentation processing" },
+        { icon: "💼", title: "Business Solutions", desc: "Custom financial solutions for SMEs" },
+        { icon: "📈", title: "Investment Products", desc: "Secure options for steady returns" },
+        { icon: "🔍", title: "Transparent Processes", desc: "No hidden charges or complications" }
+      ],
+      services: [
+        {
+          title: "Personal Loans",
+          description: "Tailor-made plans for education, home, medical, or lifestyle expenses",
+          icon: "👨‍👩‍👧‍👦",
+          color: "from-green-400 to-green-600"
+        },
+        {
+          title: "Business Loans",
+          description: "Financial solutions for entrepreneurs and growing businesses",
+          icon: "💼",
+          color: "from-teal-400 to-teal-600"
+        },
+        {
+          title: "Financial Advisory",
+          description: "Expert guidance to build wealth and secure your future",
+          icon: "🎯",
+          color: "from-emerald-400 to-emerald-600"
+        }
+      ],
+      website: "https://anand-bank-nbfc.vercel.app/",
+      image: "img/bank.png"
+    },
+
+    {
+      id: 15,
       name: "Anand Wealth Consultancy",
       tagline: "Smart, strategic, and sustainable financial choices for wealth growth.",
       description: "Committed to helping individuals and businesses make smart financial choices. We provide clear direction and tailored strategies to manage, protect, and grow your wealth effectively.",
@@ -521,7 +596,155 @@ export const BusinessDivisions = () => {
       ],
       website: "https://anand-wealth-consultancy.vercel.app",
       image: "img/wealth.png"
+    },
+    {
+      id: 16,
+      name: "Anand Youth",
+      tagline: "Compassion in action. Service Swith purpose.",
+      description: "A mission-driven community initiative dedicated to serving society with compassion, responsibility, and humanity through youth-driven programs that support people, nature, and the environment.",
+      icon: "🌱",
+      color: "from-orange-500 to-red-500",
+      bgGradient: "from-orange-50 to-red-50",
+      features: [
+        { icon: "🌳", title: "Environmental Care", desc: "Plantation drives and green living" },
+        { icon: "🍲", title: "Food Support", desc: "Free meals for those in need" },
+        { icon: "👕", title: "Clothing Distribution", desc: "Restored clothes for underprivileged" },
+        { icon: "🚑", title: "Disaster Relief", desc: "Immediate assistance during calamities" }
+      ],
+      services: [
+        {
+          title: "Community Service",
+          description: "Social welfare activities bringing positive change to every corner",
+          icon: "🤲",
+          color: "from-orange-400 to-orange-600"
+        },
+        {
+          title: "Environmental Care",
+          description: "Tree planting and free plant distribution for eco-friendly living",
+          icon: "🌍",
+          color: "from-red-400 to-red-600"
+        },
+        {
+          title: "Humanitarian Aid",
+          description: "Water relief, medical support, and dignified last rites services",
+          icon: "❤️",
+          color: "from-rose-400 to-rose-600"
+        }
+      ],
+      website: "https://anand-youth.vercel.app",
+      image: "img/youth.png"
+    },
+    {
+      id: 17,
+      name: "Anand Religious Trust - MAA SENA",
+      tagline: "Guided by Dharma. Rooted in Vedas. Serving Humanity Through Spiritual Truth.",
+      description: "A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma and offering genuine solutions to life's challenges through the ancient knowledge of the Vedas.",
+      icon: "🕉️",
+      color: "from-yellow-600 to-orange-600",
+      bgGradient: "from-yellow-50 to-orange-50",
+      features: [
+        { icon: "📜", title: "Vedic Guidance", desc: "Spiritual solutions based on ancient scriptures" },
+        { icon: "🌟", title: "Birth Chart Analysis", desc: "Personalized rituals using Janam Kundali" },
+        { icon: "🔥", title: "Havan & Pooja", desc: "Traditional rituals performed in your name and Gotram" },
+        { icon: "🌐", title: "Live Participation", desc: "Real-time spiritual sessions from anywhere" }
+      ],
+      services: [
+        {
+          title: "Spiritual Healing",
+          description: "Havan and pooja for well-being based on your birth chart",
+          icon: "🙏",
+          color: "from-yellow-400 to-yellow-600"
+        },
+        {
+          title: "Vedic Rituals",
+          description: "Traditional homams for prosperity, protection, and peace",
+          icon: "🔥",
+          color: "from-orange-400 to-orange-600"
+        },
+        {
+          title: "Divine Guidance",
+          description: "Ancient Vedic knowledge for spiritual, emotional and personal challenges",
+          icon: "📚",
+          color: "from-amber-400 to-amber-600"
+        }
+      ],
+      website: "https://anand-religious-trust.vercel.app",
+      image: "img/religious-trust.png"
+    },
+    {
+      id: 18,
+      name: "Anand Seva Trust",
+      tagline: "Extending Care. Restoring Lives. Empowering Futures.",
+      description: "A compassionate initiative dedicated to supporting individuals and families facing difficult circumstances through education, care, and guidance.",
+      icon: "🤝",
+      color: "from-blue-500 to-purple-500",
+      bgGradient: "from-blue-50 to-purple-50",
+      features: [
+        { icon: "🎓", title: "Education Support", desc: "Quality education and academic guidance" },
+        { icon: "❤️", title: "Emotional Care", desc: "Counselling and moral guidance" },
+        { icon: "🛡️", title: "Protection", desc: "Safe environment for vulnerable individuals" },
+        { icon: "🌟", title: "Skill Development", desc: "Value-based learning for brighter futures" }
+      ],
+      services: [
+        {
+          title: "Education Support",
+          description: "Quality education, academic guidance and skill development for children",
+          icon: "🎓",
+          color: "from-blue-400 to-blue-600"
+        },
+        {
+          title: "Care & Protection",
+          description: "Safe environment with emotional healing and moral guidance",
+          icon: "🛡️",
+          color: "from-purple-400 to-purple-600"
+        },
+        {
+          title: "Life Rebuilding",
+          description: "Structured programs to restore dignity and build confident futures",
+          icon: "💫",
+          color: "from-indigo-400 to-indigo-600"
+        }
+      ],
+      website: "https://anand-seva-trust.vercel.app",
+      image: "img/seva-trust.png"
+    },
+    {
+  id: 19,
+  name: "Anand Foods",
+  tagline: "Delivering Trust, Tradition, and Quality",
+  description: "A food division offering pure buffalo milk through AmruthDhan and authentic regional Indian delicacies through FamAdda, ensuring purity, safety, and cultural authenticity.",
+  icon: "🍽️",
+  color: "from-amber-500 to-orange-500",
+  bgGradient: "from-amber-50 to-orange-50",
+  features: [
+    { icon: "🥛", title: "AmruthDhan Pure Milk", desc: "100% pure buffalo milk with stringent quality checks" },
+    { icon: "🍽️", title: "FamAdda Regional Foods", desc: "Authentic delicacies from across India" },
+    { icon: "✅", title: "Quality Guaranteed", desc: "No additives, no compromise on purity" },
+    { icon: "🏺", title: "Cultural Heritage", desc: "Preserving traditional recipes and craftsmanship" }
+  ],
+  services: [
+    {
+      title: "AmruthDhan Milk",
+      description: "100% pure buffalo milk delivered fresh from trusted dairy farms",
+      icon: "🥛",
+      color: "from-green-400 to-green-600"
+    },
+    {
+      title: "FamAdda Regional Foods",
+      description: "Authentic regional specialties sourced directly from original creators",
+      icon: "🎯",
+      color: "from-orange-400 to-orange-600"
+    },
+    {
+      title: "Quality Assurance",
+      description: "Stringent quality checks ensuring purity, safety and authenticity",
+      icon: "⭐",
+      color: "from-amber-400 to-amber-600"
     }
+  ],
+  website: "https://anand-foods.vercel.app",
+  image: "img/anand-foods.png"
+}
   ];
 
   return (
@@ -540,27 +763,27 @@ export const BusinessDivisions = () => {
         >
           <div className={`grid lg:grid-cols-2 gap-12 items-center mb-16 ${divisionIndex % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
             {/* Image/Visual Section */}
-          <motion.div variants={itemVariants} className={`relative group ${divisionIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
-  <div className={`relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 bg-gradient-to-br ${division.color}`}>
-    {/* Background Image */}
-    <img
-      src={division.image}
-      alt={division.name}
-      className="absolute inset-0 w-full h-96 object-cover"
-    />
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-    
-    {/* Content */}
-    <div className="relative w-full h-96 flex items-center justify-center">
-      <div className="text-center text-white">
-        <div className="text-6xl mb-4">{division.icon}</div>
-        <h3 className="text-4xl font-bold mb-2">{division.name.split(' ')[0]}</h3>
-        <p className="text-xl opacity-90">{division.name.split(' ').slice(1).join(' ')}</p>
-      </div>
-    </div>
-  </div>
-</motion.div>
+            <motion.div variants={itemVariants} className={`relative group ${divisionIndex % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div className={`relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 bg-gradient-to-br ${division.color}`}>
+                {/* Background Image */}
+                <img
+                  src={division.image}
+                  alt={division.name}
+                  className="absolute inset-0 w-full h-96 object-cover"
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+
+                {/* Content */}
+                <div className="relative w-full h-96 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="text-6xl mb-4">{division.icon}</div>
+                    <h3 className="text-4xl font-bold mb-2">{division.name.split(' ')[0]}</h3>
+                    <p className="text-xl opacity-90">{division.name.split(' ').slice(1).join(' ')}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
             {/* Content Section */}
             <motion.div variants={itemVariants} className={`space-y-6 ${divisionIndex % 2 === 1 ? 'lg:order-1' : ''}`}>
@@ -585,14 +808,14 @@ export const BusinessDivisions = () => {
                 ))}
               </div>
 
-               <a
-                    href="https://anand-realtyy-new.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 bg-gradient-to-br ${division.color} text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105`}
-                  >
-                    Explore Anand {division.name.split(' ')[1]} →
-                  </a>
+              <a
+                href="https://anand-realtyy-new.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 bg-gradient-to-br ${division.color} text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105`}
+              >
+                Explore Anand {division.name.split(' ')[1]} →
+              </a>
             </motion.div>
           </div>
 
@@ -682,7 +905,7 @@ const Services = () => {
               </p>
             </motion.div>
 
-         
+
 
             <BusinessDivisions />
 

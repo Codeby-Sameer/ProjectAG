@@ -95,7 +95,44 @@ export default function Header() {
       url: "https://anand-wealth-consultancy.vercel.app/",
       icon: "💰",
       description: "Financial Advisory"
-    }
+
+    },
+    {
+  name: "Anand Shipping",
+  url: "#",
+  icon: "📦", 
+  description: "Premium Logistics"
+},
+{
+  name: "Anand Bank NBFC", 
+  url: "https://anand-bank-nbfc.vercel.app/",
+  icon: "🏦",
+  description: "Financial Services"
+},
+{
+  name: "Anand Youth",
+  url: "https://anand-youth.vercel.app", 
+  icon: "🌱",
+  description: "Social Welfare"
+},
+{
+  name: "Anand Religious Trust",
+  url: "https://anand-religious-trust.vercel.app",
+  icon: "🕉️",
+  description: "Vedic Spiritual Guidance"
+},
+{
+  name: "Anand Seva Trust",
+  url: "https://anand-seva-trust.vercel.app",
+  icon: "🤝",
+  description: "Compassionate Social Support"
+},
+{
+  name: "Anand Foods",
+  url: "https://anand-foods.vercel.app",
+  icon: "🍽️",
+  description: "Pure Milk & Regional Flavors"
+}
   ];
 
   // Close dropdowns when clicking outside

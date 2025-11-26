@@ -99,46 +99,70 @@ const AboutUs = () => {
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="md:pt-28 pt-20  pb-24  bg-gradient-to-br from-navy via-blue-900 to-purple-900 text-white relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -left-40 w-80 h-80 bg-gold/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-400/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full filter blur-3xl"></div>
-        </div>
+   {/* Hero Section */}
+<section className="relative py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+    <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full filter blur-3xl"></div>
+  </div>
+  
+  <div className="container mx-auto px-4 sm:px-6 relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="max-w-4xl mx-auto text-center text-white"
+    >
+      <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-white/20">
+        <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+        <span className="text-cyan-400 font-semibold">Since 1988</span>
+      </div>
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-white/20">
-              <span className="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
-              <span className="text-gold font-semibold">Since 1988</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-white bg-clip-text text-transparent">
-              Anand Groups
-            </h1>
-            <div className="w-32 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl md:text-2xl text-blue-100 leading-relaxed mb-8">
-              Building Dreams, Creating Legacies - A Journey of Excellence Since 1995
-            </p>
-            
-            {/* Stats Bar */}
-            <div className="flex flex-wrap justify-center gap-8 mt-12">
-              {[
-                { number: "28+", label: "Years Experience" },
-                { number: "500+", label: "Projects Completed" },
-                { number: "7", label: "Countries" },
-                { number: "50K+", label: "Happy Clients" }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-gold">{stat.number}</div>
-                  <div className="text-blue-200 text-sm">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+      <motion.h1
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="text-4xl sm:text-5xl md:text-6xl font-black mb-6"
+      >
+        <span className="bg-clip-text text-transparent bg-white">
+          Anand Groups
+        </span>
+      </motion.h1>
+      
+      <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto mb-8 rounded-full"></div>
+      
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
+      >
+        Building Dreams, Creating Legacies  A Journey of Excellence Since 1995
+      </motion.p>
+
+      {/* Platform Stats */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12"
+      >
+        {[
+          { number: "28+", label: "Years Experience" },
+          { number: "500+", label: "Projects Completed" },
+          { number: "7", label: "Countries" },
+          { number: "50K+", label: "Happy Clients" }
+        ].map((stat, index) => (
+          <div key={index} className="text-center">
+            <div className="text-2xl md:text-3xl font-bold text-cyan-300">{stat.number}</div>
+            <div className="text-sm text-gray-300">{stat.label}</div>
           </div>
-        </div>
-      </section>
+        ))}
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Enhanced Founder Section */}
       <section className="py-20 bg-white relative overflow-hidden">
@@ -511,7 +535,45 @@ const AboutUs = () => {
             label: "💰 Wealth", 
             gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
             desc: "Financial consultancy"
-          }
+          },
+          
+  {
+    to: "https://anand-shipping.vercel.app", // assuming URL
+    label: "📦 Shipping",
+    gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+    desc: "Premium Logistics"
+  },
+  {
+    to: "https://anand-bank-nbfc.vercel.app", // assuming URL
+    label: "🏦 Bank NBFC", 
+    gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+    desc: "Financial Services"
+  },
+  {
+    to: "https://anand-youth.vercel.app", // assuming URL
+    label: "🌱 Youth",
+    gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
+    desc: "Social Welfare"
+  },
+  {
+  to: "https://anand-religious-trust.vercel.app",
+  label: "🕉️ Religious Trust",
+  gradient: "from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600",
+  desc: "Vedic Spiritual Guidance"
+} ,
+{
+  to: "https://anand-seva-trust.vercel.app", 
+  label: "🤝 Seva Trust",
+  gradient: "from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600",
+  desc: "Compassionate Social Support"
+},
+{
+  to: "https://anand-foods.vercel.app",
+  label: "🍽️ Anand Foods",
+  gradient: "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
+  desc: "Pure Milk & Regional Flavors"
+}
+
         ].map((button, index) => (
           <div key={index} className="text-center group">
             <a
