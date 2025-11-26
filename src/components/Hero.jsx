@@ -47,7 +47,7 @@ const CompanyServicesCarousel = () => {
     features: ["Film & Entertainment Events", "Corporate Galas", "Media Production", "Award Ceremonies"],
     gradient: "from-orange-500 to-yellow-500",
     dotColor: "bg-orange-500",
-    image: "img/events-media.jpg",
+    image: "img/events.png",
     link: "https://anand-events.vercel.app",
     buttonText: "Explore Events"
   },
@@ -58,7 +58,7 @@ const CompanyServicesCarousel = () => {
     features: ["Global Trading", "Quality Assurance", "Supply Chain Management", "Market Expansion"],
     gradient: "from-teal-500 to-cyan-700",
     dotColor: "bg-teal-500",
-    image: "img/import-export.jpg",
+    image: "img/importexports.png",
     link: "https://anand-trade.vercel.app",
     buttonText: "Explore Trade"
   },
@@ -69,7 +69,7 @@ const CompanyServicesCarousel = () => {
     features: ["Vehicle Monitoring", "Driver Safety", "Emergency Response", "Predictive Analytics"],
     gradient: "from-indigo-500 to-blue-700",
     dotColor: "bg-indigo-500",
-    image: "img/technology-safety.jpg",
+    image: "img/safety.png",
     link: "https://anand-transport-12.vercel.app",
     buttonText: "Explore Safety"
   },
@@ -80,7 +80,7 @@ const CompanyServicesCarousel = () => {
     features: ["Quick Delivery", "Medicine Access", "Quality Assurance", "Healthcare Innovation"],
     gradient: "from-red-500 to-pink-700",
     dotColor: "bg-red-500",
-    image: "img/pharma.jpg",
+    image: "img/pharma.png",
     link: "https://anand-pharma.vercel.app",
     buttonText: "Explore Pharma"
   },
@@ -91,7 +91,7 @@ const CompanyServicesCarousel = () => {
     features: ["Pilgrimage Tours", "Spiritual Guidance", "Cultural Immersion", "Sacred Experiences"],
     gradient: "from-amber-500 to-orange-700",
     dotColor: "bg-amber-500",
-    image: "img/devocation.jpg",
+    image: "img/devocation.png",
     link: "https://anand-devocation.vercel.app",
     buttonText: "Explore Pilgrimage"
   },
@@ -102,7 +102,7 @@ const CompanyServicesCarousel = () => {
     features: ["Travel Planning", "Itinerary Management", "Hotel Bookings", "Destination Coordination"],
     gradient: "from-sky-500 to-blue-600",
     dotColor: "bg-sky-500",
-    image: "img/yatra.jpg",
+    image: "img/yatra.png",
     link: "https://anand-yathra.vercel.app",
     buttonText: "Explore Travel"
   },
@@ -113,7 +113,7 @@ const CompanyServicesCarousel = () => {
     features: ["Security Personnel", "Luxury Transport", "Private Stays", "Discreet Service"],
     gradient: "from-violet-500 to-purple-700",
     dotColor: "bg-violet-500",
-    image: "img/celebrity-service.jpg",
+    image: "img/celebrity.png",
     link: "https://anand-celebrity.vercel.app",
     buttonText: "Explore Services"
   },
@@ -124,7 +124,7 @@ const CompanyServicesCarousel = () => {
     features: ["Secure Storage", "Bank-grade Safety", "Privacy Protection", "Easy Access"],
     gradient: "from-gray-500 to-gray-700",
     dotColor: "bg-gray-500",
-    image: "img/lockers.jpg",
+    image: "img/lockers.png",
     link: "https://anand-lockers.vercel.app",
     buttonText: "Explore Lockers"
   },
@@ -135,7 +135,7 @@ const CompanyServicesCarousel = () => {
     features: ["Equity Trading", "Market Insights", "Portfolio Management", "Investment Guidance"],
     gradient: "from-emerald-500 to-green-700",
     dotColor: "bg-emerald-500",
-    image: "img/share-broking.jpg",
+    image: "img/shares.png",
     link: "https://anand-broking.vercel.app",
     buttonText: "Explore Trading"
   },
@@ -146,10 +146,77 @@ const CompanyServicesCarousel = () => {
     features: ["Wealth Management", "Investment Strategies", "Financial Planning", "Global Markets"],
     gradient: "from-amber-500 to-yellow-700",
     dotColor: "bg-amber-500",
-    image: "img/wealth-consultancy.jpg",
+    image: "img/wealth.png",
     link: "https://anand-wealth-consultancy.vercel.app",
     buttonText: "Explore Wealth"
+  },
+  {
+    title: "Anand Shipping",
+    icon: "📦",
+    description: "Anand Shipping brings a new level of sophistication to logistics. Designed for clients who value precision, privacy, and premium care, we offer an elevated shipping experience where every parcel is treated with the highest level of attention and security.",
+    features: ["Priority Delivery", "Elite Packaging", "White-Glove Handling", "Discreet Logistics"],
+    gradient: "from-blue-500 to-purple-500",
+    dotColor: "bg-blue-500",
+    image: "img/shipping.png",
+    link: "#",
+    buttonText: "Explore Shipping"
+  },
+  {
+    title: "Anand Bank NBFC",
+    icon: "🏦",
+    description: "A modern, future-focused financial institution committed to making credit, investment, and financial growth accessible to everyone with flexible, transparent, and customer-first solutions.",
+    features: ["Quick Approvals", "Business Solutions", "Investment Products", "Transparent Processes"],
+    gradient: "from-green-500 to-teal-500",
+    dotColor: "bg-green-500",
+    image: "img/bank.png",
+    link: "https://anand-bank-nbfc.vercel.app/",
+    buttonText: "Explore Banking"
+  },
+  {
+    title: "Anand Youth",
+    icon: "🌱",
+    description: "A mission-driven community initiative dedicated to serving society with compassion, responsibility, and humanity through youth-driven programs that support people, nature, and the environment.",
+    features: ["Environmental Care", "Food Support", "Clothing Distribution", "Disaster Relief"],
+    gradient: "from-orange-500 to-red-500",
+    dotColor: "bg-orange-500",
+    image: "img/youth.png",
+    link: "https://anand-youth.vercel.app",
+    buttonText: "Explore Youth Initiatives"
+  },
+  {
+    title: "Anand Religious Trust - MAA SENA",
+    icon: "🕉️",
+    description: "A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma and offering genuine solutions to life's challenges through the ancient knowledge of the Vedas.",
+    features: ["Vedic Guidance", "Birth Chart Analysis", "Havan & Pooja", "Live Participation"],
+    gradient: "from-yellow-600 to-orange-600",
+    dotColor: "bg-yellow-600",
+    image: "img/religious-trust.png",
+    link: "https://anand-religious-trust.vercel.app",
+    buttonText: "Explore Spiritual Services"
+  },
+  {
+    title: "Anand Seva Trust",
+    icon: "🤝",
+    description: "A compassionate initiative dedicated to supporting individuals and families facing difficult circumstances through education, care, and guidance.",
+    features: ["Education Support", "Emotional Care", "Protection", "Skill Development"],
+    gradient: "from-blue-500 to-purple-500",
+    dotColor: "bg-blue-500",
+    image: "img/seva-trust.png",
+    link: "https://anand-seva-trust.vercel.app",
+    buttonText: "Explore Seva Trust"
+  },
+  {
+    title: "Anand Foods",
+    icon: "🍽️",
+    description: "A food division offering pure buffalo milk through AmruthDhan and authentic regional Indian delicacies through FamAdda, ensuring purity, safety, and cultural authenticity.",
+    features: ["AmruthDhan Pure Milk", "FamAdda Regional Foods", "Quality Guaranteed", "Cultural Heritage"],
+    gradient: "from-amber-500 to-orange-500",
+    dotColor: "bg-amber-500",
+    image: "img/anand-foods.png",
+    link: "https://anand-foods.vercel.app",
+    buttonText: "Explore Foods"
   }
+
 ];
   // Auto rotate cards
   useEffect(() => {
@@ -187,7 +254,7 @@ const CompanyServicesCarousel = () => {
             {/* Header Section */}
             <div className={`h-28 sm:h-32 bg-gradient-to-br ${currentService.gradient} relative overflow-hidden`}>
               <div
-                className="absolute inset-0 bg-cover bg-center opacity-30 
+                className="absolute inset-0 bg-cover bg-center opacity-60 
                 transition-transform duration-700 group-hover:scale-110"
                 style={{ backgroundImage: `url(${currentService.image})` }}
               ></div>

@@ -1,11 +1,4 @@
-// components/Services.js
-import React from 'react';
 import { motion } from 'framer-motion';
-import Devocation from '../Devocation';
-
-
-
-
 
 // Animation variants
 const fadeIn = {
@@ -556,7 +549,7 @@ export const BusinessDivisions = () => {
           color: "from-emerald-400 to-emerald-600"
         }
       ],
-      website: "https://anand-bank-nbfc.vercel.app/",
+      website: "https://anand-bank-nbfc.vercel.app/ ",
       image: "img/bank.png"
     },
 
@@ -849,38 +842,7 @@ export const BusinessDivisions = () => {
 
 
 const Services = () => {
-  // Animation variants for staggered fade-in
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
 
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
-
-  const fadeIn = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: 'easeOut' },
-    },
-  };
 
   return (
     <>
@@ -904,14 +866,7 @@ const Services = () => {
                 Diversified excellence across multiple sectors, united by our commitment to quality and innovation
               </p>
             </motion.div>
-
-
-
             <BusinessDivisions />
-
-
-
-
           </div>
         </div>
       </section>
