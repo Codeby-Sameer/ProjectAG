@@ -213,7 +213,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-amber-500 to-orange-500",
     dotColor: "bg-amber-500",
     image: "img/anand-foods.png",
-    link: "https://anand-foods.vercel.app",
+    link: "https://anand-food-21.vercel.app",
     buttonText: "Explore Foods"
   }
 
@@ -368,7 +368,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-yellow-500/20" />
       </div>
 
-      <div className="relative container mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8 lg:py-16">
+      <div className="relative container mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 min-h-[calc(100vh-4rem)]">
 
           {/* Left Content - Text Section */}

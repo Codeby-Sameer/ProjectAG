@@ -2,42 +2,32 @@ import { Link } from "react-router-dom"
 import { motion } from 'framer-motion';
 import {  Hammer, Shield, Target, Users, Heart, Home, Award, Smile } from 'lucide-react';
 import ServicesCarousel from "./Sections/serviceCarousel";
+    import { 
+  FaBuilding, 
+  FaFilm, 
+  FaHardHat, 
+  FaTheaterMasks, 
+  FaGlobeAmericas, 
+  FaShieldAlt, 
+  FaPills, 
+  FaPrayingHands, 
+  FaPlane, 
+  FaStar, 
+  FaLock, 
+  FaChartLine, 
+  FaMoneyBillWave, 
+  FaShippingFast, 
+  FaUniversity, 
+  FaSeedling, 
+  FaOm, 
+  FaHandsHelping, 
+  FaUtensils 
+} from 'react-icons/fa';
 
 
 const AboutUs = () => {
 
-     const services = [
-    {
-      title: "Anand Realtyy",
-      icon: "🏠",
-      description: "Built on trust, transparency, and long-term value. We ensure every property rests on strong legal foundations through meticulous document scrutiny and ethical practices.",
-      features: ["Legal Transparency", "Vastu-aligned Design", "Quality Construction", "Accessible Luxury"],
-      gradient: "from-green-500 to-green-700",
-      image: "venture.jpg",
-      link: "https://anand-realtyy-new.vercel.app",
-      buttonText: "Explore Properties"
-    },
-    {
-      title: "Anand Infra",
-      icon: "🏗️",
-      description: "Creating infrastructure that endures for generations—strong, precise, and timeless. We handle commercial complexes, townships, industrial structures, and public utilities.",
-      features: ["Scientific Planning", "Quality Control", "Vastu Principles", "Large-scale Projects"],
-      gradient: "from-blue-500 to-blue-700",
-      image: "infra.png",
-      link: "https://anand-project-21.vercel.app",
-      buttonText: "Explore Projects"
-    },
-    {
-      title: "Anand Cinemaz",
-      icon: "🎬",
-      description: "Producing meaningful, impactful, and high-quality cinematic content that blends creativity with purpose—crafting films that entertain and inspire.",
-      features: ["Meaningful Content", "Social Messages", "Artistic Integrity", "Modern Storytelling"],
-      gradient: "from-purple-500 to-purple-700",
-      image: "Production.png",
-      link: "https://anand-cinemas.vercel.app",
-      buttonText: "Explore Productions"
-    }
-  ];
+   
    // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -442,7 +432,6 @@ const AboutUs = () => {
     </section>
  
   
-        {/* <ServicesCarousel/> */}
 
 {/* Enhanced CTA Section */}
 <section className="py-20 bg-gradient-to-br from-navy to-blue-900 text-white relative overflow-hidden">
@@ -456,141 +445,161 @@ const AboutUs = () => {
       </p>
       
       {/* All Divisions Grid - Consistent Sizes */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
-        {[
-          { 
-            to: "https://anand-realtyy-new.vercel.app", 
-            label: "🏢 Realtyy", 
-            gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
-            desc: "Premium plots & commercial ventures"
-          },
-          { 
-            to: "https://anand-cinemas.vercel.app", 
-            label: "🎬 Cinemaz", 
-            gradient: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
-            desc: "Movies, music & digital content"
-          },
-          { 
-            to: "https://anand-project-21.vercel.app", 
-            label: "🏗️ Infra", 
-            gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
-            desc: "Gated communities & development"
-          },
-          { 
-            to: "https://anand-events-media-awards.vercel.app", 
-            label: "🎪 Events", 
-            gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
-            desc: "Events, media & awards"
-          },
-          { 
-            to: "https://import-and-exports.vercel.app/", 
-            label: "🌐 Trade", 
-            gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
-            desc: "Import & export services"
-          },
-          { 
-            to: "https://anand-transport-12.vercel.app", 
-            label: "🔒 Tech Safety", 
-            gradient: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
-            desc: "Technology solutions & security"
-          },
-          { 
-            to: "https://anand-pharma.vercel.app", 
-            label: "💊 Pharma", 
-            gradient: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
-            desc: "Pharmaceutical products"
-          },
-          { 
-            to: "https://anand-devocation.vercel.app", 
-            label: "🙏 Devocation", 
-            gradient: "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
-            desc: "Spiritual services"
-          },
-          { 
-            to: "https://anand-yathra.vercel.app", 
-            label: "✈️ Yatra", 
-            gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",
-            desc: "Travel & tourism"
-          },
-          { 
-            to: "https://anand-ceelebrity.vercel.app", 
-            label: "⭐ Celebrity", 
-            gradient: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
-            desc: "Celebrity management"
-          },
-          { 
-            to: "https://anand-lockers-safety.vercel.app/", 
-            label: "🗄️ Lockers", 
-            gradient: "from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700",
-            desc: "Secure storage solutions"
-          },
-          { 
-            to: "https://anand-share-brokering.vercel.app/", 
-            label: "📈 Broking", 
-            gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
-            desc: "Stock trading services"
-          },
-          { 
-            to: "https://anand-wealth-consultancy.vercel.app", 
-            label: "💰 Wealth", 
-            gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
-            desc: "Financial consultancy"
-          },
-          
-  {
-    to: "https://anand-shipping.vercel.app", // assuming URL
-    label: "📦 Shipping",
-    gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
-    desc: "Premium Logistics"
-  },
-  {
-    to: "https://anand-bank-nbfc.vercel.app", // assuming URL
-    label: "🏦 Bank NBFC", 
-    gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
-    desc: "Financial Services"
-  },
-  {
-    to: "https://anand-youth.vercel.app", // assuming URL
-    label: "🌱 Youth",
-    gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
-    desc: "Social Welfare"
-  },
-  {
-  to: "https://anand-religious.vercel.app",
-  label: "🕉️ Religious Trust",
-  gradient: "from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600",
-  desc: "Vedic Spiritual Guidance"
-} ,
-{
-  to: "https://anand-seva-trust.vercel.app", 
-  label: "🤝 Seva Trust",
-  gradient: "from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600",
-  desc: "Compassionate Social Support"
-},
-{
-  to: "https://anand-foods.vercel.app",
-  label: "🍽️ Anand Foods",
-  gradient: "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  desc: "Pure Milk & Regional Flavors"
-}
 
-        ].map((button, index) => (
-          <div key={index} className="text-center group">
-            <a
-              href={button.to}
-              target="_blank" rel="noopener noreferrer"
-              className={` bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col items-center justify-center min-h-[70px] w-full border border-white/10 hover:border-white/20`}
-            >
-              <span className="text-2xl mb-2">{button.label.split(' ')[0]}</span>
-              <span className="text-sm font-medium">{button.label.split(' ').slice(1).join(' ')}</span>
-            </a>
-            <p className="text-blue-200 text-xs mt-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300 font-medium">
-              {button.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
+  {[
+    { 
+      to: "https://anand-realtyy-new.vercel.app", 
+      icon: <FaBuilding size={24} className="drop-shadow-lg" />,
+      label: "Realtyy", 
+      gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+      desc: "Premium plots & commercial ventures"
+    },
+    { 
+      to: "https://anand-cinemas.vercel.app", 
+      icon: <FaFilm size={24} className="drop-shadow-lg" />,
+      label: "Cinemaz", 
+      gradient: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
+      desc: "Movies, music & digital content"
+    },
+    { 
+      to: "https://anand-project-21.vercel.app", 
+      icon: <FaHardHat size={24} className="drop-shadow-lg" />,
+      label: "Infra", 
+      gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+      desc: "Gated communities & development"
+    },
+    { 
+      to: "https://anand-events-media-awards.vercel.app", 
+      icon: <FaTheaterMasks size={24} className="drop-shadow-lg" />,
+      label: "Events", 
+      gradient: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
+      desc: "Events, media & awards"
+    },
+    { 
+      to: "https://import-and-exports.vercel.app/", 
+      icon: <FaGlobeAmericas size={24} className="drop-shadow-lg" />,
+      label: "Trade", 
+      gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
+      desc: "Import & export services"
+    },
+    { 
+      to: "https://anand-transport-12.vercel.app", 
+      icon: <FaShieldAlt size={24} className="drop-shadow-lg" />,
+      label: "Tech Safety", 
+      gradient: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
+      desc: "Technology solutions & security"
+    },
+    { 
+      to: "https://anand-pharma.vercel.app", 
+      icon: <FaPills size={24} className="drop-shadow-lg" />,
+      label: "Pharma", 
+      gradient: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+      desc: "Pharmaceutical products"
+    },
+    { 
+      to: "https://anand-devocation.vercel.app", 
+      icon: <FaPrayingHands size={24} className="drop-shadow-lg" />,
+      label: "Devocation", 
+      gradient: "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
+      desc: "Spiritual services"
+    },
+    { 
+      to: "https://anand-yathra.vercel.app", 
+      icon: <FaPlane size={24} className="drop-shadow-lg" />,
+      label: "Yatra", 
+      gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",
+      desc: "Travel & tourism"
+    },
+    { 
+      to: "https://anand-ceelebrity.vercel.app", 
+      icon: <FaStar size={24} className="drop-shadow-lg" />,
+      label: "Celebrity", 
+      gradient: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
+      desc: "Celebrity management"
+    },
+    { 
+      to: "https://anand-lockers-safety.vercel.app/", 
+      icon: <FaLock size={24} className="drop-shadow-lg" />,
+      label: "Lockers", 
+      gradient: "from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700",
+      desc: "Secure storage solutions"
+    },
+    { 
+      to: "https://anand-share-brokering.vercel.app/", 
+      icon: <FaChartLine size={24} className="drop-shadow-lg" />,
+      label: "Broking", 
+      gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
+      desc: "Stock trading services"
+    },
+    { 
+      to: "https://anand-wealth-consultancy.vercel.app", 
+      icon: <FaMoneyBillWave size={24} className="drop-shadow-lg" />,
+      label: "Wealth", 
+      gradient: "from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700",
+      desc: "Financial consultancy"
+    },
+    {
+      to: "https://anand-shipping.vercel.app",
+      icon: <FaShippingFast size={24} className="drop-shadow-lg" />,
+      label: "Shipping",
+      gradient: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+      desc: "Premium Logistics"
+    },
+    {
+      to: "https://anand-bank-nbfc.vercel.app",
+      icon: <FaUniversity size={24} className="drop-shadow-lg" />,
+      label: "Bank NBFC", 
+      gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+      desc: "Financial Services"
+    },
+    {
+      to: "https://anand-youth.vercel.app",
+      icon: <FaSeedling size={24} className="drop-shadow-lg" />,
+      label: "Youth",
+      gradient: "from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700",
+      desc: "Social Welfare"
+    },
+    {
+      to: "https://anand-religious.vercel.app",
+      icon: <FaOm size={24} className="drop-shadow-lg" />,
+      label: "Religious Trust",
+      gradient: "from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600",
+      desc: "Vedic Spiritual Guidance"
+    },
+    {
+      to: "https://anand-seva-trust-1.vercel.app", 
+      icon: <FaHandsHelping size={24} className="drop-shadow-lg" />,
+      label: "Seva Trust",
+      gradient: "from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600",
+      desc: "Compassionate Social Support"
+    },
+    {
+      to: "https://anand-food-21.vercel.app/",
+      icon: <FaUtensils size={24} className="drop-shadow-lg" />,
+      label: "Anand Foods",
+      gradient: "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
+      desc: "Pure Milk & Regional Flavors"
+    }
+  ].map((button, index) => (
+    <div key={index} className="text-center group">
+      <a
+        href={button.to}
+        target="_blank" 
+        rel="noopener noreferrer"
+        className={`bg-gradient-to-r ${button.gradient} text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col items-center justify-center min-h-[70px] w-full border border-white/10 hover:border-white/20 p-2`}
+      >
+        <div className="text-2xl mb-2 filter drop-shadow-lg">
+          {button.icon}
+        </div>
+        <span className="text-sm font-medium drop-shadow-sm">{button.label}</span>
+      </a>
+      <p className="text-blue-200 text-xs mt-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300 font-medium">
+        {button.desc}
+      </p>
+    </div>
+  ))}
+</div>
       {/* Call to Action */}
       <div className="mt-12">
         <p className="text-blue-200 text-lg mb-6">
