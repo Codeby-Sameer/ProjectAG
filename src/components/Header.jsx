@@ -58,7 +58,7 @@ const divisions = [
   },
   {
     name: "Anand Pharma",
-    url: "https://anand-pharma.vercel.app",
+    url: "https://anand-pharma-12.vercel.app/",
     icon: <FaPills className="text-emerald-500" />,
     description: "Pharmaceuticals"
   },

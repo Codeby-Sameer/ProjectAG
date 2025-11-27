@@ -311,7 +311,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://anand-devocation.vercel.app",
+    website: "https://anand-pharma-12.vercel.app/",
     image: "img/pharma.png"
   },
   {
@@ -718,7 +718,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://anand-seva-trust-1.vercel.app/",
+    website: "https://anand-seva-trust-1.vercel.app",
     image: "img/seva-trust.png"
   },
   {

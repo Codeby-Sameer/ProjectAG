@@ -491,7 +491,7 @@ const AboutUs = () => {
       desc: "Technology solutions & security"
     },
     { 
-      to: "https://anand-pharma.vercel.app", 
+      to: "https://anand-pharma-12.vercel.app/", 
       icon: <FaPills size={24} className="drop-shadow-lg" />,
       label: "Pharma", 
       gradient: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
@@ -577,7 +577,7 @@ const AboutUs = () => {
     {
       to: "https://anand-food-21.vercel.app/",
       icon: <FaUtensils size={24} className="drop-shadow-lg" />,
-      label: "Anand Foods",
+      label: "Foods",
       gradient: "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
       desc: "Pure Milk & Regional Flavors"
     }
