@@ -1,7 +1,21 @@
 // components/About.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Film, Hammer, Shield, Target, Users, Heart, Home, Award, Smile } from 'lucide-react';
+import { 
+  FaBuilding, 
+  FaFilm, 
+  FaHammer, 
+  FaShieldAlt, 
+  FaBullseye, 
+  FaUsers, 
+  FaHeart, 
+  FaHome, 
+  FaAward, 
+  FaSmile,
+  FaHandshake,
+  FaStar,
+  FaRocket
+} from 'react-icons/fa';
 
 const About = () => {
   // Animation variants
@@ -105,9 +119,9 @@ const About = () => {
             >
               {/* Our Story */}
               <motion.div variants={itemVariants}>
-                <h3 className="text-2xl md:text-3xl font-bold  mx-auto px-9 md: text-navy-900 mb-6 flex items-center gap-3">
-                  <div className="p-2  bg-blue-100 rounded-lg">
-                    <Heart className="w-6 h-6 md:w-7 md:h-7 text-blue-700" />
+                <h3 className="text-2xl md:text-3xl font-bold text-navy-900 mb-6 flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <FaHeart className="w-6 h-6 md:w-7 md:h-7 text-blue-700" />
                   </div>
                   Our Story
                 </h3>
@@ -136,7 +150,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Home className="w-5 h-5 text-blue-700" />
+                      <FaHome className="w-5 h-5 text-blue-700" />
                     </div>
                     <div className="text-2xl font-bold text-blue-700 mb-1">500+</div>
                     <div className="text-sm text-slate-600 font-medium">Projects</div>
@@ -149,7 +163,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Award className="w-5 h-5 text-blue-700" />
+                      <FaAward className="w-5 h-5 text-blue-700" />
                     </div>
                     <div className="text-2xl font-bold text-blue-700 mb-1">20+</div>
                     <div className="text-sm text-slate-600 font-medium">Years</div>
@@ -162,7 +176,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Users className="w-5 h-5 text-blue-700" />
+                      <FaUsers className="w-5 h-5 text-blue-700" />
                     </div>
                     <div className="text-2xl font-bold text-blue-700 mb-1">10K+</div>
                     <div className="text-sm text-slate-600 font-medium">Clients</div>
@@ -175,7 +189,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Smile className="w-5 h-5 text-blue-700" />
+                      <FaSmile className="w-5 h-5 text-blue-700" />
                     </div>
                     <div className="text-2xl font-bold text-blue-700 mb-1">98%</div>
                     <div className="text-sm text-slate-600 font-medium">Satisfaction</div>
@@ -196,7 +210,7 @@ const About = () => {
               <motion.div variants={itemVariants}>
                 <h3 className="text-2xl md:text-3xl font-bold text-navy-900 mb-6 flex items-center gap-3">
                   <div className="p-2 bg-blue-100 rounded-lg">
-                    <Shield className="w-6 h-6 md:w-7 md:h-7 text-blue-700" />
+                    <FaShieldAlt className="w-6 h-6 md:w-7 md:h-7 text-blue-700" />
                   </div>
                   What Makes Us Different
                 </h3>
@@ -207,7 +221,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <Target className="w-5 h-5 md:w-6 md-h-6 text-blue-700" />
+                      <FaBullseye className="w-5 h-5 md:w-6 md:h-6 text-blue-700" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-navy-900 mb-2 text-lg">Transparency First</h4>
@@ -224,7 +238,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <Hammer className="w-5 h-5 md:w-6 md-h-6 text-blue-700" />
+                      <FaHammer className="w-5 h-5 md:w-6 md:h-6 text-blue-700" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-navy-900 mb-2 text-lg">Quality That Lasts</h4>
@@ -241,7 +255,7 @@ const About = () => {
                     whileHover="hover"
                   >
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <Users className="w-5 h-5 md:w-6 md-h-6 text-blue-700" />
+                      <FaUsers className="w-5 h-5 md:w-6 md:h-6 text-blue-700" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-navy-900 mb-2 text-lg">For Everyone</h4>
@@ -251,10 +265,69 @@ const About = () => {
                       </p>
                     </div>
                   </motion.div>
+
+                  {/* Additional Feature Card */}
+                  <motion.div 
+                    className="flex items-start gap-4 p-4 md:p-6 bg-white rounded-xl shadow-sm border border-blue-100"
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                      <FaHandshake className="w-5 h-5 md:w-6 md:h-6 text-blue-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-navy-900 mb-2 text-lg">Trusted Partnership</h4>
+                      <p className="text-slate-600 md:text-base text-sm">
+                        We build lasting relationships with our clients, supporting them beyond project 
+                        completion with dedicated after-sales service.
+                      </p>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Mission Vision Section */}
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 mt-20"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={containerVariants}
+          >
+            {/* Mission */}
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 text-center"
+              variants={itemVariants}
+              whileHover={{ y: -5, transition: { duration: 0.3 } }}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FaRocket className="w-8 h-8 text-blue-700" />
+              </div>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">Our Mission</h3>
+              <p className="text-slate-600 leading-relaxed">
+                To create exceptional value through innovative solutions, sustainable practices, 
+                and unwavering commitment to quality across all our business divisions.
+              </p>
+            </motion.div>
+
+            {/* Vision */}
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 text-center"
+              variants={itemVariants}
+              whileHover={{ y: -5, transition: { duration: 0.3 } }}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FaStar className="w-8 h-8 text-blue-700" />
+              </div>
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">Our Vision</h3>
+              <p className="text-slate-600 leading-relaxed">
+                To be the most trusted and respected conglomerate, transforming communities 
+                and enriching lives through diversified excellence and social responsibility.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

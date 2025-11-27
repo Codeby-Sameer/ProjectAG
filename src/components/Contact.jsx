@@ -60,7 +60,7 @@ const Contact = () => {
     {
       icon: <FaMapMarkerAlt size={20} />,
       title: 'Visit Us',
-      details: ['123 Business Avenue', 'Suite 100, Business District', 'New York, NY 10001']
+      details: [ 'H.No. 131/A, 2nd Floor, MLA Colony, Beside Vamsiram Banjara Abodes, Road No.12, Lane 14, Banjara Hills, Hyderabad-500034.']
     },
     {
       icon: <FaClock size={20} />,
