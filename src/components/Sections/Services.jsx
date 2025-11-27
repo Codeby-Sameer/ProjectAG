@@ -661,7 +661,7 @@ export const BusinessDivisions = () => {
           color: "from-amber-400 to-amber-600"
         }
       ],
-      website: "https://anand-religious-trust.vercel.app",
+      website: "https://anand-religious.vercel.app",
       image: "img/religious-trust.png"
     },
     {

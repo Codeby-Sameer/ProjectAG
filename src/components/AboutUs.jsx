@@ -556,7 +556,7 @@ const AboutUs = () => {
     desc: "Social Welfare"
   },
   {
-  to: "https://anand-religious-trust.vercel.app",
+  to: "https://anand-religious.vercel.app",
   label: "🕉️ Religious Trust",
   gradient: "from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600",
   desc: "Vedic Spiritual Guidance"

@@ -117,7 +117,7 @@ export default function Header() {
 },
 {
   name: "Anand Religious Trust",
-  url: "https://anand-religious-trust.vercel.app",
+  url: "https://anand-religious.vercel.app",
   icon: "🕉️",
   description: "Vedic Spiritual Guidance"
 },
