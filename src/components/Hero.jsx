@@ -136,7 +136,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-emerald-500 to-green-700",
     dotColor: "bg-emerald-500",
     image: "img/shares.png",
-    link: "https://anand-broking.vercel.app",
+    link: "https://anand-share-brokering.vercel.app",
     buttonText: "Explore Trading"
   },
   {
@@ -202,7 +202,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-blue-500 to-purple-500",
     dotColor: "bg-blue-500",
     image: "img/seva-trust.png",
-    link: "https://anand-seva-trust.vercel.app",
+    link: "https://anand-seva-trust-1.vercel.app/",
     buttonText: "Explore Seva Trust"
   },
   {
