@@ -59,7 +59,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-teal-500 to-cyan-700",
     dotColor: "bg-teal-500",
     image: "img/importexports.png",
-    link: "https://anand-trade.vercel.app",
+    link: "https://import-and-exports.vercel.app/",
     buttonText: "Explore Trade"
   },
   {
