@@ -192,28 +192,33 @@ const AboutUs = () => {
               </div>
 
               {/* Founder Story */}
-              <div className="space-y-6">
+              <div className="space-y-2">
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-bold text-navy mb-4">
+                  <h2 className="text-4xl md:text-5xl font-bold text-navy mb-2">
                     Anand
                   </h2>
                   <div className="text-xl text-navy font-semibold mb-2">
                     Founder & Chairman
                   </div>
-                  <div className="w-20 h-1 bg-gradient-to-r from-gold to-yellow-400 mb-6 rounded-full"></div>
                 </div>
 
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  A visionary leader with an unwavering commitment to excellence, Anand founded
-                  Anand Group in 1988 with a simple yet powerful vision: to create sustainable
-                  businesses that transform communities and inspire generations.
+                <p className="md:text-lg  text-sm leading-relaxed text-gray-700 ">
+                  Anand is the visionary founder of Anand Group, guided by a strong belief that businesses should go beyond profit creating lasting impact, earning trust, and contributing meaningfully to society.
+                   With a keen understanding of evolving market needs and a natural ability to identify emerging opportunities,
+                   he laid the foundation of the group with a clear and purposeful vision.
                 </p>
 
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  With a background in engineering and an innate understanding of market dynamics,
-                  Mr. Anand has successfully steered the group through economic cycles, expanding
-                  from a single real estate venture to a diversified conglomerate with global presence.
+                <p className="md:text-lg  text-sm leading-relaxed text-gray-700 ">
+                  Rather than limiting the organization to a single industry, Anand envisioned an integrated ecosystem
+                  of businesses designed to serve people across every stage of life. Today, Anand Group spans diverse 
+                  sectors including housing, finance, healthcare, travel, technology, culture, spirituality, and social
+                  service each addressing real-world needs with responsibility and intent.
                 </p>
+
+                <p className="md:text-lg  text-sm leading-relaxed text-gray-700">
+                  Under his leadership, Anand Group has evolved into a diversified conglomerate built on the principles of innovation, ethics, and long-term value creation. Every venture reflects his core philosophy of trust, accountability, and meaningful, sustainable growth.
+                </p>
+
 
                 {/* Enhanced Stats */}
                 <div className="grid grid-cols-2 gap-4 py-6">
@@ -482,7 +487,7 @@ const AboutUs = () => {
                   desc: "Events, media & awards"
                 },
                 {
-                  to: "https://import-and-exports.vercel.app/",
+                  to: "https://anand-imports-and-exports.vercel.app",
                   icon: <FaGlobeAmericas size={24} className="drop-shadow-lg" />,
                   label: "Trade",
                   gradient: "from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700",
@@ -510,7 +515,7 @@ const AboutUs = () => {
                   desc: "Spiritual services"
                 },
                 {
-                  to: "https://anand-yathra.vercel.app",
+                  to: "https://anand-yatra.vercel.app/",
                   icon: <FaPlane size={24} className="drop-shadow-lg" />,
                   label: "Yatra",
                   gradient: "from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700",

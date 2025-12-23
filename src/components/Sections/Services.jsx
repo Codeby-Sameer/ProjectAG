@@ -13,8 +13,10 @@ import {
   FaLeaf, FaTint, FaAmbulance, FaBookOpen,
   FaHandHoldingHeart, FaUsers, FaDesktop, FaSearch,
   FaKey, FaGift,
-  FaArrowAltCircleUp, 
+  FaBullseye,
+  FaBus, 
 } from 'react-icons/fa';  
+import { HavanIcon} from '../../utlis/icon';
 
 // Animation variants
 const fadeIn = {
@@ -237,7 +239,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://import-and-exports.vercel.app/",
+    website: "https://anand-imports-and-exports.vercel.app",
     image: "img/importexports.png"
   },
   {
@@ -250,7 +252,7 @@ const divisions = [
     bgGradient: "from-slate-50 to-gray-50",
     features: [
       { icon: <FaMapMarkerAlt className="text-slate-600" size={32} />, title: "Smart Sensors", desc: "Multi-layered hazard detection systems" },
-      { icon: <FaCar className="text-slate-600" size={32} />, title: "Vehicle Fitness", desc: "Comprehensive pre-tour safety checks" },
+      { icon: <FaBus className="text-slate-600" size={32} />, title: "Vehicle Fitness", desc: "Comprehensive pre-tour safety checks" },
       { icon: <FaUserShield className="text-slate-600" size={32} />, title: "Driver Excellence", desc: "Recognition and training programs" },
       { icon: <FaUtensils className="text-slate-600" size={32} />, title: "Travel Comfort", desc: "Pre-ordered meal systems" }
     ],
@@ -385,7 +387,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://anand-yathra.vercel.app",
+    website: "https://anand-yatra.vercel.app/",
     image: "img/yatra.png"
   },
   {
@@ -585,7 +587,7 @@ const divisions = [
       { icon: <FaUniversity className="text-amber-500" size={32} />, title: "Wealth Management", desc: "Protection and growth planning" },
       { icon: <FaChartLine className="text-amber-500" size={32} />, title: "Investment Strategy", desc: "Long-term growth focus" },
       { icon: <FaGlobeAmericas className="text-amber-500" size={32} />, title: "Global Markets", desc: "Domestic and international avenues" },
-      { icon: <FaArrowAltCircleUp className="text-amber-500" size={32} />, title: "Personalized Plans", desc: "Goal-based strategies" }
+      { icon: <FaBullseye className="text-amber-500" size={32} />, title: "Personalized Plans", desc: "Goal-based strategies" }
     ],
     services: [
       {
@@ -658,7 +660,7 @@ const divisions = [
     features: [
       { icon: <FaBookOpen className="text-yellow-500" size={32} />, title: "Vedic Guidance", desc: "Spiritual solutions based on ancient scriptures" },
       { icon: <FaChartLine className="text-yellow-500" size={32} />, title: "Birth Chart Analysis", desc: "Personalized rituals using Janam Kundali" },
-      { icon: <FaFire className="text-yellow-500" size={32} />, title: "Havan & Pooja", desc: "Traditional rituals performed in your name and Gotram" },
+      { icon: <HavanIcon className="text-yellow-500" size={40} />, title: "Havan & Pooja", desc: "Traditional rituals performed in your name and Gotram" },
       { icon: <FaVideo className="text-yellow-500" size={32} />, title: "Live Participation", desc: "Real-time spiritual sessions from anywhere" }
     ],
     services: [

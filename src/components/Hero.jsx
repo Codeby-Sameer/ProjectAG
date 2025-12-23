@@ -5,6 +5,8 @@ import ScrollingNotice from './Sections/Scroller';
 // Single Card Auto Carousel Component
 const CompanyServicesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
 
  const services = [
   {
@@ -59,7 +61,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-teal-500 to-cyan-700",
     dotColor: "bg-teal-500",
     image: "img/importexports.png",
-    link: "https://import-and-exports.vercel.app/",
+    link: "https://anand-imports-and-exports.vercel.app",
     buttonText: "Explore Trade"
   },
   {
@@ -103,7 +105,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-sky-500 to-blue-600",
     dotColor: "bg-sky-500",
     image: "img/yatra.png",
-    link: "https://anand-yathra.vercel.app",
+    link: "https://anand-yatra.vercel.app/",
     buttonText: "Explore Travel"
   },
   {
@@ -219,15 +221,18 @@ const CompanyServicesCarousel = () => {
 
 ];
   // Auto rotate cards
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === services.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
+ useEffect(() => {
+  if (isHovered) return; // ⛔ pause when hovered
 
-    return () => clearInterval(interval);
-  }, [services.length]);
+  const interval = setInterval(() => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === services.length - 1 ? 0 : prevIndex + 1
+    );
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, [isHovered, services.length]);
+
 
   const currentService = services[currentIndex];
 
@@ -241,16 +246,19 @@ const CompanyServicesCarousel = () => {
 
       <div className="relative h-[340px] sm:h-[380px] md:h-[400px]">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            className="group bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl hover:shadow-2xl 
-              transition-all duration-500 overflow-hidden border border-gray-200 
-              absolute inset-0 flex flex-col"
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
+        <motion.div
+  key={currentIndex}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+  className="group bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl 
+    hover:shadow-2xl transition-all duration-500 overflow-hidden 
+    border border-gray-200 absolute inset-0 flex flex-col"
+  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+  animate={{ opacity: 1, scale: 1, y: 0 }}
+  exit={{ opacity: 0, scale: 0.95, y: -10 }}
+  transition={{ duration: 0.5, ease: "easeInOut" }}
+>
+
             {/* Header Section */}
             <div className={`h-28 sm:h-32 bg-gradient-to-br ${currentService.gradient} relative overflow-hidden`}>
               <div
@@ -336,6 +344,12 @@ const CompanyServicesCarousel = () => {
         <div className="text-xs text-white/70 font-medium px-2 sm:px-3">
           {currentIndex + 1} / {services.length}
         </div>
+        {isHovered && (
+  <span className="text-[10px] text-white/60 ml-2">
+    Paused
+  </span>
+)}
+
         
         <button
           onClick={() => setCurrentIndex(currentIndex === services.length - 1 ? 0 : currentIndex + 1)}

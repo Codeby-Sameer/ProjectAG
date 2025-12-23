@@ -46,7 +46,7 @@ const divisions = [
   },
   {
     name: "Anand Imports & Exports",
-    url: "https://import-and-exports.vercel.app/",
+    url: "https://anand-imports-and-exports.vercel.app",
     icon: <FaGlobeAmericas className="text-green-600" />,
     description: "International Trade"
   },
@@ -70,7 +70,7 @@ const divisions = [
   },
   {
     name: "Anand Yatra",
-    url: "https://anand-yathra.vercel.app",
+    url: "https://anand-yatra.vercel.app/",
     icon: <FaPlane className="text-cyan-500" />,
     description: "Travel & Tourism"
   },
@@ -281,9 +281,9 @@ const divisions = [
             <div className="flex flex-col items-start">
               <div className="flex items-center space-x-2">
                 <img
-                  src="/img/logo.png"
+                  src="/img/logo.jpg"
                   alt="Anand Logo"
-                  className="w-8 h-10 md:w-10 md:h-12 object-contain"
+                  className="w-10 h-10 md:w-14 md:h-14 object-contain"
                 />
                 <div className="flex flex-col items-start">
                   <h1 className="text-lg md:text-xl font-bold m-0 ">
