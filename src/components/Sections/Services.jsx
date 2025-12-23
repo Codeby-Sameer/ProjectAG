@@ -91,7 +91,7 @@ const divisions = [
         color: "from-emerald-400 to-emerald-600"
       }
     ],
-    website: "https://anand-realtyy-new.vercel.app",
+    website: "https://anandrealty.vercel.app/",
     image: "img/venture.jpg"
   },
   {

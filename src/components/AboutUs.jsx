@@ -459,7 +459,7 @@ const AboutUs = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
               {[
                 {
-                  to: "https://anand-realtyy-new.vercel.app",
+                  to: "https://anandrealty.vercel.app/",
                   icon: <FaBuilding size={24} className="drop-shadow-lg" />,
                   label: "Realtyy",
                   gradient: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",

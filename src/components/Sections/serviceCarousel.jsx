@@ -8,7 +8,7 @@ const ServicesCarousel = () => {
   const controls = useAnimation();
 
   const services = [
-    { title: "Anand Realty", icon: "🏢", image: "img/venture.jpg", gradient: "from-green-400 to-green-700", dotColor: "bg-green-500", features: ["100% Clear Titles", "Vastu Compliant", "Premium Locations"], link: "https://anand-realtyy-new.vercel.app", buttonText: "Explore Land" },
+    { title: "Anand Realty", icon: "🏢", image: "img/venture.jpg", gradient: "from-green-400 to-green-700", dotColor: "bg-green-500", features: ["100% Clear Titles", "Vastu Compliant", "Premium Locations"], link: "https://anandrealty.vercel.app/", buttonText: "Explore Land" },
     { title: "Anand Cinemaz", icon: "🎬", image: "img/Production.png", gradient: "from-purple-400 to-purple-700", dotColor: "bg-purple-500", features: ["Film Production", "Global Distribution", "OTT Content"], link: "https://anand-cinemas.vercel.app", buttonText: "Watch Productions" },
     { title: "Anand Infra", icon: "🏗️", image: "img/infra.png", gradient: "from-blue-400 to-blue-700", dotColor: "bg-blue-500", features: ["Gated Communities", "Smart Cities", "ISO Standards"], link: "https://anand-project-21.vercel.app", buttonText: "View Projects" },
     

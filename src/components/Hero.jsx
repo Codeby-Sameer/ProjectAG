@@ -17,7 +17,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-green-500 to-green-700",
     dotColor: "bg-green-500",
     image: "img/venture.jpg",
-    link: "https://anand-realtyy-new.vercel.app",
+    link: "https://anandrealty.vercel.app/",
     buttonText: "Explore Properties"
   },
   {

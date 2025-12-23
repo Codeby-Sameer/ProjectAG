@@ -28,7 +28,7 @@ const divisions = [
   },
   {
     name: "Anand Realtyy",
-    url: "https://anand-realtyy-new.vercel.app",
+    url: "https://anandrealty.vercel.app/",
     icon: <FaBuilding className="text-blue-600" />,
     description: "Real Estate"
   },

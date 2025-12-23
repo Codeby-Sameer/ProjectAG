@@ -165,7 +165,7 @@ const Footer = () => {
           <div>
             <h3 class="text-lg font-semibold text-navy mb-3">Our Divisions</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-              <a href="https://anand-realtyy-new.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Realtyy</a>
+              <a href="https://anandrealty.vercel.app/" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Realtyy</a>
               <a href="https://anand-cinemas.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Cinemaz</a>
               <a href="https://anand-project-21.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Infra</a>
               <a href="https://anand-events-media-awards.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Events</a>
@@ -323,7 +323,7 @@ const Footer = () => {
             <ul className="space-y-1 text-xs sm:text-sm">
               {[
                 {
-                  to: "https://anand-realtyy-new.vercel.app",
+                  to: "https://anandrealty.vercel.app/",
                   icon: <FaBuilding className="w-3 h-3" />,
                   label: "Realtyy"
                 },
