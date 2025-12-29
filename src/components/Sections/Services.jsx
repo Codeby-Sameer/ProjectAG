@@ -18,6 +18,8 @@ import {
 } from 'react-icons/fa';  
 import { HavanIcon} from '../../utlis/icon';
 
+import {  MdSensors } from 'react-icons/md';
+
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 50 },
@@ -140,11 +142,27 @@ const divisions = [
     color: "from-purple-500 to-purple-700",
     bgGradient: "from-purple-50 to-pink-50",
     features: [
-      { icon: <FaTheaterMasks className="text-purple-500" size={32} />, title: "Creative Vision", desc: "Artistic storytelling" },
-      { icon: <FaStar className="text-purple-500" size={32} />, title: "Talent Excellence", desc: "Best in industry" },
-      { icon: <FaGlobeAmericas className="text-purple-500" size={32} />, title: "Global Reach", desc: "International distribution" },
-      { icon: <FaTv className="text-purple-500" size={32} />, title: "Digital Content", desc: "Multi-platform presence" }
-    ],
+    { 
+      icon: <FaTheaterMasks className="text-purple-500" size={32} />, 
+      title: "Compelling Narratives", 
+      desc: "Artistic storytelling that captivates and resonates" 
+    },
+    { 
+      icon: <FaStar className="text-purple-500" size={32} />, 
+      title: "Meaningful Cinema", 
+      desc: "Creating films with lasting emotional impact" 
+    },
+    { 
+      icon: <FaGlobeAmericas className="text-purple-500" size={32} />, 
+      title: "Impactful Distribution", 
+      desc: "Global reach that touches hearts worldwide" 
+    },
+    { 
+      icon: <FaTv className="text-purple-500" size={32} />, 
+      title: "Multi-Platform Storytelling", 
+      desc: "Cinematic experiences across all digital mediums" 
+    }
+  ],
     services: [
       {
         title: "Movie Production",
@@ -251,7 +269,7 @@ const divisions = [
     color: "from-slate-600 to-slate-700",
     bgGradient: "from-slate-50 to-gray-50",
     features: [
-      { icon: <FaMapMarkerAlt className="text-slate-600" size={32} />, title: "Smart Sensors", desc: "Multi-layered hazard detection systems" },
+      { icon: <MdSensors className="text-slate-600" size={32} />, title: "Smart Sensors", desc: "Multi-layered hazard detection systems" },
       { icon: <FaBus className="text-slate-600" size={32} />, title: "Vehicle Fitness", desc: "Comprehensive pre-tour safety checks" },
       { icon: <FaUserShield className="text-slate-600" size={32} />, title: "Driver Excellence", desc: "Recognition and training programs" },
       { icon: <FaUtensils className="text-slate-600" size={32} />, title: "Travel Comfort", desc: "Pre-ordered meal systems" }
@@ -290,7 +308,7 @@ const divisions = [
     features: [
       { icon: <FaRocket className="text-green-500" size={32} />, title: "15-Minute Delivery", desc: "Rapid medicine access" },
       { icon: <FaStore className="text-green-500" size={32} />, title: "Multiple Brands", desc: "Equivalent medicine options" },
-      { icon: <FaDollarSign className="text-green-500" size={32} />, title: "Transparent Pricing", desc: "Clear cost information" },
+      { icon: <FaDollarSign className="text-green-500" size={32} />, title: "Comparision Chocies", desc: "Clear cost information" },
       { icon: <FaCheckCircle className="text-green-500" size={32} />, title: "Quality Assured", desc: "Licensed pharmacy expertise" }
     ],
     services: [
