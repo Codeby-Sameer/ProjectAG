@@ -4,19 +4,34 @@ import {
   FaEnvelope,
   FaPhone,
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
   FaInstagram,
-  FaBuilding,
+  FaChevronRight,
+  FaTimes,
+  FaExternalLinkAlt,
+
+  // Divisions & Business Icons
   FaFilm,
+  FaBuilding,
   FaHardHat,
   FaTheaterMasks,
   FaPills,
   FaUniversity,
-  FaChevronRight,
-  FaTimes,
-  FaExternalLinkAlt
-} from 'react-icons/fa';
+  FaGlobeAmericas,
+  FaShieldAlt,
+  FaPray,
+  FaPlane,
+  FaStar,
+  FaLock,
+  FaChartLine,
+  FaMoneyBillWave,
+  FaShippingFast,
+  FaSeedling,
+  FaOm,
+  FaHandsHelping,
+  FaUtensils
+} from "react-icons/fa";
+
 import { useState } from 'react';
 import { FaXTwitter } from 'react-icons/fa6';
 
@@ -258,27 +273,48 @@ const Footer = () => {
     );
   };
 
+  const divisions = [
+    { name: "Anand Cinemaz", url: "https://anand-cinemas.vercel.app", icon: FaFilm },
+    { name: "Anand Realtyy", url: "https://anandrealty.vercel.app/", icon: FaBuilding },
+    { name: "Anand Infra", url: "https://anand-project-21.vercel.app", icon: FaHardHat },
+    { name: "Anand Events & Media", url: "https://anand-events-media-awards.vercel.app", icon: FaTheaterMasks },
+    { name: "Anand Imports & Exports", url: "https://anand-imports-and-exports.vercel.app", icon: FaGlobeAmericas },
+    { name: "Anand Technology & Safety", url: "https://anand-transport-12.vercel.app", icon: FaShieldAlt },
+    { name: "Anand Pharma", url: "https://anand-pharma-12.vercel.app/", icon: FaPills },
+    { name: "Anand Devocation", url: "https://anand-devocation.vercel.app", icon: FaPray },
+    { name: "Anand Yatra", url: "https://anand-yatra.vercel.app/", icon: FaPlane },
+    { name: "Anand Celebrity Service", url: "https://anand-ceelebrity.vercel.app", icon: FaStar },
+    { name: "Anand Lockers", url: "https://anand-lockers-safety.vercel.app", icon: FaLock },
+    { name: "Anand Share Broking", url: "https://anand-share-brokering.vercel.app", icon: FaChartLine },
+    { name: "Anand Wealth Consultancy", url: "https://anand-wealth-consultancy.vercel.app/", icon: FaMoneyBillWave },
+    { name: "Anand Shipping", url: "https://anand-shipping.vercel.app/", icon: FaShippingFast },
+    { name: "Anand Bank NBFC", url: "https://anand-bank-nbfc.vercel.app/", icon: FaUniversity },
+    { name: "Anand Youth", url: "https://anand-youth.vercel.app", icon: FaSeedling },
+    { name: "Anand Religious Trust", url: "https://anand-religious.vercel.app", icon: FaOm },
+    { name: "Anand Seva Trust", url: "https://anand-seva-trust-1.vercel.app/", icon: FaHandsHelping },
+    { name: "Anand Foods", url: "https://anand-food-21.vercel.app/", icon: FaUtensils }
+  ];
+
   return (
     <footer className="bg-navy text-white">
-      <div className="container mx-auto px-4 sm:px-6 py-7 md:py-8">
+      <div className="md:p-8 p-5">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+        <div className="md:flex  ">  
           {/* Company Info */}
-          <div className="space-y-4 sm:space-y-4">
-            <div className="flex flex-row items-start sm:items-center space-y-3 space-x-2 mb-4">
-              <div className="relative">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-lg flex items-center justify-center">
+          <div className='md:w-1/3 '>
+            <div className='mb-4 '>
+              <div className="relative flex items-center ">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-lg flex items-center justify-center me-3">
                   <img
                     src="/img/logo.jpg"
                     alt="Anand Group Logo"
                     className="w-full p-2"
                   />
                 </div>
+                <div className="text-xl sm:text-2xl font-bold text-white">ANAND GROUP</div>
               </div>
-              <div className="flex flex-row items-baseline space-x-1 sm:space-x-2">
-                <div className="text-xl sm:text-2xl font-bold text-white">ANAND</div>
-                <div className="text-xl sm:text-2xl font-bold text-white">GROUP</div>
-              </div>
+              
+            
             </div>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
               Anand Group is a future-focused enterprise committed to innovation, integrity, and inclusive growth across real estate, infrastructure, technology, finance, media, healthcare, travel, and social initiatives.
@@ -288,9 +324,9 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className='md:w-1/6  md:p-3 p-1'>
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gold">Quick Links</h3>
-            <ul className="space-y-2 text-xs sm:text-sm">
+            <ul className="space-y-2 text-xs sm:text-sm " >
 
               <li>
                 <Link to="/" className="text-gray-300 hover:text-gold transition-colors block py-1 flex items-center group">
@@ -312,62 +348,42 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-            
+
 
             </ul>
-          </div>
+          </div>    
 
-          {/* Our Divisions */}
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold mb-3 text-gold">Our Divisions</h3>
-            <ul className="space-y-1 text-xs sm:text-sm">
-              {[
-                {
-                  to: "https://anandrealty.vercel.app/",
-                  icon: <FaBuilding className="w-3 h-3" />,
-                  label: "Realtyy"
-                },
-                {
-                  to: "https://anand-cinemas.vercel.app",
-                  icon: <FaFilm className="w-3 h-3" />,
-                  label: "Cinemaz"
-                },
-                {
-                  to: "https://anand-project-21.vercel.app",
-                  icon: <FaHardHat className="w-3 h-3" />,
-                  label: "Infra"
-                },
-               
-                {
-                  to: "https://anand-pharma-12.vercel.app/",
-                  icon: <FaPills className="w-3 h-3" />,
-                  label: "Pharma"
-                },
-                {
-                  to: "https://anand-bank-nbfc.vercel.app",
-                  icon: <FaUniversity className="w-3 h-3" />,
-                  label: "Bank NBFC"
-                }
-              ].map((division, index) => (
-                <li key={index}>
-                  <a
-                    href={division.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-gold transition-colors block py-1 flex items-center group"
-                  >
-                    <span className="w-3 h-3 mr-2 text-gold flex-shrink-0">
-                      {division.icon}
-                    </span>
-                    Anand {division.label}
-                  </a>
-                </li>
-              ))}
+          {/* OUR DIVISIONS */}
+          <div className='md:w-2/4  md:p-3 p-1'>
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:text-center ">
+              Our Divisions
+            </h3>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2 text-xs sm:text-sm">
+              {divisions.map((division, index) => {
+                const Icon = division.icon;
+
+                return (
+                  <li key={index}>
+                    <a
+                      href={division.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-300 hover:text-gold transition-colors group"
+                    >
+                      <span className="text-gold group-hover:scale-110 transition-transform">
+                        <Icon className="w-3.5 h-3.5" />
+                      </span>
+                      <span className="truncate">{division.name}</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className=' md:w-1/4 md:p-3 p-1'>
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gold">Contact Info</h3>
             <ul className="space-y-3 text-xs sm:text-sm text-gray-300">
               <li className="flex items-center space-x-2">
@@ -389,57 +405,46 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-blue-800 pt-4">
+        <div className="border-t border-blue-800 mt-2 pt-2 md:pt-3">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-           <div className="flex items-center gap-3 sm:gap-4 ">
-                  <a
-                    href="#"
-                    aria-label="Facebook"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
-                  >
-                    <FaFacebookF className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-                  </a>
+            <div className="flex items-center gap-3 sm:gap-4 ">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
+              >
+                <FaFacebookF className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              </a>
 
-                  <a
-                    href="#"
-                    aria-label="X (Twitter)"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
-                  >
-                    <FaXTwitter className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-                  </a>
+              <a
+                href="#"
+                aria-label="X (Twitter)"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
+              >
+                <FaXTwitter className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              </a>
 
-                  <a
-                    href="#"
-                    aria-label="LinkedIn"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
-                  >
-                    <FaLinkedinIn className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-                  </a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
+              >
+                <FaLinkedinIn className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              </a>
 
-                  <a
-                    href="#"
-                    aria-label="Instagram"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
-                  >
-                    <FaInstagram className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-                  </a>
-                </div>
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-navy transition-all duration-300 group"
+              >
+                <FaInstagram className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              </a>
+            </div>
 
             <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
               &copy;2025 Anand Group. All rights reserved.
             </p>
-               
-            <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
-              &copy;Designed by{' '}
-              <a
-                href="https://designcareermetrics.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-gold transition-colors"
-              >
-                Designcareermetrics
-              </a>
-            </p>
+
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <button
                 onClick={() => openModal('privacy')}
