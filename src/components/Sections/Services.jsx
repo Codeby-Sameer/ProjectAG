@@ -295,7 +295,7 @@ const divisions = [
       }
     ],
     website: "https://anand-transport-12.vercel.app",
-    image: "img/safety.png"
+    image: "img/safety.jpg"
   },
   {
     id: 7,
