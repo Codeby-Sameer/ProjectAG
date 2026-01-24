@@ -71,7 +71,7 @@ const CompanyServicesCarousel = () => {
     features: ["Vehicle Monitoring", "Driver Safety", "Emergency Response", "Predictive Analytics"],
     gradient: "from-indigo-500 to-blue-700",
     dotColor: "bg-indigo-500",
-    image: "img/safety.png",
+    image: "img/safety.jpg",
     link: "https://anand-transport-12.vercel.app",
     buttonText: "Explore Safety"
   },
@@ -389,7 +389,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-8 order-2 lg:order-1">
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 bg-white/90 text-blue-900 rounded-full text-[9px] sm:text-xs  lg:text-sm font-semibold shadow-lg w-fit backdrop-blur-sm">
               <span>🏆</span>
-              <span className="whitespace-nowrap ">Anand Group is a multi-sector enterprise built on one core belief</span>
+              {/* <span className="whitespace-nowrap ">Anand Group is a multi-sector enterprise built on one core belief</span> */}
             </div>
 
             <div>
