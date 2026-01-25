@@ -180,9 +180,12 @@ const Footer = () => {
           <div>
             <h3 class="text-lg font-semibold text-navy mb-3">Our Divisions</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-              <a href="https://anandrealty.vercel.app/" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Realtyy</a>
+              <a href="https://anandrealty.vercel.app
+
+/" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Realtyy</a>
               <a href="https://anand-cinemas.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Cinemaz</a>
-              <a href="https://anand-project-21.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Infra</a>
+              <a href="https://anandinfra.vercel.app
+" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Infra</a>
               <a href="https://anand-events-media-awards.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Events</a>
               <a href="https://anand-pharma-12.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Pharma</a>
               <a href="https://anand-bank-nbfc.vercel.app" class="text-blue-600 hover:text-blue-800 transition-colors block">Anand Bank NBFC</a>
@@ -273,27 +276,28 @@ const Footer = () => {
     );
   };
 
-  const divisions = [
-    { name: "Anand Cinemaz", url: "https://anand-cinemas.vercel.app", icon: FaFilm },
-    { name: "Anand Realtyy", url: "https://anandrealty.vercel.app/", icon: FaBuilding },
-    { name: "Anand Infra", url: "https://anand-project-21.vercel.app", icon: FaHardHat },
-    { name: "Anand Events & Media", url: "https://anand-events-media-awards.vercel.app", icon: FaTheaterMasks },
-    { name: "Anand Imports & Exports", url: "https://anand-imports-and-exports.vercel.app", icon: FaGlobeAmericas },
-    { name: "Anand Technology & Safety", url: "https://anand-transport-12.vercel.app", icon: FaShieldAlt },
-    { name: "Anand Pharma", url: "https://anand-pharma-12.vercel.app/", icon: FaPills },
-    { name: "Anand Devocation", url: "https://anand-devocation.vercel.app", icon: FaPray },
-    { name: "Anand Yatra", url: "https://anand-yatra.vercel.app/", icon: FaPlane },
-    { name: "Anand Celebrity Service", url: "https://anand-ceelebrity.vercel.app", icon: FaStar },
-    { name: "Anand Lockers", url: "https://anand-lockers-safety.vercel.app", icon: FaLock },
-    { name: "Anand Share Broking", url: "https://anand-share-brokering.vercel.app", icon: FaChartLine },
-    { name: "Anand Wealth Consultancy", url: "https://anand-wealth-consultancy.vercel.app/", icon: FaMoneyBillWave },
-    { name: "Anand Shipping", url: "https://anand-shipping.vercel.app/", icon: FaShippingFast },
-    { name: "Anand Bank NBFC", url: "https://anand-bank-nbfc.vercel.app/", icon: FaUniversity },
-    { name: "Anand Youth", url: "https://anand-youth.vercel.app", icon: FaSeedling },
-    { name: "Anand Religious Trust", url: "https://anand-religious.vercel.app", icon: FaOm },
-    { name: "Anand Seva Trust", url: "https://anand-seva-trust-1.vercel.app/", icon: FaHandsHelping },
-    { name: "Anand Foods", url: "https://anand-food-21.vercel.app/", icon: FaUtensils }
-  ];
+ const divisions = [
+  { name: "Anand Cinemaz", url: "https://anand-cinemas.vercel.app", icon: FaFilm },
+  { name: "Anand Realtyy", url: "https://anandrealty.vercel.app", icon: FaBuilding },
+  { name: "Anand Infra", url: "https://anandinfra.vercel.app", icon: FaHardHat },
+  { name: "Anand Events & Media", url: "https://anand-events-media-awards.vercel.app", icon: FaTheaterMasks },
+  { name: "Anand Imports & Exports", url: "https://anand-imports-and-exports.vercel.app", icon: FaGlobeAmericas },
+  { name: "Anand Technology & Safety", url: "https://anandtechnologiesandsafety.vercel.app", icon: FaShieldAlt },
+  { name: "Anand Pharma", url: "https://anand-shipping-hvbr.vercel.app", icon: FaPills },
+  { name: "Anand Devocation", url: "https://ananddevocation.vercel.app", icon: FaPray },
+  { name: "Anand Yatra", url: "https://anand-celebrity-ez6a.vercel.app", icon: FaPlane },
+  { name: "Anand Celebrity Service", url: "https://anand-celebrity.vercel.app", icon: FaStar },
+  { name: "Anand Lockers", url: "https://anandrealty-6q19.vercel.app", icon: FaLock },
+  { name: "Anand Share Broking", url: "https://anandsharebrokering.vercel.app", icon: FaChartLine },
+  { name: "Anand Wealth Consultancy", url: "https://anandwealthconsulting.vercel.app", icon: FaMoneyBillWave },
+  { name: "Anand Shipping", url: "https://anand-shipping.vercel.app", icon: FaShippingFast },
+  { name: "Anand Bank NBFC", url: "https://anandbank-nbfc.vercel.app", icon: FaUniversity },
+  { name: "Anand Youth", url: "https://anand-youth.vercel.app", icon: FaSeedling },
+  { name: "Anand Religious Trust", url: "https://anand-religious.vercel.app", icon: FaOm },
+  { name: "Anand Seva Trust", url: "https://anand-seva-trust-1.vercel.app", icon: FaHandsHelping },
+  { name: "Anand Foods", url: "https://anandfoods.vercel.app", icon: FaUtensils }
+];
+
 
   return (
     <footer className="bg-navy text-white">

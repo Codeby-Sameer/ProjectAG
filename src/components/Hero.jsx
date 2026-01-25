@@ -8,7 +8,7 @@ const CompanyServicesCarousel = () => {
   const [isHovered, setIsHovered] = useState(false);
 
 
- const services = [
+const services = [
   {
     title: "Anand Realtyy",
     icon: "🏠",
@@ -17,7 +17,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-green-500 to-green-700",
     dotColor: "bg-green-500",
     image: "img/venture.jpg",
-    link: "https://anandrealty.vercel.app/",
+    link: "https://anandrealty.vercel.app",
     buttonText: "Explore Properties"
   },
   {
@@ -28,7 +28,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-blue-500 to-blue-700",
     dotColor: "bg-blue-500",
     image: "img/infra.png",
-    link: "https://anand-project-21.vercel.app",
+    link: "https://anandinfra.vercel.app",
     buttonText: "Explore Projects"
   },
   {
@@ -50,7 +50,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-orange-500 to-yellow-500",
     dotColor: "bg-orange-500",
     image: "img/events.png",
-    link: "https://anand-events.vercel.app",
+    link: "https://anand-events-media-awards.vercel.app",
     buttonText: "Explore Events"
   },
   {
@@ -72,7 +72,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-indigo-500 to-blue-700",
     dotColor: "bg-indigo-500",
     image: "img/safety.jpg",
-    link: "https://anand-transport-12.vercel.app",
+    link: "https://anandtechnologiesandsafety.vercel.app",
     buttonText: "Explore Safety"
   },
   {
@@ -83,7 +83,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-red-500 to-pink-700",
     dotColor: "bg-red-500",
     image: "img/pharma.png",
-    link: "https://anand-pharma.vercel.app",
+    link: "https://anand-shipping-hvbr.vercel.app",
     buttonText: "Explore Pharma"
   },
   {
@@ -94,7 +94,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-amber-500 to-orange-700",
     dotColor: "bg-amber-500",
     image: "img/devocation.png",
-    link: "https://anand-devocation.vercel.app",
+    link: "https://ananddevocation.vercel.app",
     buttonText: "Explore Pilgrimage"
   },
   {
@@ -105,7 +105,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-sky-500 to-blue-600",
     dotColor: "bg-sky-500",
     image: "img/yatra.png",
-    link: "https://anand-yatra.vercel.app/",
+    link: "https://anand-celebrity-ez6a.vercel.app",
     buttonText: "Explore Travel"
   },
   {
@@ -127,7 +127,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-gray-500 to-gray-700",
     dotColor: "bg-gray-500",
     image: "img/lockers.png",
-    link: "https://anand-lockers.vercel.app",
+    link: "https://anandrealty-6q19.vercel.app",
     buttonText: "Explore Lockers"
   },
   {
@@ -138,7 +138,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-emerald-500 to-green-700",
     dotColor: "bg-emerald-500",
     image: "img/shares.png",
-    link: "https://anand-share-brokering.vercel.app",
+    link: "https://anandsharebrokering.vercel.app",
     buttonText: "Explore Trading"
   },
   {
@@ -149,7 +149,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-amber-500 to-yellow-700",
     dotColor: "bg-amber-500",
     image: "img/wealth.png",
-    link: "https://anand-wealth-consultancy.vercel.app",
+    link: "https://anandwealthconsulting.vercel.app",
     buttonText: "Explore Wealth"
   },
   {
@@ -160,7 +160,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-blue-500 to-purple-500",
     dotColor: "bg-blue-500",
     image: "img/shipping.png",
-    link: "#",
+    link: "https://anand-shipping.vercel.app",
     buttonText: "Explore Shipping"
   },
   {
@@ -171,7 +171,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-green-500 to-teal-500",
     dotColor: "bg-green-500",
     image: "img/bank.png",
-    link: "https://anand-bank-nbfc.vercel.app/",
+    link: "https://anandbank-nbfc.vercel.app",
     buttonText: "Explore Banking"
   },
   {
@@ -193,7 +193,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-yellow-600 to-orange-600",
     dotColor: "bg-yellow-600",
     image: "img/religious-trust.png",
-    link: "https://anand-religious-trust.vercel.app",
+    link: "https://anand-religious.vercel.app",
     buttonText: "Explore Spiritual Services"
   },
   {
@@ -204,7 +204,7 @@ const CompanyServicesCarousel = () => {
     gradient: "from-blue-500 to-purple-500",
     dotColor: "bg-blue-500",
     image: "img/seva-trust.png",
-    link: "https://anand-seva-trust-1.vercel.app/",
+    link: "https://anand-seva-trust-1.vercel.app",
     buttonText: "Explore Seva Trust"
   },
   {
@@ -215,11 +215,11 @@ const CompanyServicesCarousel = () => {
     gradient: "from-amber-500 to-orange-500",
     dotColor: "bg-amber-500",
     image: "img/anand-foods.png",
-    link: "https://anand-food-21.vercel.app",
+    link: "https://anandfoods.vercel.app",
     buttonText: "Explore Foods"
   }
-
 ];
+
   // Auto rotate cards
  useEffect(() => {
   if (isHovered) return; // ⛔ pause when hovered
@@ -389,7 +389,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-8 order-2 lg:order-1">
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 bg-white/90 text-blue-900 rounded-full text-[9px] sm:text-xs  lg:text-sm font-semibold shadow-lg w-fit backdrop-blur-sm">
               <span>🏆</span>
-              {/* <span className="whitespace-nowrap ">Anand Group is a multi-sector enterprise built on one core belief</span> */}
+              <span className="whitespace-nowrap ">Anand Group is a multi-sector enterprise built on one core belief</span>
             </div>
 
             <div>

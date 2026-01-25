@@ -130,7 +130,7 @@ const divisions = [
         color: "from-indigo-400 to-indigo-600"
       }
     ],
-    website: "https://anand-project-21.vercel.app",
+    website: "https://anandinfra.vercel.app",
     image: "img/infra.png"
   },
   {
@@ -294,7 +294,7 @@ const divisions = [
         color: "from-gray-500 to-gray-700"
       }
     ],
-    website: "https://anand-transport-12.vercel.app",
+    website: "https://anandtechnologiesandsafety.vercel.app",
     image: "img/safety.jpg"
   },
   {
@@ -331,7 +331,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://anand-pharma-12.vercel.app/",
+    website: "https://anand-shipping-hvbr.vercel.app",
     image: "img/pharma.png"
   },
   {
@@ -368,7 +368,7 @@ const divisions = [
         color: "from-orange-400 to-orange-600"
       }
     ],
-    website: "https://anand-devocation.vercel.app",
+    website: "https://ananddevocation.vercel.app",
     image: "img/devocation.png"
   },
   {
@@ -405,7 +405,7 @@ const divisions = [
         color: "from-blue-400 to-blue-600"
       }
     ],
-    website: "https://anand-yatra.vercel.app/",
+    website: "https://anand-celebrity-ez6a.vercel.app/",
     image: "img/yatra.png"
   },
   {
@@ -442,7 +442,7 @@ const divisions = [
         color: "from-purple-400 to-purple-600"
       }
     ],
-    website: "https://anand-ceelebrity.vercel.app",
+    website: "https://anand-celebrity.vercel.app",
     image: "img/celebrity.png"
   },
   {
@@ -516,7 +516,7 @@ const divisions = [
         color: "from-green-400 to-green-600"
       }
     ],
-    website: "https://anand-share-brokering.vercel.app",
+    website: "https://anandsharebrokering.vercel.app",
     image: "img/shares.png"
   },
   {
@@ -590,7 +590,7 @@ const divisions = [
         color: "from-green-400 to-green-600"
       }
     ],
-    website: "https://anand-bank-nbfc.vercel.app/ ",
+    website: "https://anandbank-nbfc.vercel.app/ ",
     image: "img/bank.png"
   },
   {
@@ -627,7 +627,7 @@ const divisions = [
         color: "from-amber-400 to-amber-600"
       }
     ],
-    website: "https://anand-wealth-consultancy.vercel.app",
+    website: "https://anandwealthconsultancy.vercel.app",
     image: "img/wealth.png"
   },
   {
@@ -775,7 +775,7 @@ const divisions = [
         color: "from-amber-400 to-amber-600"
       }
     ],
-    website: "https://anand-food-21.vercel.app/",
+    website: "https://anandfoods.vercel.app/",
     image: "img/anand-foods.png"
   }
 ];

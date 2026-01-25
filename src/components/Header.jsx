@@ -18,8 +18,7 @@ export default function Header() {
   const location = useLocation();
 
   // Divisions data
-  
-const divisions = [
+  const divisions = [
   {
     name: "Anand Cinemaz",
     url: "https://anand-cinemas.vercel.app",
@@ -28,13 +27,13 @@ const divisions = [
   },
   {
     name: "Anand Realtyy",
-    url: "https://anandrealty.vercel.app/",
+    url: "https://anandrealty.vercel.app",
     icon: <FaBuilding className="text-blue-600" />,
     description: "Real Estate"
   },
   {
     name: "Anand Infra",
-    url: "https://anand-project-21.vercel.app",
+    url: "https://anandinfra.vercel.app",
     icon: <FaHardHat className="text-orange-500" />,
     description: "Infrastructure"
   },
@@ -52,67 +51,67 @@ const divisions = [
   },
   {
     name: "Anand Technology & Safety",
-    url: "https://anand-transport-12.vercel.app",
+    url: "https://anandtechnologiesandsafety.vercel.app",
     icon: <FaShieldAlt className="text-indigo-500" />,
     description: "Tech Solutions"
   },
   {
     name: "Anand Pharma",
-    url: "https://anand-pharma-12.vercel.app/",
+    url: "https://anand-shipping-hvbr.vercel.app",
     icon: <FaPills className="text-emerald-500" />,
     description: "Pharmaceuticals"
   },
   {
     name: "Anand Devocation",
-    url: "https://anand-devocation.vercel.app",
+    url: "https://ananddevocation.vercel.app",
     icon: <FaPray className="text-yellow-600" />,
     description: "Spiritual Services"
   },
   {
     name: "Anand Yatra",
-    url: "https://anand-yatra.vercel.app/",
+    url: "https://anand-celebrity-ez6a.vercel.app",
     icon: <FaPlane className="text-cyan-500" />,
     description: "Travel & Tourism"
   },
   {
     name: "Anand Celebrity Service",
-    url: "https://anand-ceelebrity.vercel.app",
+    url: "https://anand-celebrity.vercel.app",
     icon: <FaStar className="text-amber-400" />,
     description: "Celebrity Management"
   },
   {
     name: "Anand Lockers",
-    url: "https://anand-lockers-safety.vercel.app",
+    url: "https://anandrealty-6q19.vercel.app",
     icon: <FaLock className="text-gray-600" />,
     description: "Secure Storage"
   },
   {
     name: "Anand Share Broking",
-    url: "https://anand-share-brokering.vercel.app",
+    url: "https://anandsharebrokering.vercel.app",
     icon: <FaChartLine className="text-lime-500" />,
     description: "Stock Trading"
   },
   {
     name: "Anand Wealth Consultancy",
-    url: "https://anand-wealth-consultancy.vercel.app/",
+    url: "https://anandwealthconsulting.vercel.app",
     icon: <FaMoneyBillWave className="text-green-500" />,
     description: "Financial Advisory"
   },
   {
     name: "Anand Shipping",
-    url: "https://anand-shipping.vercel.app/",
+    url: "https://anand-shipping.vercel.app",
     icon: <FaShippingFast className="text-teal-500" />,
     description: "Premium Logistics"
   },
   {
     name: "Anand Bank NBFC", 
-    url: "https://anand-bank-nbfc.vercel.app/",
+    url: "https://anandbank-nbfc.vercel.app",
     icon: <FaUniversity className="text-blue-700" />,
     description: "Financial Services"
   },
   {
     name: "Anand Youth",
-    url: "https://anand-youth.vercel.app", 
+    url: "https://anand-youth.vercel.app",
     icon: <FaSeedling className="text-lime-600" />,
     description: "Social Welfare"
   },
@@ -124,17 +123,18 @@ const divisions = [
   },
   {
     name: "Anand Seva Trust",
-    url: "https://anand-seva-trust-1.vercel.app/",
+    url: "https://anand-seva-trust-1.vercel.app",
     icon: <FaHandsHelping className="text-pink-500" />,
     description: "Compassionate Social Support"
   },
   {
     name: "Anand Foods",
-    url: "https://anand-food-21.vercel.app/",
+    url: "https://anandfoods.vercel.app",
     icon: <FaUtensils className="text-rose-500" />,
     description: "Pure Milk & Regional Flavors"
   }
 ];
+
 
   // Close dropdowns when clicking outside
   useEffect(() => {
